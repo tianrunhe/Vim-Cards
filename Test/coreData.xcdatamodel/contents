@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14F27" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Command" representedClassName="Command" syncable="YES">
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="data" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="favorite" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="purchase" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CommandCategory" inverseName="commands" inverseEntity="CommandCategory" syncable="YES"/>
+        <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CommandTag" inverseName="commands" inverseEntity="CommandTag" syncable="YES"/>
+    </entity>
+    <entity name="CommandCategory" representedClassName="CommandCategory" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="commands" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Command" inverseName="category" inverseEntity="Command" syncable="YES"/>
+    </entity>
+    <entity name="CommandTag" representedClassName="CommandTag" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="commands" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Command" inverseName="tags" inverseEntity="Command" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Command" positionX="-333" positionY="63" width="128" height="163"/>
+        <element name="CommandTag" positionX="-74" positionY="414" width="128" height="88"/>
+        <element name="CommandCategory" positionX="-74" positionY="45" width="128" height="88"/>
+    </elements>
+</model>

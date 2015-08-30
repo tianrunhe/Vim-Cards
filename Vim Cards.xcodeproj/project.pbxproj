@@ -7,13 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		320FD4281B8EB9030075BFAF /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 320FD4271B8EB9030075BFAF /* Roboto-Light.ttf */; };
 		3242C1511B8C284B006988F0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3242C1501B8C284B006988F0 /* main.m */; };
 		3242C1541B8C284B006988F0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3242C1531B8C284B006988F0 /* AppDelegate.m */; };
 		3242C1571B8C284B006988F0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3242C1561B8C284B006988F0 /* ViewController.m */; };
-		3242C15A1B8C284B006988F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3242C1581B8C284B006988F0 /* Main.storyboard */; };
 		3242C15C1B8C284B006988F0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3242C15B1B8C284B006988F0 /* Images.xcassets */; };
 		3242C15F1B8C284B006988F0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3242C15D1B8C284B006988F0 /* LaunchScreen.xib */; };
 		3242C16B1B8C284B006988F0 /* TestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3242C16A1B8C284B006988F0 /* TestTests.m */; };
+		3242C1761B8D637B006988F0 /* GoogleNowCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3242C1751B8D637B006988F0 /* GoogleNowCardView.m */; };
+		326AA64C1B925E0F00D64041 /* CommandTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 326AA6441B925E0F00D64041 /* CommandTag.m */; };
+		326AA64D1B925E0F00D64041 /* Command.m in Sources */ = {isa = PBXBuildFile; fileRef = 326AA6461B925E0F00D64041 /* Command.m */; };
+		326AA64E1B925E0F00D64041 /* CommandCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 326AA6481B925E0F00D64041 /* CommandCategory.m */; };
+		326AA64F1B925E0F00D64041 /* coreData.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 326AA6491B925E0F00D64041 /* coreData.xcdatamodel */; };
+		326AA6501B925E0F00D64041 /* Command+DynamoDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 326AA64B1B925E0F00D64041 /* Command+DynamoDB.m */; };
+		326AA6591B93AEF100D64041 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 326AA6581B93AEF100D64041 /* libsqlite3.dylib */; };
+		326AA65B1B93AEFB00D64041 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326AA65A1B93AEFB00D64041 /* SystemConfiguration.framework */; };
+		326AA65F1B93AF4000D64041 /* AWSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326AA65E1B93AF4000D64041 /* AWSCore.framework */; };
+		326AA6611B93AF5D00D64041 /* AWSDynamoDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326AA6601B93AF5D00D64041 /* AWSDynamoDB.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,19 +37,37 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3242C14B1B8C284B006988F0 /* Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		320FD4271B8EB9030075BFAF /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
+		3242C14B1B8C284B006988F0 /* Vim Cards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Vim Cards.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3242C14F1B8C284B006988F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3242C1501B8C284B006988F0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3242C1521B8C284B006988F0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3242C1531B8C284B006988F0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		3242C1551B8C284B006988F0 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		3242C1561B8C284B006988F0 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		3242C1591B8C284B006988F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3242C15B1B8C284B006988F0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3242C15E1B8C284B006988F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		3242C1641B8C284B006988F0 /* TestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3242C1641B8C284B006988F0 /* Vim CardsVim Cardss.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Vim CardsVim Cardss.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3242C1691B8C284B006988F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3242C16A1B8C284B006988F0 /* TestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestTests.m; sourceTree = "<group>"; };
+		3242C1741B8D637B006988F0 /* GoogleNowCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleNowCardView.h; sourceTree = "<group>"; };
+		3242C1751B8D637B006988F0 /* GoogleNowCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleNowCardView.m; sourceTree = "<group>"; };
+		326AA6431B925E0F00D64041 /* CommandTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandTag.h; sourceTree = "<group>"; };
+		326AA6441B925E0F00D64041 /* CommandTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandTag.m; sourceTree = "<group>"; };
+		326AA6451B925E0F00D64041 /* Command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Command.h; sourceTree = "<group>"; };
+		326AA6461B925E0F00D64041 /* Command.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Command.m; sourceTree = "<group>"; };
+		326AA6471B925E0F00D64041 /* CommandCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandCategory.h; sourceTree = "<group>"; };
+		326AA6481B925E0F00D64041 /* CommandCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandCategory.m; sourceTree = "<group>"; };
+		326AA6491B925E0F00D64041 /* coreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = coreData.xcdatamodel; sourceTree = "<group>"; };
+		326AA64A1B925E0F00D64041 /* Command+DynamoDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Command+DynamoDB.h"; sourceTree = "<group>"; };
+		326AA64B1B925E0F00D64041 /* Command+DynamoDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Command+DynamoDB.m"; sourceTree = "<group>"; wrapsLines = 1; };
+		326AA6521B93AE9200D64041 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		326AA6541B93AE9800D64041 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		326AA6561B93AE9F00D64041 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		326AA6581B93AEF100D64041 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		326AA65A1B93AEFB00D64041 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		326AA65E1B93AF4000D64041 /* AWSCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCore.framework; path = "../../Downloads/aws-ios-sdk-2.2.4/frameworks/AWSCore.framework"; sourceTree = "<group>"; };
+		326AA6601B93AF5D00D64041 /* AWSDynamoDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSDynamoDB.framework; path = "../../Downloads/aws-ios-sdk-2.2.4/frameworks/AWSDynamoDB.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +75,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				326AA6611B93AF5D00D64041 /* AWSDynamoDB.framework in Frameworks */,
+				326AA65F1B93AF4000D64041 /* AWSCore.framework in Frameworks */,
+				326AA65B1B93AEFB00D64041 /* SystemConfiguration.framework in Frameworks */,
+				326AA6591B93AEF100D64041 /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,34 +95,35 @@
 		3242C1421B8C284B006988F0 = {
 			isa = PBXGroup;
 			children = (
-				3242C14D1B8C284B006988F0 /* Test */,
-				3242C1671B8C284B006988F0 /* TestTests */,
+				3242C14D1B8C284B006988F0 /* Vim Cards */,
+				3242C1671B8C284B006988F0 /* Unit Tests */,
 				3242C14C1B8C284B006988F0 /* Products */,
+				326AA6621B93AF9600D64041 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		3242C14C1B8C284B006988F0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3242C14B1B8C284B006988F0 /* Test.app */,
-				3242C1641B8C284B006988F0 /* TestTests.xctest */,
+				3242C14B1B8C284B006988F0 /* Vim Cards.app */,
+				3242C1641B8C284B006988F0 /* Vim CardsVim Cardss.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		3242C14D1B8C284B006988F0 /* Test */ = {
+		3242C14D1B8C284B006988F0 /* Vim Cards */ = {
 			isa = PBXGroup;
 			children = (
+				326AA6511B925E2C00D64041 /* Model */,
+				326AA6661B93B7AE00D64041 /* View */,
+				326AA6671B93B7C100D64041 /* Controller */,
+				326AA6651B93B65500D64041 /* Resources */,
 				3242C1521B8C284B006988F0 /* AppDelegate.h */,
 				3242C1531B8C284B006988F0 /* AppDelegate.m */,
-				3242C1551B8C284B006988F0 /* ViewController.h */,
-				3242C1561B8C284B006988F0 /* ViewController.m */,
-				3242C1581B8C284B006988F0 /* Main.storyboard */,
-				3242C15B1B8C284B006988F0 /* Images.xcassets */,
-				3242C15D1B8C284B006988F0 /* LaunchScreen.xib */,
 				3242C14E1B8C284B006988F0 /* Supporting Files */,
 			);
-			path = Test;
+			name = "Vim Cards";
+			path = src;
 			sourceTree = "<group>";
 		};
 		3242C14E1B8C284B006988F0 /* Supporting Files */ = {
@@ -102,13 +135,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		3242C1671B8C284B006988F0 /* TestTests */ = {
+		3242C1671B8C284B006988F0 /* Unit Tests */ = {
 			isa = PBXGroup;
 			children = (
 				3242C16A1B8C284B006988F0 /* TestTests.m */,
 				3242C1681B8C284B006988F0 /* Supporting Files */,
 			);
-			path = TestTests;
+			name = "Unit Tests";
+			path = tst;
 			sourceTree = "<group>";
 		};
 		3242C1681B8C284B006988F0 /* Supporting Files */ = {
@@ -119,12 +153,70 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		326AA6511B925E2C00D64041 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				326AA6431B925E0F00D64041 /* CommandTag.h */,
+				326AA6441B925E0F00D64041 /* CommandTag.m */,
+				326AA6451B925E0F00D64041 /* Command.h */,
+				326AA6461B925E0F00D64041 /* Command.m */,
+				326AA6471B925E0F00D64041 /* CommandCategory.h */,
+				326AA6481B925E0F00D64041 /* CommandCategory.m */,
+				326AA6491B925E0F00D64041 /* coreData.xcdatamodel */,
+				326AA64A1B925E0F00D64041 /* Command+DynamoDB.h */,
+				326AA64B1B925E0F00D64041 /* Command+DynamoDB.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		326AA6621B93AF9600D64041 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				326AA6601B93AF5D00D64041 /* AWSDynamoDB.framework */,
+				326AA65E1B93AF4000D64041 /* AWSCore.framework */,
+				326AA65A1B93AEFB00D64041 /* SystemConfiguration.framework */,
+				326AA6581B93AEF100D64041 /* libsqlite3.dylib */,
+				326AA6561B93AE9F00D64041 /* CoreGraphics.framework */,
+				326AA6541B93AE9800D64041 /* UIKit.framework */,
+				326AA6521B93AE9200D64041 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		326AA6651B93B65500D64041 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3242C15B1B8C284B006988F0 /* Images.xcassets */,
+				3242C15D1B8C284B006988F0 /* LaunchScreen.xib */,
+				320FD4271B8EB9030075BFAF /* Roboto-Light.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		326AA6661B93B7AE00D64041 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3242C1741B8D637B006988F0 /* GoogleNowCardView.h */,
+				3242C1751B8D637B006988F0 /* GoogleNowCardView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		326AA6671B93B7C100D64041 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3242C1551B8C284B006988F0 /* ViewController.h */,
+				3242C1561B8C284B006988F0 /* ViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3242C14A1B8C284B006988F0 /* Test */ = {
+		3242C14A1B8C284B006988F0 /* Vim Cards */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3242C16E1B8C284B006988F0 /* Build configuration list for PBXNativeTarget "Test" */;
+			buildConfigurationList = 3242C16E1B8C284B006988F0 /* Build configuration list for PBXNativeTarget "Vim Cards" */;
 			buildPhases = (
 				3242C1471B8C284B006988F0 /* Sources */,
 				3242C1481B8C284B006988F0 /* Frameworks */,
@@ -134,14 +226,14 @@
 			);
 			dependencies = (
 			);
-			name = Test;
+			name = "Vim Cards";
 			productName = Test;
-			productReference = 3242C14B1B8C284B006988F0 /* Test.app */;
+			productReference = 3242C14B1B8C284B006988F0 /* Vim Cards.app */;
 			productType = "com.apple.product-type.application";
 		};
-		3242C1631B8C284B006988F0 /* TestTests */ = {
+		3242C1631B8C284B006988F0 /* Vim CardsVim Cardss */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3242C1711B8C284B006988F0 /* Build configuration list for PBXNativeTarget "TestTests" */;
+			buildConfigurationList = 3242C1711B8C284B006988F0 /* Build configuration list for PBXNativeTarget "Vim CardsVim Cardss" */;
 			buildPhases = (
 				3242C1601B8C284B006988F0 /* Sources */,
 				3242C1611B8C284B006988F0 /* Frameworks */,
@@ -152,9 +244,9 @@
 			dependencies = (
 				3242C1661B8C284B006988F0 /* PBXTargetDependency */,
 			);
-			name = TestTests;
+			name = "Vim CardsVim Cardss";
 			productName = TestTests;
-			productReference = 3242C1641B8C284B006988F0 /* TestTests.xctest */;
+			productReference = 3242C1641B8C284B006988F0 /* Vim CardsVim Cardss.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -175,7 +267,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 3242C1461B8C284B006988F0 /* Build configuration list for PBXProject "Test" */;
+			buildConfigurationList = 3242C1461B8C284B006988F0 /* Build configuration list for PBXProject "Vim Cards" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -188,8 +280,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3242C14A1B8C284B006988F0 /* Test */,
-				3242C1631B8C284B006988F0 /* TestTests */,
+				3242C14A1B8C284B006988F0 /* Vim Cards */,
+				3242C1631B8C284B006988F0 /* Vim CardsVim Cardss */,
 			);
 		};
 /* End PBXProject section */
@@ -199,9 +291,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3242C15A1B8C284B006988F0 /* Main.storyboard in Resources */,
 				3242C15F1B8C284B006988F0 /* LaunchScreen.xib in Resources */,
 				3242C15C1B8C284B006988F0 /* Images.xcassets in Resources */,
+				320FD4281B8EB9030075BFAF /* Roboto-Light.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,8 +311,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				326AA64F1B925E0F00D64041 /* coreData.xcdatamodel in Sources */,
+				3242C1761B8D637B006988F0 /* GoogleNowCardView.m in Sources */,
+				326AA64D1B925E0F00D64041 /* Command.m in Sources */,
+				326AA64C1B925E0F00D64041 /* CommandTag.m in Sources */,
 				3242C1571B8C284B006988F0 /* ViewController.m in Sources */,
 				3242C1541B8C284B006988F0 /* AppDelegate.m in Sources */,
+				326AA64E1B925E0F00D64041 /* CommandCategory.m in Sources */,
+				326AA6501B925E0F00D64041 /* Command+DynamoDB.m in Sources */,
 				3242C1511B8C284B006988F0 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -238,20 +336,12 @@
 /* Begin PBXTargetDependency section */
 		3242C1661B8C284B006988F0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 3242C14A1B8C284B006988F0 /* Test */;
+			target = 3242C14A1B8C284B006988F0 /* Vim Cards */;
 			targetProxy = 3242C1651B8C284B006988F0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		3242C1581B8C284B006988F0 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3242C1591B8C284B006988F0 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		3242C15D1B8C284B006988F0 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -347,9 +437,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = Test/Info.plist;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/bruce/Downloads/aws-ios-sdk-2.2.4/frameworks",
+				);
+				INFOPLIST_FILE = src/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Vim Cards";
 			};
 			name = Debug;
 		};
@@ -357,9 +451,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = Test/Info.plist;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/bruce/Downloads/aws-ios-sdk-2.2.4/frameworks",
+				);
+				INFOPLIST_FILE = src/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Vim Cards";
 			};
 			name = Release;
 		};
@@ -375,9 +473,9 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = TestTests/Info.plist;
+				INFOPLIST_FILE = tst/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Vim CardsVim Cardss";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Test.app/Test";
 			};
 			name = Debug;
@@ -390,9 +488,9 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = TestTests/Info.plist;
+				INFOPLIST_FILE = tst/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Vim CardsVim Cardss";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Test.app/Test";
 			};
 			name = Release;
@@ -400,7 +498,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3242C1461B8C284B006988F0 /* Build configuration list for PBXProject "Test" */ = {
+		3242C1461B8C284B006988F0 /* Build configuration list for PBXProject "Vim Cards" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3242C16C1B8C284B006988F0 /* Debug */,
@@ -409,21 +507,23 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3242C16E1B8C284B006988F0 /* Build configuration list for PBXNativeTarget "Test" */ = {
+		3242C16E1B8C284B006988F0 /* Build configuration list for PBXNativeTarget "Vim Cards" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3242C16F1B8C284B006988F0 /* Debug */,
 				3242C1701B8C284B006988F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		3242C1711B8C284B006988F0 /* Build configuration list for PBXNativeTarget "TestTests" */ = {
+		3242C1711B8C284B006988F0 /* Build configuration list for PBXNativeTarget "Vim CardsVim Cardss" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3242C1721B8C284B006988F0 /* Debug */,
 				3242C1731B8C284B006988F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
