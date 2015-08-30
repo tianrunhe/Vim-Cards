@@ -14,16 +14,6 @@
 
 #pragma mark - UITableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 3;
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"VIM Command Cell";
@@ -38,8 +28,9 @@
                                     150 - SPACE_BETWEEN_CARDS);
         GoogleNowCardView *cardView = [[GoogleNowCardView alloc] initWithFrame:frame];
 
-        cardView.primaryText = @"Primary Text";
-        cardView.subtitleText = @"Subtitle text";
+        Command *command = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        cardView.primaryText = command.title;
+        cardView.subtitleText = command.content;
         [cell.contentView addSubview:cardView];
         
     }

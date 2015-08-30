@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "CommandsCDTVC.h"
+#import "Command.h"
 
 @interface AppDelegate ()
 
@@ -21,10 +22,42 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     CommandsCDTVC *rootViewController = [[CommandsCDTVC alloc] init];
+
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSURL *documentsDirectory = [[fileManager URLsForDirectory:NSDocumentDirectory
+                                  inDomains:NSUserDomainMask] firstObject];
+    NSURL *url = [documentsDirectory URLByAppendingPathComponent:@"coreData"];
+    UIManagedDocument *document = [[UIManagedDocument alloc] initWithFileURL:url];
+    NSManagedObjectContext *managedObject = document.managedObjectContext;
+
+    Command *command = [NSEntityDescription insertNewObjectForEntityForName:@"Command"
+                                  inManagedObjectContext:managedObject];
+    command.title = @"Ctrl-F";
+    command.content = @"Move one word forward";
+    //[document saveToURL:url forSaveOperation:UIDocumentSaveForOverwriting completionHandler:nil];
+
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Command"];
+    request.predicate = nil;
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title"
+                                                              ascending:YES
+                                                               selector:@selector(localizedStandardCompare:)]];
+
+    
+    
+    NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc]  initWithFetchRequest:request
+                                                                        managedObjectContext:managedObject
+                                                                          sectionNameKeyPath:nil
+                                                                                   cacheName:nil];
+    rootViewController.fetchedResultsController = fetchedResultsController;
+
     UINavigationController *nav = [[UINavigationController alloc]
                                    initWithRootViewController:rootViewController];
     self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
+
+    NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentPath = [searchPaths objectAtIndex:0];
+    NSLog(@"document path is: %@", documentPath);
     return YES;
 }
 

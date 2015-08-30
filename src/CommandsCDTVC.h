@@ -6,11 +6,10 @@
 //  Copyright (c) 2015 Runhe Tian. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import <CoreData/CoreData.h>
 #import "GoogleNowCardView.h"
+#import "CoreDataTableViewController.h"
 
-@interface CommandsCDTVC : UITableViewController<GoogleNowCardViewDelegate>
+@interface CommandsCDTVC : CoreDataTableViewController<GoogleNowCardViewDelegate>
 
 @end
 
