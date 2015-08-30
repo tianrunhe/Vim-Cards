@@ -12,13 +12,5 @@
 
 @interface CommandsCDTVC : UITableViewController<GoogleNowCardViewDelegate>
 
-@property (strong, nonatomic) NSFetchedResultsController
-    *fetchedResultsController;
-
-- (void)performFetch;
-
-// Set to YES to get some debugging output in the console.
-@property BOOL debug;
-
 @end
 
