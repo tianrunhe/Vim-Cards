@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "ViewController.h"
+#import "CommandsCDTVC.h"
 
 @interface AppDelegate ()
 
@@ -20,7 +20,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
-    ViewController *rootViewController = [[ViewController alloc] init];
+    CommandsCDTVC *rootViewController = [[CommandsCDTVC alloc] init];
     UINavigationController *nav = [[UINavigationController alloc]
                                    initWithRootViewController:rootViewController];
     self.window.rootViewController = nav;

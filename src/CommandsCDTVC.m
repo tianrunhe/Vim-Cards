@@ -6,11 +6,11 @@
 //  Copyright (c) 2015 Runhe Tian. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "CommandsCDTVC.h"
 #import "GoogleNowCardView.h"
 #import "Command.h"
 
-@implementation ViewController
+@implementation CommandsCDTVC
 
 #pragma mark - UITableViewDataSource
 

@@ -10,8 +10,7 @@
 #import <CoreData/CoreData.h>
 #import "GoogleNowCardView.h"
 
-@interface ViewController : UITableViewController<UITableViewDelegate,
-    GoogleNowCardViewDelegate, NSFetchedResultsControllerDelegate>
+@interface CommandsCDTVC : UITableViewController<GoogleNowCardViewDelegate>
 
 @property (strong, nonatomic) NSFetchedResultsController
     *fetchedResultsController;

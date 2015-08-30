@@ -10,7 +10,7 @@
 		320FD4281B8EB9030075BFAF /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 320FD4271B8EB9030075BFAF /* Roboto-Light.ttf */; };
 		3242C1511B8C284B006988F0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3242C1501B8C284B006988F0 /* main.m */; };
 		3242C1541B8C284B006988F0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3242C1531B8C284B006988F0 /* AppDelegate.m */; };
-		3242C1571B8C284B006988F0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3242C1561B8C284B006988F0 /* ViewController.m */; };
+		3242C1571B8C284B006988F0 /* CommandsCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3242C1561B8C284B006988F0 /* CommandsCDTVC.m */; };
 		3242C15C1B8C284B006988F0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3242C15B1B8C284B006988F0 /* Images.xcassets */; };
 		3242C15F1B8C284B006988F0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3242C15D1B8C284B006988F0 /* LaunchScreen.xib */; };
 		3242C16B1B8C284B006988F0 /* TestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3242C16A1B8C284B006988F0 /* TestTests.m */; };
@@ -44,8 +44,8 @@
 		3242C1501B8C284B006988F0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3242C1521B8C284B006988F0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3242C1531B8C284B006988F0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		3242C1551B8C284B006988F0 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		3242C1561B8C284B006988F0 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		3242C1551B8C284B006988F0 /* CommandsCDTVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommandsCDTVC.h; sourceTree = "<group>"; };
+		3242C1561B8C284B006988F0 /* CommandsCDTVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommandsCDTVC.m; sourceTree = "<group>"; };
 		3242C15B1B8C284B006988F0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3242C15E1B8C284B006988F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		3242C1641B8C284B006988F0 /* Vim CardsVim Cardss.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Vim CardsVim Cardss.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -210,8 +210,8 @@
 			children = (
 				326AA6681B93BA4D00D64041 /* CoreDataTableViewController.h */,
 				326AA6691B93BA4D00D64041 /* CoreDataTableViewController.m */,
-				3242C1551B8C284B006988F0 /* ViewController.h */,
-				3242C1561B8C284B006988F0 /* ViewController.m */,
+				3242C1551B8C284B006988F0 /* CommandsCDTVC.h */,
+				3242C1561B8C284B006988F0 /* CommandsCDTVC.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -321,7 +321,7 @@
 				326AA64D1B925E0F00D64041 /* Command.m in Sources */,
 				326AA64C1B925E0F00D64041 /* CommandTag.m in Sources */,
 				326AA66A1B93BA4D00D64041 /* CoreDataTableViewController.m in Sources */,
-				3242C1571B8C284B006988F0 /* ViewController.m in Sources */,
+				3242C1571B8C284B006988F0 /* CommandsCDTVC.m in Sources */,
 				3242C1541B8C284B006988F0 /* AppDelegate.m in Sources */,
 				326AA64E1B925E0F00D64041 /* CommandCategory.m in Sources */,
 				326AA6501B925E0F00D64041 /* Command+DynamoDB.m in Sources */,
