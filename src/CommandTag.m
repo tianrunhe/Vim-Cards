@@ -9,7 +9,6 @@
 #import "CommandTag.h"
 #import "Command.h"
 
-
 @implementation CommandTag
 
 @dynamic id;

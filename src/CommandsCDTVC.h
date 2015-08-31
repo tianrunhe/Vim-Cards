@@ -9,7 +9,7 @@
 #import "GoogleNowCardView.h"
 #import "CoreDataTableViewController.h"
 
-@interface CommandsCDTVC : CoreDataTableViewController<GoogleNowCardViewDelegate>
+@interface CommandsCDTVC
+    : CoreDataTableViewController <GoogleNowCardViewDelegate>
 
 @end
-

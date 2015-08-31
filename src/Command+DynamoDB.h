@@ -14,7 +14,8 @@
 + (Command *)commandWithDynamoDBRow:(NSDictionary *)dynamoDBRow
              inManagedObjectContext:(NSManagedObjectContext *)context;
 
-+ (void)loadCommandsFromDynamoDBScanOutput:(AWSDynamoDBScanOutput *)dynamoDBScanOutput
++ (void)loadCommandsFromDynamoDBScanOutput:
+            (AWSDynamoDBScanOutput *)dynamoDBScanOutput
                   intoManagedObjectContext:(NSManagedObjectContext *)context;
 
 @end

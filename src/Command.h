@@ -12,16 +12,16 @@
 
 @class CommandCategory, CommandTag;
 
-@interface Command : NSManagedObject 
+@interface Command : NSManagedObject
 
-@property (nonatomic, retain) NSString * content;
-@property (nonatomic, retain) NSData * data;
-@property (nonatomic, retain) NSNumber * favorite;
-@property (nonatomic, retain) NSNumber * id;
-@property (nonatomic, retain) NSNumber * purchase;
-@property (nonatomic, retain) NSString * title;
-@property (nonatomic, retain) NSSet *tags;
-@property (nonatomic, retain) CommandCategory *category;
+@property(nonatomic, retain) NSString *content;
+@property(nonatomic, retain) NSData *data;
+@property(nonatomic, retain) NSNumber *favorite;
+@property(nonatomic, retain) NSNumber *id;
+@property(nonatomic, retain) NSNumber *purchase;
+@property(nonatomic, retain) NSString *title;
+@property(nonatomic, retain) NSSet *tags;
+@property(nonatomic, retain) CommandCategory *category;
 @end
 
 @interface Command (CoreDataGeneratedAccessors)

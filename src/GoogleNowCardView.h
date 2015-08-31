@@ -10,21 +10,20 @@
 
 @protocol GoogleNowCardViewDelegate <NSObject>
 
--(void)shareButtonDidPressed;
+- (void)shareButtonDidPressed;
 
 @end
-
 
 @interface GoogleNowCardView : UIView
 
 #define PADDING_FROM_EDGE_OF_SCREEN_TO_CARD 8.0
 #define SPACE_BETWEEN_CARDS 8.0
 
-@property (strong, nonatomic) NSString *primaryText;
-@property (strong, nonatomic) NSString *subtitleText;
-@property (strong, nonatomic) NSString *subText;
-@property (strong, nonatomic) NSString *action1Text;
-@property (strong, nonatomic) NSString *action2Text;
-@property (assign) id<GoogleNowCardViewDelegate> delegate;
+@property(strong, nonatomic) NSString *primaryText;
+@property(strong, nonatomic) NSString *subtitleText;
+@property(strong, nonatomic) NSString *subText;
+@property(strong, nonatomic) NSString *action1Text;
+@property(strong, nonatomic) NSString *action2Text;
+@property(assign) id<GoogleNowCardViewDelegate> delegate;
 
 @end

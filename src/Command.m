@@ -10,7 +10,6 @@
 #import "CommandCategory.h"
 #import "CommandTag.h"
 
-
 @implementation Command
 
 @dynamic content;

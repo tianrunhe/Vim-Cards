@@ -13,9 +13,9 @@
 
 @interface CommandTag : NSManagedObject
 
-@property (nonatomic, retain) NSNumber * id;
-@property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSSet *commands;
+@property(nonatomic, retain) NSNumber *id;
+@property(nonatomic, retain) NSString *name;
+@property(nonatomic, retain) NSSet *commands;
 @end
 
 @interface CommandTag (CoreDataGeneratedAccessors)

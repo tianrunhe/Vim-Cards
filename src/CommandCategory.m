@@ -9,7 +9,6 @@
 #import "CommandCategory.h"
 #import "Command.h"
 
-
 @implementation CommandCategory
 
 @dynamic id;
