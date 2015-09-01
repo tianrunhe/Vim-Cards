@@ -1,8 +1,8 @@
 //
-//  CommandCategory.h
-//  Vim.gif
+//  Topic.h
+//  Vim Cards
 //
-//  Created by Runhe Tian on 8/19/15.
+//  Created by Runhe Tian on 8/31/15.
 //  Copyright (c) 2015 Runhe Tian. All rights reserved.
 //
 
@@ -11,14 +11,14 @@
 
 @class Command;
 
-@interface CommandCategory : NSManagedObject
+@interface Topic : NSManagedObject
 
-@property(nonatomic, retain) NSNumber *id;
-@property(nonatomic, retain) NSString *name;
-@property(nonatomic, retain) NSSet *commands;
+@property (nonatomic, retain) NSNumber * id;
+@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSSet *commands;
 @end
 
-@interface CommandCategory (CoreDataGeneratedAccessors)
+@interface Topic (CoreDataGeneratedAccessors)
 
 - (void)addCommandsObject:(Command *)value;
 - (void)removeCommandsObject:(Command *)value;

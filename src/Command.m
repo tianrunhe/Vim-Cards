@@ -1,24 +1,27 @@
 //
 //  Command.m
-//  Vim.gif
+//  Vim Cards
 //
-//  Created by Runhe Tian on 8/19/15.
+//  Created by Runhe Tian on 8/31/15.
 //  Copyright (c) 2015 Runhe Tian. All rights reserved.
 //
 
 #import "Command.h"
-#import "CommandCategory.h"
-#import "CommandTag.h"
+#import "Tag.h"
+#import "Topic.h"
+
 
 @implementation Command
 
 @dynamic content;
-@dynamic data;
+@dynamic image;
 @dynamic favorite;
 @dynamic id;
 @dynamic purchase;
 @dynamic title;
+@dynamic usage;
+@dynamic vi;
+@dynamic topic;
 @dynamic tags;
-@dynamic category;
 
 @end

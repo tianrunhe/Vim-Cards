@@ -15,9 +15,10 @@
 		3242C15F1B8C284B006988F0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3242C15D1B8C284B006988F0 /* LaunchScreen.xib */; };
 		3242C16B1B8C284B006988F0 /* TestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3242C16A1B8C284B006988F0 /* TestTests.m */; };
 		3242C1761B8D637B006988F0 /* GoogleNowCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3242C1751B8D637B006988F0 /* GoogleNowCardView.m */; };
-		326AA64C1B925E0F00D64041 /* CommandTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 326AA6441B925E0F00D64041 /* CommandTag.m */; };
-		326AA64D1B925E0F00D64041 /* Command.m in Sources */ = {isa = PBXBuildFile; fileRef = 326AA6461B925E0F00D64041 /* Command.m */; };
-		326AA64E1B925E0F00D64041 /* CommandCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 326AA6481B925E0F00D64041 /* CommandCategory.m */; };
+		325D0B531B95597E00D608CF /* Notation.m in Sources */ = {isa = PBXBuildFile; fileRef = 325D0B521B95597E00D608CF /* Notation.m */; };
+		325D0B561B95597E00D608CF /* Command.m in Sources */ = {isa = PBXBuildFile; fileRef = 325D0B551B95597E00D608CF /* Command.m */; };
+		325D0B591B95597E00D608CF /* Topic.m in Sources */ = {isa = PBXBuildFile; fileRef = 325D0B581B95597E00D608CF /* Topic.m */; };
+		325D0B5C1B95597F00D608CF /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 325D0B5B1B95597F00D608CF /* Tag.m */; };
 		326AA64F1B925E0F00D64041 /* coreData.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 326AA6491B925E0F00D64041 /* coreData.xcdatamodel */; };
 		326AA6501B925E0F00D64041 /* Command+DynamoDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 326AA64B1B925E0F00D64041 /* Command+DynamoDB.m */; };
 		326AA6591B93AEF100D64041 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 326AA6581B93AEF100D64041 /* libsqlite3.dylib */; };
@@ -53,12 +54,14 @@
 		3242C16A1B8C284B006988F0 /* TestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestTests.m; sourceTree = "<group>"; };
 		3242C1741B8D637B006988F0 /* GoogleNowCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleNowCardView.h; sourceTree = "<group>"; };
 		3242C1751B8D637B006988F0 /* GoogleNowCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleNowCardView.m; sourceTree = "<group>"; };
-		326AA6431B925E0F00D64041 /* CommandTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandTag.h; sourceTree = "<group>"; };
-		326AA6441B925E0F00D64041 /* CommandTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandTag.m; sourceTree = "<group>"; };
-		326AA6451B925E0F00D64041 /* Command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Command.h; sourceTree = "<group>"; };
-		326AA6461B925E0F00D64041 /* Command.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Command.m; sourceTree = "<group>"; };
-		326AA6471B925E0F00D64041 /* CommandCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandCategory.h; sourceTree = "<group>"; };
-		326AA6481B925E0F00D64041 /* CommandCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandCategory.m; sourceTree = "<group>"; };
+		325D0B511B95597E00D608CF /* Notation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notation.h; sourceTree = "<group>"; };
+		325D0B521B95597E00D608CF /* Notation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notation.m; sourceTree = "<group>"; };
+		325D0B541B95597E00D608CF /* Command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Command.h; sourceTree = "<group>"; };
+		325D0B551B95597E00D608CF /* Command.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Command.m; sourceTree = "<group>"; };
+		325D0B571B95597E00D608CF /* Topic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Topic.h; sourceTree = "<group>"; };
+		325D0B581B95597E00D608CF /* Topic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Topic.m; sourceTree = "<group>"; };
+		325D0B5A1B95597F00D608CF /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
+		325D0B5B1B95597F00D608CF /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
 		326AA6491B925E0F00D64041 /* coreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = coreData.xcdatamodel; sourceTree = "<group>"; };
 		326AA64A1B925E0F00D64041 /* Command+DynamoDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Command+DynamoDB.h"; sourceTree = "<group>"; };
 		326AA64B1B925E0F00D64041 /* Command+DynamoDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Command+DynamoDB.m"; sourceTree = "<group>"; wrapsLines = 1; };
@@ -159,12 +162,14 @@
 		326AA6511B925E2C00D64041 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				326AA6431B925E0F00D64041 /* CommandTag.h */,
-				326AA6441B925E0F00D64041 /* CommandTag.m */,
-				326AA6451B925E0F00D64041 /* Command.h */,
-				326AA6461B925E0F00D64041 /* Command.m */,
-				326AA6471B925E0F00D64041 /* CommandCategory.h */,
-				326AA6481B925E0F00D64041 /* CommandCategory.m */,
+				325D0B5A1B95597F00D608CF /* Tag.h */,
+				325D0B5B1B95597F00D608CF /* Tag.m */,
+				325D0B571B95597E00D608CF /* Topic.h */,
+				325D0B581B95597E00D608CF /* Topic.m */,
+				325D0B541B95597E00D608CF /* Command.h */,
+				325D0B551B95597E00D608CF /* Command.m */,
+				325D0B511B95597E00D608CF /* Notation.h */,
+				325D0B521B95597E00D608CF /* Notation.m */,
 				326AA6491B925E0F00D64041 /* coreData.xcdatamodel */,
 				326AA64A1B925E0F00D64041 /* Command+DynamoDB.h */,
 				326AA64B1B925E0F00D64041 /* Command+DynamoDB.m */,
@@ -316,14 +321,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				325D0B5C1B95597F00D608CF /* Tag.m in Sources */,
+				325D0B591B95597E00D608CF /* Topic.m in Sources */,
+				325D0B531B95597E00D608CF /* Notation.m in Sources */,
 				326AA64F1B925E0F00D64041 /* coreData.xcdatamodel in Sources */,
 				3242C1761B8D637B006988F0 /* GoogleNowCardView.m in Sources */,
-				326AA64D1B925E0F00D64041 /* Command.m in Sources */,
-				326AA64C1B925E0F00D64041 /* CommandTag.m in Sources */,
 				326AA66A1B93BA4D00D64041 /* CoreDataTableViewController.m in Sources */,
 				3242C1571B8C284B006988F0 /* CommandsCDTVC.m in Sources */,
 				3242C1541B8C284B006988F0 /* AppDelegate.m in Sources */,
-				326AA64E1B925E0F00D64041 /* CommandCategory.m in Sources */,
+				325D0B561B95597E00D608CF /* Command.m in Sources */,
 				326AA6501B925E0F00D64041 /* Command+DynamoDB.m in Sources */,
 				3242C1511B8C284B006988F0 /* main.m in Sources */,
 			);
