@@ -15,10 +15,6 @@
 		3242C15F1B8C284B006988F0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3242C15D1B8C284B006988F0 /* LaunchScreen.xib */; };
 		3242C16B1B8C284B006988F0 /* TestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3242C16A1B8C284B006988F0 /* TestTests.m */; };
 		3242C1761B8D637B006988F0 /* GoogleNowCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3242C1751B8D637B006988F0 /* GoogleNowCardView.m */; };
-		325D0B531B95597E00D608CF /* Notation.m in Sources */ = {isa = PBXBuildFile; fileRef = 325D0B521B95597E00D608CF /* Notation.m */; };
-		325D0B561B95597E00D608CF /* Command.m in Sources */ = {isa = PBXBuildFile; fileRef = 325D0B551B95597E00D608CF /* Command.m */; };
-		325D0B591B95597E00D608CF /* Topic.m in Sources */ = {isa = PBXBuildFile; fileRef = 325D0B581B95597E00D608CF /* Topic.m */; };
-		325D0B5C1B95597F00D608CF /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 325D0B5B1B95597F00D608CF /* Tag.m */; };
 		326AA64F1B925E0F00D64041 /* coreData.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 326AA6491B925E0F00D64041 /* coreData.xcdatamodel */; };
 		326AA6501B925E0F00D64041 /* Command+DynamoDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 326AA64B1B925E0F00D64041 /* Command+DynamoDB.m */; };
 		326AA6591B93AEF100D64041 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 326AA6581B93AEF100D64041 /* libsqlite3.dylib */; };
@@ -26,6 +22,10 @@
 		326AA65F1B93AF4000D64041 /* AWSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326AA65E1B93AF4000D64041 /* AWSCore.framework */; };
 		326AA6611B93AF5D00D64041 /* AWSDynamoDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326AA6601B93AF5D00D64041 /* AWSDynamoDB.framework */; };
 		326AA66A1B93BA4D00D64041 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 326AA6691B93BA4D00D64041 /* CoreDataTableViewController.m */; };
+		32BCE9E51B96BAD70032AE44 /* Notation.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BCE9E41B96BAD70032AE44 /* Notation.m */; };
+		32BCE9E81B96BAD70032AE44 /* Topic.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BCE9E71B96BAD70032AE44 /* Topic.m */; };
+		32BCE9EB1B96BAD70032AE44 /* Command.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BCE9EA1B96BAD70032AE44 /* Command.m */; };
+		32BCE9EE1B96BAD70032AE44 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BCE9ED1B96BAD70032AE44 /* Tag.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,14 +54,6 @@
 		3242C16A1B8C284B006988F0 /* TestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestTests.m; sourceTree = "<group>"; };
 		3242C1741B8D637B006988F0 /* GoogleNowCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleNowCardView.h; sourceTree = "<group>"; };
 		3242C1751B8D637B006988F0 /* GoogleNowCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleNowCardView.m; sourceTree = "<group>"; };
-		325D0B511B95597E00D608CF /* Notation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notation.h; sourceTree = "<group>"; };
-		325D0B521B95597E00D608CF /* Notation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notation.m; sourceTree = "<group>"; };
-		325D0B541B95597E00D608CF /* Command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Command.h; sourceTree = "<group>"; };
-		325D0B551B95597E00D608CF /* Command.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Command.m; sourceTree = "<group>"; };
-		325D0B571B95597E00D608CF /* Topic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Topic.h; sourceTree = "<group>"; };
-		325D0B581B95597E00D608CF /* Topic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Topic.m; sourceTree = "<group>"; };
-		325D0B5A1B95597F00D608CF /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
-		325D0B5B1B95597F00D608CF /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
 		326AA6491B925E0F00D64041 /* coreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = coreData.xcdatamodel; sourceTree = "<group>"; };
 		326AA64A1B925E0F00D64041 /* Command+DynamoDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Command+DynamoDB.h"; sourceTree = "<group>"; };
 		326AA64B1B925E0F00D64041 /* Command+DynamoDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Command+DynamoDB.m"; sourceTree = "<group>"; wrapsLines = 1; };
@@ -71,6 +63,14 @@
 		326AA6601B93AF5D00D64041 /* AWSDynamoDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSDynamoDB.framework; path = "../../Downloads/aws-ios-sdk-2.2.4/frameworks/AWSDynamoDB.framework"; sourceTree = "<group>"; };
 		326AA6681B93BA4D00D64041 /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
 		326AA6691B93BA4D00D64041 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
+		32BCE9E31B96BAD70032AE44 /* Notation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notation.h; sourceTree = "<group>"; };
+		32BCE9E41B96BAD70032AE44 /* Notation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notation.m; sourceTree = "<group>"; };
+		32BCE9E61B96BAD70032AE44 /* Topic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Topic.h; sourceTree = "<group>"; };
+		32BCE9E71B96BAD70032AE44 /* Topic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Topic.m; sourceTree = "<group>"; };
+		32BCE9E91B96BAD70032AE44 /* Command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Command.h; sourceTree = "<group>"; };
+		32BCE9EA1B96BAD70032AE44 /* Command.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Command.m; sourceTree = "<group>"; };
+		32BCE9EC1B96BAD70032AE44 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
+		32BCE9ED1B96BAD70032AE44 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,14 +159,14 @@
 		326AA6511B925E2C00D64041 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				325D0B5A1B95597F00D608CF /* Tag.h */,
-				325D0B5B1B95597F00D608CF /* Tag.m */,
-				325D0B571B95597E00D608CF /* Topic.h */,
-				325D0B581B95597E00D608CF /* Topic.m */,
-				325D0B541B95597E00D608CF /* Command.h */,
-				325D0B551B95597E00D608CF /* Command.m */,
-				325D0B511B95597E00D608CF /* Notation.h */,
-				325D0B521B95597E00D608CF /* Notation.m */,
+				32BCE9EC1B96BAD70032AE44 /* Tag.h */,
+				32BCE9ED1B96BAD70032AE44 /* Tag.m */,
+				32BCE9E91B96BAD70032AE44 /* Command.h */,
+				32BCE9EA1B96BAD70032AE44 /* Command.m */,
+				32BCE9E61B96BAD70032AE44 /* Topic.h */,
+				32BCE9E71B96BAD70032AE44 /* Topic.m */,
+				32BCE9E31B96BAD70032AE44 /* Notation.h */,
+				32BCE9E41B96BAD70032AE44 /* Notation.m */,
 				326AA6491B925E0F00D64041 /* coreData.xcdatamodel */,
 				326AA64A1B925E0F00D64041 /* Command+DynamoDB.h */,
 				326AA64B1B925E0F00D64041 /* Command+DynamoDB.m */,
@@ -315,15 +315,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				325D0B5C1B95597F00D608CF /* Tag.m in Sources */,
-				325D0B591B95597E00D608CF /* Topic.m in Sources */,
-				325D0B531B95597E00D608CF /* Notation.m in Sources */,
+				32BCE9EE1B96BAD70032AE44 /* Tag.m in Sources */,
+				32BCE9E81B96BAD70032AE44 /* Topic.m in Sources */,
+				32BCE9E51B96BAD70032AE44 /* Notation.m in Sources */,
 				326AA64F1B925E0F00D64041 /* coreData.xcdatamodel in Sources */,
 				3242C1761B8D637B006988F0 /* GoogleNowCardView.m in Sources */,
 				326AA66A1B93BA4D00D64041 /* CoreDataTableViewController.m in Sources */,
 				3242C1571B8C284B006988F0 /* CommandsCDTVC.m in Sources */,
 				3242C1541B8C284B006988F0 /* AppDelegate.m in Sources */,
-				325D0B561B95597E00D608CF /* Command.m in Sources */,
+				32BCE9EB1B96BAD70032AE44 /* Command.m in Sources */,
 				326AA6501B925E0F00D64041 /* Command+DynamoDB.m in Sources */,
 				3242C1511B8C284B006988F0 /* main.m in Sources */,
 			);

@@ -2,7 +2,7 @@
 //  Command.m
 //  Vim Cards
 //
-//  Created by Runhe Tian on 8/31/15.
+//  Created by Runhe Tian on 9/1/15.
 //  Copyright (c) 2015 Runhe Tian. All rights reserved.
 //
 
@@ -14,14 +14,13 @@
 @implementation Command
 
 @dynamic content;
-@dynamic image;
 @dynamic favorite;
-@dynamic id;
+@dynamic image;
 @dynamic purchase;
 @dynamic title;
 @dynamic usage;
 @dynamic vi;
-@dynamic topic;
 @dynamic tags;
+@dynamic topic;
 
 @end

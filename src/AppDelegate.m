@@ -27,8 +27,7 @@
       insertNewObjectForEntityForName:@"Command"
                inManagedObjectContext:self.managedObjectContext];
   command.title = @"Ctrl-F";
-  command.content = @"Move one word forward;";
-  [self saveContext];
+  command.content = @"Move one word forward";
 
   NSFetchRequest *request =
       [NSFetchRequest fetchRequestWithEntityName:@"Command"];
@@ -67,6 +66,7 @@
   // and it begins the transition to the background state.
   // Use this method to pause ongoing tasks, disable timers, and throttle down
   // OpenGL ES frame rates. Games should use this method to pause the game.
+  [self saveContext];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
@@ -75,6 +75,7 @@
   // application to its current state in case it is terminated later.
   // If your application supports background execution, this method is called
   // instead of applicationWillTerminate: when the user quits.
+  [self saveContext];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -91,6 +92,7 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
   // Called when the application is about to terminate. Save data if
   // appropriate. See also applicationDidEnterBackground:.
+  [self saveContext];
 }
 
 #pragma mark - Core Data stack
