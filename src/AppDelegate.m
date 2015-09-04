@@ -9,8 +9,12 @@
 #import "AppDelegate.h"
 #import "CommandsCDTVC.h"
 #import "Command.h"
+#import "CHCSVParser.h"
 
-@interface AppDelegate ()
+@interface AppDelegate () {
+  NSMutableArray *_lines;
+  NSMutableArray *_currentLine;
+}
 
 @end
 
@@ -22,12 +26,16 @@
   // Override point for customization after application launch.
   self.window.backgroundColor = [UIColor whiteColor];
   CommandsCDTVC *rootViewController = [[CommandsCDTVC alloc] init];
+  rootViewController.debug = YES;
 
-  Command *command = [NSEntityDescription
-      insertNewObjectForEntityForName:@"Command"
-               inManagedObjectContext:self.managedObjectContext];
-  command.title = @"Ctrl-F";
-  command.content = @"Move one word forward";
+  CHCSVParser *csvParser = [[CHCSVParser alloc]
+      initWithContentsOfCSVURL:[[NSBundle mainBundle]
+                                   URLForResource:@"Learn Vim Progressively"
+                                    withExtension:@"csv"]];
+  csvParser.recognizesBackslashesAsEscapes = YES;
+  csvParser.sanitizesFields = YES;
+  csvParser.delegate = self;
+  [csvParser parse];
 
   NSFetchRequest *request =
       [NSFetchRequest fetchRequestWithEntityName:@"Command"];
@@ -201,6 +209,34 @@
       abort();
     }
   }
+}
+
+#pragma mark - CHCSVParserDelegate
+
+- (void)parser:(CHCSVParser *)parser didBeginLine:(NSUInteger)recordNumber {
+  _currentLine = [[NSMutableArray alloc] init];
+}
+
+- (void)parser:(CHCSVParser *)parser
+  didReadField:(NSString *)field
+       atIndex:(NSInteger)fieldIndex {
+  [_currentLine addObject:field];
+}
+
+- (void)parser:(CHCSVParser *)parser didEndLine:(NSUInteger)recordNumber {
+  [_lines addObject:_currentLine];
+  Command *command = [NSEntityDescription
+      insertNewObjectForEntityForName:@"Command"
+               inManagedObjectContext:self.managedObjectContext];
+  command.title = _currentLine[0];
+  command.usage = _currentLine[1];
+  command.content = _currentLine[2];
+  _currentLine = nil;
+}
+
+- (void)parser:(CHCSVParser *)parser didFailWithError:(NSError *)error {
+  NSLog(@"ERROR: %@", error);
+  _lines = nil;
 }
 
 @end

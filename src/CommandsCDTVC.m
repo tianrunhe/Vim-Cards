@@ -22,20 +22,18 @@
   if (!cell) {
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                   reuseIdentifier:CellIdentifier];
-
-    CGRect frame =
-        CGRectMake(self.view.frame.origin.x,
-                   self.view.frame.origin.y + 150 - SPACE_BETWEEN_CARDS,
-                   self.view.frame.size.width, 150 - SPACE_BETWEEN_CARDS);
-    GoogleNowCardView *cardView =
-        [[GoogleNowCardView alloc] initWithFrame:frame];
-
-    Command *command =
-        [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cardView.primaryText = command.title;
-    cardView.subtitleText = command.content;
-    [cell.contentView addSubview:cardView];
   }
+  CGRect frame =
+      CGRectMake(self.view.frame.origin.x,
+                 self.view.frame.origin.y + 150 - SPACE_BETWEEN_CARDS,
+                 self.view.frame.size.width, 150 - SPACE_BETWEEN_CARDS);
+  GoogleNowCardView *cardView = [[GoogleNowCardView alloc] initWithFrame:frame];
+
+  Command *command =
+      [self.fetchedResultsController objectAtIndexPath:indexPath];
+  cardView.primaryText = command.title;
+  cardView.subtitleText = command.content;
+  [cell.contentView addSubview:cardView];
 
   return cell;
 }
@@ -49,13 +47,11 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  // Do any additional setup after loading the view, typically from a nib.
   [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
 }
 
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
-  // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - GoogleNowCardViewDelegate

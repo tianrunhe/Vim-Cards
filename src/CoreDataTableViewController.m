@@ -84,23 +84,6 @@
   return rows;
 }
 
-- (NSString *)tableView:(UITableView *)tableView
-titleForHeaderInSection:(NSInteger)section {
-  return
-      [[[self.fetchedResultsController sections] objectAtIndex:section] name];
-}
-
-- (NSInteger)tableView:(UITableView *)tableView
-    sectionForSectionIndexTitle:(NSString *)title
-                        atIndex:(NSInteger)index {
-  return [self.fetchedResultsController sectionForSectionIndexTitle:title
-                                                            atIndex:index];
-}
-
-- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
-  return [self.fetchedResultsController sectionIndexTitles];
-}
-
 #pragma mark - NSFetchedResultsControllerDelegate
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
@@ -112,19 +95,19 @@ titleForHeaderInSection:(NSInteger)section {
            atIndex:(NSUInteger)sectionIndex
      forChangeType:(NSFetchedResultsChangeType)type {
   switch (type) {
-  case NSFetchedResultsChangeInsert:
-    [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex]
-                  withRowAnimation:UITableViewRowAnimationFade];
-    break;
+    case NSFetchedResultsChangeInsert:
+      [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex]
+                    withRowAnimation:UITableViewRowAnimationFade];
+      break;
 
-  case NSFetchedResultsChangeDelete:
-    [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]
-                  withRowAnimation:UITableViewRowAnimationFade];
-    break;
-  case NSFetchedResultsChangeMove:
-    break;
-  case NSFetchedResultsChangeUpdate:
-    break;
+    case NSFetchedResultsChangeDelete:
+      [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]
+                    withRowAnimation:UITableViewRowAnimationFade];
+      break;
+    case NSFetchedResultsChangeMove:
+      break;
+    case NSFetchedResultsChangeUpdate:
+      break;
   }
 }
 
@@ -134,34 +117,35 @@ titleForHeaderInSection:(NSInteger)section {
      forChangeType:(NSFetchedResultsChangeType)type
       newIndexPath:(NSIndexPath *)newIndexPath {
   switch (type) {
-  case NSFetchedResultsChangeInsert:
-    [self.tableView
-        insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
-              withRowAnimation:UITableViewRowAnimationFade];
-    break;
+    case NSFetchedResultsChangeInsert:
+      [self.tableView
+          insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+                withRowAnimation:UITableViewRowAnimationFade];
+      break;
 
-  case NSFetchedResultsChangeDelete:
-    [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-                          withRowAnimation:UITableViewRowAnimationFade];
-    break;
+    case NSFetchedResultsChangeDelete:
+      [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                            withRowAnimation:UITableViewRowAnimationFade];
+      break;
 
-  case NSFetchedResultsChangeUpdate:
-    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-                          withRowAnimation:UITableViewRowAnimationFade];
-    break;
+    case NSFetchedResultsChangeUpdate:
+      [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                            withRowAnimation:UITableViewRowAnimationFade];
+      break;
 
-  case NSFetchedResultsChangeMove:
-    [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-                          withRowAnimation:UITableViewRowAnimationFade];
-    [self.tableView
-        insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
-              withRowAnimation:UITableViewRowAnimationFade];
-    break;
+    case NSFetchedResultsChangeMove:
+      [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                            withRowAnimation:UITableViewRowAnimationFade];
+      [self.tableView
+          insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+                withRowAnimation:UITableViewRowAnimationFade];
+      break;
   }
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
   [self.tableView endUpdates];
+  [self.tableView reloadData];
 }
 
 @end

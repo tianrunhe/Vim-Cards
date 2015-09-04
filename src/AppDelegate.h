@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CHCSVParser.h"
 
-@interface AppDelegate : UIResponder<UIApplicationDelegate>
+@interface AppDelegate : UIResponder<UIApplicationDelegate, CHCSVParserDelegate>
 
 @property(strong, nonatomic) UIWindow *window;
 
@@ -17,6 +18,7 @@
 @property(readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property(readonly, strong, nonatomic)
     NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property(readonly) NSArray *lines;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;

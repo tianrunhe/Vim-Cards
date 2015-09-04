@@ -26,6 +26,8 @@
 		32BCE9E81B96BAD70032AE44 /* Topic.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BCE9E71B96BAD70032AE44 /* Topic.m */; };
 		32BCE9EB1B96BAD70032AE44 /* Command.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BCE9EA1B96BAD70032AE44 /* Command.m */; };
 		32BCE9EE1B96BAD70032AE44 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BCE9ED1B96BAD70032AE44 /* Tag.m */; };
+		32BCE9F21B980BED0032AE44 /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BCE9F11B980BED0032AE44 /* CHCSVParser.m */; };
+		32BCE9F41B980CA30032AE44 /* Learn Vim Progressively.csv in Resources */ = {isa = PBXBuildFile; fileRef = 32BCE9F31B980CA30032AE44 /* Learn Vim Progressively.csv */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +73,9 @@
 		32BCE9EA1B96BAD70032AE44 /* Command.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Command.m; sourceTree = "<group>"; };
 		32BCE9EC1B96BAD70032AE44 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
 		32BCE9ED1B96BAD70032AE44 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
+		32BCE9F01B980BED0032AE44 /* CHCSVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHCSVParser.h; sourceTree = "<group>"; };
+		32BCE9F11B980BED0032AE44 /* CHCSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHCSVParser.m; sourceTree = "<group>"; };
+		32BCE9F31B980CA30032AE44 /* Learn Vim Progressively.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Learn Vim Progressively.csv"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +125,7 @@
 				326AA6511B925E2C00D64041 /* Model */,
 				326AA6661B93B7AE00D64041 /* View */,
 				326AA6671B93B7C100D64041 /* Controller */,
+				32BCE9EF1B980B460032AE44 /* Util */,
 				326AA6651B93B65500D64041 /* Resources */,
 				3242C1521B8C284B006988F0 /* AppDelegate.h */,
 				3242C1531B8C284B006988F0 /* AppDelegate.m */,
@@ -188,6 +194,7 @@
 		326AA6651B93B65500D64041 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				32BCE9F31B980CA30032AE44 /* Learn Vim Progressively.csv */,
 				3242C15B1B8C284B006988F0 /* Images.xcassets */,
 				3242C15D1B8C284B006988F0 /* LaunchScreen.xib */,
 				320FD4271B8EB9030075BFAF /* Roboto-Light.ttf */,
@@ -213,6 +220,15 @@
 				3242C1561B8C284B006988F0 /* CommandsCDTVC.m */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		32BCE9EF1B980B460032AE44 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				32BCE9F01B980BED0032AE44 /* CHCSVParser.h */,
+				32BCE9F11B980BED0032AE44 /* CHCSVParser.m */,
+			);
+			name = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,6 +312,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3242C15F1B8C284B006988F0 /* LaunchScreen.xib in Resources */,
+				32BCE9F41B980CA30032AE44 /* Learn Vim Progressively.csv in Resources */,
 				3242C15C1B8C284B006988F0 /* Images.xcassets in Resources */,
 				320FD4281B8EB9030075BFAF /* Roboto-Light.ttf in Resources */,
 			);
@@ -323,6 +340,7 @@
 				326AA66A1B93BA4D00D64041 /* CoreDataTableViewController.m in Sources */,
 				3242C1571B8C284B006988F0 /* CommandsCDTVC.m in Sources */,
 				3242C1541B8C284B006988F0 /* AppDelegate.m in Sources */,
+				32BCE9F21B980BED0032AE44 /* CHCSVParser.m in Sources */,
 				32BCE9EB1B96BAD70032AE44 /* Command.m in Sources */,
 				326AA6501B925E0F00D64041 /* Command+DynamoDB.m in Sources */,
 				3242C1511B8C284B006988F0 /* main.m in Sources */,
