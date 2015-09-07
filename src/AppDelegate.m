@@ -28,15 +28,6 @@
   CommandsCDTVC *rootViewController = [[CommandsCDTVC alloc] init];
   rootViewController.debug = YES;
 
-  CHCSVParser *csvParser = [[CHCSVParser alloc]
-      initWithContentsOfCSVURL:[[NSBundle mainBundle]
-                                   URLForResource:@"Learn Vim Progressively"
-                                    withExtension:@"csv"]];
-  csvParser.recognizesBackslashesAsEscapes = YES;
-  csvParser.sanitizesFields = YES;
-  csvParser.delegate = self;
-  [csvParser parse];
-
   NSFetchRequest *request =
       [NSFetchRequest fetchRequestWithEntityName:@"Command"];
   request.predicate = nil;
@@ -46,6 +37,18 @@
                     ascending:YES
                      selector:@selector(localizedStandardCompare:)]
   ];
+  NSArray *results =
+      [self.managedObjectContext executeFetchRequest:request error:Nil];
+  if (![results count]) {  // empty results
+    CHCSVParser *csvParser = [[CHCSVParser alloc]
+        initWithContentsOfCSVURL:[[NSBundle mainBundle]
+                                     URLForResource:@"Learn Vim Progressively"
+                                      withExtension:@"csv"]];
+    csvParser.recognizesBackslashesAsEscapes = YES;
+    csvParser.sanitizesFields = YES;
+    csvParser.delegate = self;
+    [csvParser parse];
+  }
 
   NSFetchedResultsController *fetchedResultsController =
       [[NSFetchedResultsController alloc]
@@ -225,13 +228,30 @@
 
 - (void)parser:(CHCSVParser *)parser didEndLine:(NSUInteger)recordNumber {
   [_lines addObject:_currentLine];
-  Command *command = [NSEntityDescription
-      insertNewObjectForEntityForName:@"Command"
-               inManagedObjectContext:self.managedObjectContext];
-  command.title = _currentLine[0];
-  command.usage = _currentLine[1];
-  command.content = _currentLine[2];
-  _currentLine = nil;
+
+  Command *command = nil;
+  NSString *title = _currentLine[0];
+  NSFetchRequest *request =
+      [NSFetchRequest fetchRequestWithEntityName:@"Command"];
+  request.predicate = [NSPredicate predicateWithFormat:@"title = %@", title];
+
+  NSError *error;
+  NSArray *matches =
+      [self.managedObjectContext executeFetchRequest:request error:&error];
+
+  if (!matches || error || ([matches count] > 1)) {
+    // handle error
+  } else if ([matches count]) {
+    command = [matches firstObject];
+  } else {
+    command = [NSEntityDescription
+        insertNewObjectForEntityForName:@"Command"
+                 inManagedObjectContext:self.managedObjectContext];
+    command.title = title;
+    command.usage = _currentLine[1];
+    command.content = _currentLine[2];
+    _currentLine = nil;
+  }
 }
 
 - (void)parser:(CHCSVParser *)parser didFailWithError:(NSError *)error {
