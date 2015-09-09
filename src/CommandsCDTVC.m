@@ -19,15 +19,16 @@
   static NSString *CellIdentifier = @"VIM Command Cell";
   UITableViewCell *cell =
       [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-  if (!cell) {
-    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                  reuseIdentifier:CellIdentifier];
-  }
   CGRect frame =
       CGRectMake(self.view.frame.origin.x,
                  self.view.frame.origin.y + 150 - SPACE_BETWEEN_CARDS,
                  self.view.frame.size.width, 150 - SPACE_BETWEEN_CARDS);
-  GoogleNowCardView *cardView = [[GoogleNowCardView alloc] initWithFrame:frame];
+  GoogleNowCardView *cardView = nil;
+  if (!cell) {
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                  reuseIdentifier:CellIdentifier];
+    cardView = [[GoogleNowCardView alloc] initWithFrame:frame];
+  }
 
   Command *command =
       [self.fetchedResultsController objectAtIndexPath:indexPath];
@@ -41,6 +42,11 @@
 - (CGFloat)tableView:(UITableView *)tableView
     heightForRowAtIndexPath:(NSIndexPath *)indexPath {
   return 150;
+}
+
+- (BOOL)tableView:(UITableView *)tableView
+    shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+  return NO;
 }
 
 #pragma mark - UIViewController

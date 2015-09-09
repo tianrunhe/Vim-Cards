@@ -10,18 +10,18 @@
 
 @interface GoogleNowCardView ()
 
-#define ROUNDED_CORNER_RADIUS 2.0 // dp
+#define ROUNDED_CORNER_RADIUS 2.0  // dp
 
-#define PRIMARY_TEXT_TOP_PADDING 24.0 // dp
-#define SUBTITLE_TOP_PADDING 12.0     // dp
-#define SUBTEXT_TOP_PADDING 16.0      // dp
-#define SUBTEXT_BOTTOM_PADDING 16.0   // dp
-#define TEXT_LEFT_RIGHT_PADDING 16.0  // dp
-#define ACTIONS_PADDING 8.0           // dp
-#define ACTIONS_SIZE 32.0             // dp
+#define PRIMARY_TEXT_TOP_PADDING 24.0  // dp
+#define SUBTITLE_TOP_PADDING 12.0      // dp
+#define SUBTEXT_TOP_PADDING 16.0       // dp
+#define SUBTEXT_BOTTOM_PADDING 16.0    // dp
+#define TEXT_LEFT_RIGHT_PADDING 16.0   // dp
+#define ACTIONS_PADDING 8.0            // dp
+#define ACTIONS_SIZE 32.0              // dp
 
-#define PRIMARY_TEXT_TEXT_SIZE 24.0 // sp
-#define SUBTEXT_TEXT_SIZE 14.0      // sp
+#define PRIMARY_TEXT_TEXT_SIZE 24.0  // sp
+#define SUBTEXT_TEXT_SIZE 14.0       // sp
 
 @property(strong, nonatomic) UILabel *primaryTextLabel;
 @property(strong, nonatomic) UILabel *subtitleTextLabel;
@@ -40,6 +40,26 @@
     // Drawing code
 }
 */
+
+- (id)initWithFrame:(CGRect)theFrame {
+  self = [super initWithFrame:theFrame];
+  static int times = 0;
+  times++;
+  if (self) {
+    self.layer.cornerRadius = ROUNDED_CORNER_RADIUS;
+    UIBezierPath *shadowPath =
+        [UIBezierPath bezierPathWithRoundedRect:self.bounds
+                                   cornerRadius:ROUNDED_CORNER_RADIUS];
+    NSLog(@"has been here %d times.", times);
+    self.layer.masksToBounds = false;
+    self.layer.shadowColor = [[UIColor blackColor] CGColor];
+    self.layer.shadowOffset = CGSizeMake(0, 3);
+    self.layer.shadowOpacity = 0.5;
+    self.layer.shadowPath = shadowPath.CGPath;
+    self.backgroundColor = [UIColor whiteColor];
+  }
+  return self;
+}
 
 - (void)setPrimaryText:(NSString *)primaryText {
   _primaryText = primaryText;
@@ -104,17 +124,6 @@
   frame.size.height -= PADDING_FROM_EDGE_OF_SCREEN_TO_CARD;
   [super setFrame:frame];
 
-  self.layer.cornerRadius = ROUNDED_CORNER_RADIUS;
-  UIBezierPath *shadowPath =
-      [UIBezierPath bezierPathWithRoundedRect:self.bounds
-                                 cornerRadius:ROUNDED_CORNER_RADIUS];
-  self.layer.masksToBounds = false;
-  self.layer.shadowColor = [[UIColor blackColor] CGColor];
-  self.layer.shadowOffset = CGSizeMake(0, 3);
-  self.layer.shadowOpacity = 0.5;
-  self.layer.shadowPath = shadowPath.CGPath;
-  self.backgroundColor = [UIColor whiteColor];
-
   [self addSubview:self.primaryTextLabel];
   [self addSubview:self.subtitleTextLabel];
   [self addSubview:self.action1Button];
@@ -147,7 +156,9 @@
               SUBTITLE_TOP_PADDING;
   CGFloat width = self.frame.size.width - 2 * TEXT_LEFT_RIGHT_PADDING;
 
-  self.subtitleTextLabel.frame = CGRectMake(x, y, width, 32);
+  self.subtitleTextLabel.frame = CGRectMake(x, y, width, 64);
+  self.subtitleTextLabel.numberOfLines = 0;
+  self.subtitleTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
 }
 
 - (void)layoutActionButton1 {
