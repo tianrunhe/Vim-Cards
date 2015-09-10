@@ -21,8 +21,8 @@
       [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
   CGRect frame =
       CGRectMake(self.view.frame.origin.x,
-                 self.view.frame.origin.y + 150 - SPACE_BETWEEN_CARDS,
-                 self.view.frame.size.width, 150 - SPACE_BETWEEN_CARDS);
+                 self.view.frame.origin.y + 250 - SPACE_BETWEEN_CARDS,
+                 self.view.frame.size.width, 250 - SPACE_BETWEEN_CARDS);
   GoogleNowCardView *cardView = cell.contentView.subviews[0];
   if (!cell) {
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
