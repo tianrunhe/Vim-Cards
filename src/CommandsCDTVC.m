@@ -23,7 +23,7 @@
       CGRectMake(self.view.frame.origin.x,
                  self.view.frame.origin.y + 150 - SPACE_BETWEEN_CARDS,
                  self.view.frame.size.width, 150 - SPACE_BETWEEN_CARDS);
-  GoogleNowCardView *cardView = nil;
+  GoogleNowCardView *cardView = cell.contentView.subviews[0];
   if (!cell) {
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                   reuseIdentifier:CellIdentifier];
