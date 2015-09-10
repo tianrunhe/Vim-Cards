@@ -21,8 +21,8 @@
       [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
   CGRect frame =
       CGRectMake(self.view.frame.origin.x,
-                 self.view.frame.origin.y + 150 - SPACE_BETWEEN_CARDS,
-                 self.view.frame.size.width, 150 - SPACE_BETWEEN_CARDS);
+                 self.view.frame.origin.y + 250 - SPACE_BETWEEN_CARDS,
+                 self.view.frame.size.width, 250 - SPACE_BETWEEN_CARDS);
   GoogleNowCardView *cardView = nil;
   if (!cell) {
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
@@ -41,7 +41,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView
     heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-  return 150;
+  return 250;
 }
 
 - (BOOL)tableView:(UITableView *)tableView

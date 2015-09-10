@@ -162,11 +162,10 @@
 }
 
 - (void)layoutActionButton1 {
-  CGFloat x = self.frame.size.width - ACTIONS_SIZE - TEXT_LEFT_RIGHT_PADDING;
-  // CGFloat y = PRIMARY_TEXT_TOP_PADDING + _primaryTextLabel.frame.size.height
-  // + SUBTITLE_TOP_PADDING + _subtitleTextLabel.frame.size.height +
-  // SUBTEXT_BOTTOM_PADDING + ACTIONS_PADDING;
-  CGFloat y = PRIMARY_TEXT_TOP_PADDING;
+  CGFloat x = ACTIONS_PADDING;
+  CGFloat y = PRIMARY_TEXT_TOP_PADDING + _primaryTextLabel.frame.size.height +
+              SUBTITLE_TOP_PADDING + _subtitleTextLabel.frame.size.height +
+              SUBTEXT_BOTTOM_PADDING + ACTIONS_PADDING;
 
   self.action1Button.frame = CGRectMake(x, y, ACTIONS_SIZE, ACTIONS_SIZE);
   [self.action1Button setBackgroundImage:[UIImage imageNamed:@"favorite"]
@@ -194,11 +193,10 @@
 }
 
 - (void)layoutActionButton2 {
-  CGFloat x = self.frame.size.width - ACTIONS_SIZE - TEXT_LEFT_RIGHT_PADDING;
-  // CGFloat y = PRIMARY_TEXT_TOP_PADDING + _primaryTextLabel.frame.size.height
-  // + SUBTITLE_TOP_PADDING + _subtitleTextLabel.frame.size.height +
-  // SUBTEXT_BOTTOM_PADDING + ACTIONS_PADDING;
-  CGFloat y = self.frame.size.height - PRIMARY_TEXT_TOP_PADDING - ACTIONS_SIZE;
+  CGFloat x = ACTIONS_PADDING + ACTIONS_SIZE + ACTIONS_PADDING;
+  CGFloat y = PRIMARY_TEXT_TOP_PADDING + _primaryTextLabel.frame.size.height +
+              SUBTITLE_TOP_PADDING + _subtitleTextLabel.frame.size.height +
+              SUBTEXT_BOTTOM_PADDING + ACTIONS_PADDING;
 
   self.action2Button.frame = CGRectMake(x, y, ACTIONS_SIZE, ACTIONS_SIZE);
   [self.action2Button setBackgroundImage:[UIImage imageNamed:@"action"]
