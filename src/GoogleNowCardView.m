@@ -20,7 +20,7 @@
 #define ACTIONS_PADDING 8.0            // dp
 #define ACTIONS_SIZE 32.0              // dp
 
-#define PRIMARY_TEXT_TEXT_SIZE 24.0  // sp
+#define PRIMARY_TEXT_TEXT_SIZE 36.0  // sp
 #define SUBTEXT_TEXT_SIZE 14.0       // sp
 
 @property(strong, nonatomic) UILabel *primaryTextLabel;
@@ -58,14 +58,16 @@
     self.layer.shadowPath = shadowPath.CGPath;
     self.backgroundColor = [UIColor whiteColor];
   }
+  [self layoutSubviews];
   return self;
 }
 
 - (void)setPrimaryText:(NSString *)primaryText {
   _primaryText = primaryText;
   self.primaryTextLabel.text = _primaryText;
-  [self.primaryTextLabel setFont:[UIFont fontWithName:@"Roboto-Light"
-                                                 size:PRIMARY_TEXT_TEXT_SIZE]];
+  [self.primaryTextLabel
+      setFont:[UIFont fontWithName:@"Roboto-Bold" size:PRIMARY_TEXT_TEXT_SIZE]];
+  [self.primaryTextLabel sizeToFit];
 }
 
 - (UILabel *)primaryTextLabel {
@@ -80,6 +82,7 @@
   self.subtitleTextLabel.text = _subtitleText;
   [self.subtitleTextLabel
       setFont:[UIFont fontWithName:@"Roboto-Light" size:SUBTEXT_TEXT_SIZE]];
+  [self.subtitleTextLabel sizeToFit];
 }
 
 - (UILabel *)subtitleTextLabel {
@@ -143,35 +146,37 @@
   CGFloat width = self.frame.size.width - 2 * TEXT_LEFT_RIGHT_PADDING;
   CGSize expectedLabelSize = [self.primaryText sizeWithAttributes:@{
     NSFontAttributeName :
-        [UIFont fontWithName:@"Roboto-Light" size:PRIMARY_TEXT_TEXT_SIZE]
+        [UIFont fontWithName:@"Roboto-Bold" size:PRIMARY_TEXT_TEXT_SIZE]
   }];
 
   self.primaryTextLabel.frame =
       CGRectMake(x, y, width, expectedLabelSize.height);
+  [self.primaryTextLabel sizeToFit];
 }
 
 - (void)layoutSubtitleTextLabel {
   CGFloat x = TEXT_LEFT_RIGHT_PADDING;
   CGFloat y = PRIMARY_TEXT_TOP_PADDING + _primaryTextLabel.frame.size.height +
               SUBTITLE_TOP_PADDING;
-  CGFloat width = self.frame.size.width - 2 * TEXT_LEFT_RIGHT_PADDING;
+  CGFloat width = self.frame.size.width - 2 * TEXT_LEFT_RIGHT_PADDING - 50;
 
   self.subtitleTextLabel.frame = CGRectMake(x, y, width, 64);
   self.subtitleTextLabel.numberOfLines = 0;
   self.subtitleTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
+  [self.subtitleTextLabel sizeToFit];
 }
 
 - (void)layoutActionButton1 {
-  CGFloat x = ACTIONS_PADDING;
+  CGFloat x = self.frame.size.width - ACTIONS_PADDING * 2 - ACTIONS_SIZE * 2;
   CGFloat y = PRIMARY_TEXT_TOP_PADDING + _primaryTextLabel.frame.size.height +
               SUBTITLE_TOP_PADDING + _subtitleTextLabel.frame.size.height +
               SUBTEXT_BOTTOM_PADDING + ACTIONS_PADDING;
 
   self.action1Button.frame = CGRectMake(x, y, ACTIONS_SIZE, ACTIONS_SIZE);
-  [self.action1Button setBackgroundImage:[UIImage imageNamed:@"favorite"]
+  [self.action1Button setBackgroundImage:[UIImage imageNamed:@"favorite_border"]
                                 forState:UIControlStateNormal];
   [self.action1Button
-      setBackgroundImage:[UIImage imageNamed:@"favorite-clicked"]
+      setBackgroundImage:[UIImage imageNamed:@"favorite"]
                 forState:UIControlStateSelected | UIControlStateHighlighted];
   [self.action1Button addTarget:self
                          action:@selector(favoriteButtonPressed:)
@@ -180,26 +185,26 @@
 
 - (void)favoriteButtonPressed:(UIButton *)sender {
   if ([sender isSelected]) {
-    [self.action1Button setBackgroundImage:[UIImage imageNamed:@"favorite"]
-                                  forState:UIControlStateNormal];
+    [self.action1Button
+        setBackgroundImage:[UIImage imageNamed:@"favorite_border"]
+                  forState:UIControlStateNormal];
     [sender setSelected:NO];
   } else {
-    [self.action1Button
-        setBackgroundImage:[UIImage imageNamed:@"favorite-clicked"]
-                  forState:UIControlStateNormal];
+    [self.action1Button setBackgroundImage:[UIImage imageNamed:@"favorite"]
+                                  forState:UIControlStateNormal];
     [sender setSelected:YES];
   }
   NSLog(@"favorite button clicked!");
 }
 
 - (void)layoutActionButton2 {
-  CGFloat x = ACTIONS_PADDING + ACTIONS_SIZE + ACTIONS_PADDING;
+  CGFloat x = self.frame.size.width - ACTIONS_PADDING - ACTIONS_SIZE;
   CGFloat y = PRIMARY_TEXT_TOP_PADDING + _primaryTextLabel.frame.size.height +
               SUBTITLE_TOP_PADDING + _subtitleTextLabel.frame.size.height +
               SUBTEXT_BOTTOM_PADDING + ACTIONS_PADDING;
 
   self.action2Button.frame = CGRectMake(x, y, ACTIONS_SIZE, ACTIONS_SIZE);
-  [self.action2Button setBackgroundImage:[UIImage imageNamed:@"action"]
+  [self.action2Button setBackgroundImage:[UIImage imageNamed:@"launch"]
                                 forState:UIControlStateNormal];
   [self.action2Button addTarget:self.delegate
                          action:@selector(shareButtonDidPressed)

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		320FD4281B8EB9030075BFAF /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 320FD4271B8EB9030075BFAF /* Roboto-Light.ttf */; };
 		3242C1511B8C284B006988F0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3242C1501B8C284B006988F0 /* main.m */; };
 		3242C1541B8C284B006988F0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3242C1531B8C284B006988F0 /* AppDelegate.m */; };
 		3242C1571B8C284B006988F0 /* CommandsCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3242C1561B8C284B006988F0 /* CommandsCDTVC.m */; };
@@ -28,6 +27,8 @@
 		32BCE9EE1B96BAD70032AE44 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BCE9ED1B96BAD70032AE44 /* Tag.m */; };
 		32BCE9F21B980BED0032AE44 /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BCE9F11B980BED0032AE44 /* CHCSVParser.m */; };
 		32BCE9F41B980CA30032AE44 /* Learn Vim Progressively.csv in Resources */ = {isa = PBXBuildFile; fileRef = 32BCE9F31B980CA30032AE44 /* Learn Vim Progressively.csv */; };
+		32C928CE1BA2936000B4DA3B /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 32C928CD1BA2936000B4DA3B /* Roboto-Light.ttf */; };
+		32C928D01BA2937000B4DA3B /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 32C928CF1BA2937000B4DA3B /* Roboto-Bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,7 +42,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		320FD4271B8EB9030075BFAF /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
 		3242C14B1B8C284B006988F0 /* Vim Cards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Vim Cards.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3242C14F1B8C284B006988F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3242C1501B8C284B006988F0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -76,6 +76,8 @@
 		32BCE9F01B980BED0032AE44 /* CHCSVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHCSVParser.h; sourceTree = "<group>"; };
 		32BCE9F11B980BED0032AE44 /* CHCSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHCSVParser.m; sourceTree = "<group>"; };
 		32BCE9F31B980CA30032AE44 /* Learn Vim Progressively.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Learn Vim Progressively.csv"; sourceTree = "<group>"; };
+		32C928CD1BA2936000B4DA3B /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
+		32C928CF1BA2937000B4DA3B /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,7 +199,8 @@
 				32BCE9F31B980CA30032AE44 /* Learn Vim Progressively.csv */,
 				3242C15B1B8C284B006988F0 /* Images.xcassets */,
 				3242C15D1B8C284B006988F0 /* LaunchScreen.xib */,
-				320FD4271B8EB9030075BFAF /* Roboto-Light.ttf */,
+				32C928CD1BA2936000B4DA3B /* Roboto-Light.ttf */,
+				32C928CF1BA2937000B4DA3B /* Roboto-Bold.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -313,8 +316,9 @@
 			files = (
 				3242C15F1B8C284B006988F0 /* LaunchScreen.xib in Resources */,
 				32BCE9F41B980CA30032AE44 /* Learn Vim Progressively.csv in Resources */,
+				32C928D01BA2937000B4DA3B /* Roboto-Bold.ttf in Resources */,
+				32C928CE1BA2936000B4DA3B /* Roboto-Light.ttf in Resources */,
 				3242C15C1B8C284B006988F0 /* Images.xcassets in Resources */,
-				320FD4281B8EB9030075BFAF /* Roboto-Light.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,6 +12,8 @@
 
 @implementation CommandsCDTVC
 
+#define ROW_HEIGHT 200  // dp
+
 #pragma mark - UITableViewDataSource
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
@@ -21,8 +23,8 @@
       [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
   CGRect frame =
       CGRectMake(self.view.frame.origin.x,
-                 self.view.frame.origin.y + 250 - SPACE_BETWEEN_CARDS,
-                 self.view.frame.size.width, 250 - SPACE_BETWEEN_CARDS);
+                 self.view.frame.origin.y + ROW_HEIGHT - SPACE_BETWEEN_CARDS,
+                 self.view.frame.size.width, ROW_HEIGHT - SPACE_BETWEEN_CARDS);
   GoogleNowCardView *cardView = cell.contentView.subviews[0];
   if (!cell) {
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
@@ -41,7 +43,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView
     heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-  return 250;
+  return ROW_HEIGHT;
 }
 
 - (BOOL)tableView:(UITableView *)tableView
