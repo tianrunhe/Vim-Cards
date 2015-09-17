@@ -55,7 +55,10 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+  self.searchBar =
+      [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
   [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+  self.tableView.tableHeaderView = self.searchBar;
 }
 
 - (void)didReceiveMemoryWarning {

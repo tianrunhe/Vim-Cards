@@ -10,6 +10,8 @@
 #import "CoreDataTableViewController.h"
 
 @interface CommandsCDTVC
-    : CoreDataTableViewController <GoogleNowCardViewDelegate>
+    : CoreDataTableViewController<GoogleNowCardViewDelegate>
+
+@property UISearchBar *searchBar;
 
 @end
