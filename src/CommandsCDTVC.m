@@ -55,10 +55,16 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  self.searchBar =
-      [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
-  [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-  self.tableView.tableHeaderView = self.searchBar;
+  _searchController =
+      [[UISearchController alloc] initWithSearchResultsController:nil];
+  _searchController.searchResultsUpdater = self;
+  _searchController.dimsBackgroundDuringPresentation = NO;
+  _searchController.hidesNavigationBarDuringPresentation = NO;
+  _searchController.searchBar.frame =
+      CGRectMake(self.searchController.searchBar.frame.origin.x,
+                 self.searchController.searchBar.frame.origin.y,
+                 self.searchController.searchBar.frame.size.width, 44.0);
+  self.tableView.tableHeaderView = self.searchController.searchBar;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -78,6 +84,28 @@
       [[UIActivityViewController alloc] initWithActivityItems:sharingItems
                                         applicationActivities:nil];
   [self presentViewController:activityController animated:YES completion:nil];
+}
+
+#pragma mark - UISearchBarDelegate
+
+#pragma mark - UISearchResultsUpdating
+
+- (void)updateSearchResultsForSearchController:
+    (UISearchController *)searchController {
+  NSString *searchString = [self.searchController.searchBar text];
+
+  self.fetchedResultsController.fetchRequest.predicate = [NSPredicate
+      predicateWithFormat:@"content CONTAINS[cd] %@", searchString];
+  [self performFetch];
+  [self.tableView reloadData];
+}
+
+#pragma mark - UIScrollViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+  UISearchBar *searchBar = self.searchController.searchBar;
+  CGRect rect = searchBar.frame;
+  rect.origin.y = MIN(0, scrollView.contentOffset.y);
+  searchBar.frame = rect;
 }
 
 @end
