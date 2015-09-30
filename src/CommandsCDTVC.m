@@ -9,6 +9,7 @@
 #import "CommandsCDTVC.h"
 #import "GoogleNowCardView.h"
 #import "Command.h"
+#import "Tag.h"
 
 @implementation CommandsCDTVC
 
@@ -36,6 +37,12 @@
       [self.fetchedResultsController objectAtIndexPath:indexPath];
   cardView.primaryText = command.title;
   cardView.subtitleText = command.content;
+
+  NSMutableArray *tagNames = [[NSMutableArray alloc] init];
+  for (Tag *tag in command.tags) {
+    [tagNames addObject:tag.name];
+  }
+  cardView.tagText = [tagNames componentsJoinedByString:@" "];
   [cell.contentView addSubview:cardView];
 
   return cell;

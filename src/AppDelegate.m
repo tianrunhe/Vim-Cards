@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "CommandsCDTVC.h"
 #import "Command.h"
+#import "Tag.h"
 #import "CHCSVParser.h"
 
 @interface AppDelegate () {
@@ -231,6 +232,7 @@
   [_lines addObject:_currentLine];
 
   Command *command = nil;
+  Tag *tag = nil;
   NSString *title = _currentLine[0];
   NSFetchRequest *request =
       [NSFetchRequest fetchRequestWithEntityName:@"Command"];
@@ -251,6 +253,12 @@
     command.title = title;
     command.usage = _currentLine[1];
     command.content = _currentLine[2];
+
+    tag = [NSEntityDescription
+        insertNewObjectForEntityForName:@"Tag"
+                 inManagedObjectContext:self.managedObjectContext];
+    tag.name = _currentLine[3];
+    [command addTagsObject:tag];
     _currentLine = nil;
   }
 }

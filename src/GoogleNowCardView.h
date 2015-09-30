@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol GoogleNowCardViewDelegate <NSObject>
+@protocol GoogleNowCardViewDelegate<NSObject>
 
 - (void)shareButtonDidPressed;
 
@@ -24,6 +24,7 @@
 @property(strong, nonatomic) NSString *subText;
 @property(strong, nonatomic) NSString *action1Text;
 @property(strong, nonatomic) NSString *action2Text;
+@property(strong, nonatomic) NSString *tagText;
 @property(assign) id<GoogleNowCardViewDelegate> delegate;
 
 @end

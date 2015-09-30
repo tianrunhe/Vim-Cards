@@ -28,6 +28,7 @@
 @property(strong, nonatomic) UILabel *subTextLabel;
 @property(strong, nonatomic) UIButton *action1Button;
 @property(strong, nonatomic) UIButton *action2Button;
+@property(strong, nonatomic) UILabel *tagLabel;
 
 @end
 
@@ -120,6 +121,21 @@
   return _action2Button;
 }
 
+- (void)setTagText:(NSString *)tagText {
+  _tagText = tagText;
+  self.tagLabel.text = _tagText;
+  [self.tagLabel
+      setFont:[UIFont fontWithName:@"Roboto-Light" size:SUBTEXT_TEXT_SIZE]];
+  [self.tagLabel sizeToFit];
+}
+
+- (UILabel *)tagLabel {
+  if (!_tagLabel) {
+    _tagLabel = [[UILabel alloc] init];
+  }
+  return _tagLabel;
+}
+
 - (void)setFrame:(CGRect)frame {
   frame.origin.x = PADDING_FROM_EDGE_OF_SCREEN_TO_CARD;
   frame.origin.y = PADDING_FROM_EDGE_OF_SCREEN_TO_CARD;
@@ -131,6 +147,7 @@
   [self addSubview:self.subtitleTextLabel];
   [self addSubview:self.action1Button];
   [self addSubview:self.action2Button];
+  [self addSubview:self.tagLabel];
 }
 
 - (void)layoutSubviews {
@@ -138,6 +155,7 @@
   [self layoutSubtitleTextLabel];
   [self layoutActionButton1];
   [self layoutActionButton2];
+  [self layoutTagLabel];
 }
 
 - (void)layoutPrimaryTextLabel {
@@ -164,6 +182,19 @@
   self.subtitleTextLabel.numberOfLines = 0;
   self.subtitleTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
   [self.subtitleTextLabel sizeToFit];
+}
+
+- (void)layoutTagLabel {
+  CGFloat x = TEXT_LEFT_RIGHT_PADDING;
+  CGFloat y = PRIMARY_TEXT_TOP_PADDING + _primaryTextLabel.frame.size.height +
+              SUBTITLE_TOP_PADDING + _subtitleTextLabel.frame.size.height +
+              SUBTEXT_BOTTOM_PADDING + ACTIONS_PADDING;
+  CGFloat width = self.frame.size.width - 2 * TEXT_LEFT_RIGHT_PADDING - 50;
+
+  self.tagLabel.frame = CGRectMake(x, y, width, 64);
+  self.tagLabel.numberOfLines = 0;
+  self.tagLabel.lineBreakMode = NSLineBreakByWordWrapping;
+  [self.tagLabel sizeToFit];
 }
 
 - (void)layoutActionButton1 {
