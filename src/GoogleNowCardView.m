@@ -7,6 +7,7 @@
 //
 
 #import "GoogleNowCardView.h"
+#import "AMTagListView.h"
 
 @interface GoogleNowCardView ()
 
@@ -28,7 +29,7 @@
 @property(strong, nonatomic) UILabel *subTextLabel;
 @property(strong, nonatomic) UIButton *action1Button;
 @property(strong, nonatomic) UIButton *action2Button;
-@property(strong, nonatomic) UILabel *tagLabel;
+@property(strong, nonatomic) AMTagListView *tagListView;
 
 @end
 
@@ -121,19 +122,23 @@
   return _action2Button;
 }
 
-- (void)setTagText:(NSString *)tagText {
-  _tagText = tagText;
-  self.tagLabel.text = _tagText;
-  [self.tagLabel
-      setFont:[UIFont fontWithName:@"Roboto-Light" size:SUBTEXT_TEXT_SIZE]];
-  [self.tagLabel sizeToFit];
+- (void)setTags:(NSArray *)tags {
+  _tags = tags;
+  [self.tagListView removeAllTags];
+  for (NSString *tagText in tags) {
+    [self.tagListView addTag:tagText];
+  }
 }
 
-- (UILabel *)tagLabel {
-  if (!_tagLabel) {
-    _tagLabel = [[UILabel alloc] init];
+- (AMTagListView *)tagListView {
+  if (!_tagListView) {
+    _tagListView = [[AMTagListView alloc] init];
+    [[AMTagView appearance]
+        setTextFont:[UIFont fontWithName:@"Roboto-Light"
+                                    size:SUBTEXT_TEXT_SIZE]];
+    [[AMTagView appearance] setTagColor:self.tintColor];
   }
-  return _tagLabel;
+  return _tagListView;
 }
 
 - (void)setFrame:(CGRect)frame {
@@ -147,7 +152,7 @@
   [self addSubview:self.subtitleTextLabel];
   [self addSubview:self.action1Button];
   [self addSubview:self.action2Button];
-  [self addSubview:self.tagLabel];
+  [self addSubview:self.tagListView];
 }
 
 - (void)layoutSubviews {
@@ -155,7 +160,7 @@
   [self layoutSubtitleTextLabel];
   [self layoutActionButton1];
   [self layoutActionButton2];
-  [self layoutTagLabel];
+  [self layoutTagListView];
 }
 
 - (void)layoutPrimaryTextLabel {
@@ -182,19 +187,6 @@
   self.subtitleTextLabel.numberOfLines = 0;
   self.subtitleTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
   [self.subtitleTextLabel sizeToFit];
-}
-
-- (void)layoutTagLabel {
-  CGFloat x = TEXT_LEFT_RIGHT_PADDING;
-  CGFloat y = PRIMARY_TEXT_TOP_PADDING + _primaryTextLabel.frame.size.height +
-              SUBTITLE_TOP_PADDING + _subtitleTextLabel.frame.size.height +
-              SUBTEXT_BOTTOM_PADDING + ACTIONS_PADDING;
-  CGFloat width = self.frame.size.width - 2 * TEXT_LEFT_RIGHT_PADDING - 50;
-
-  self.tagLabel.frame = CGRectMake(x, y, width, 64);
-  self.tagLabel.numberOfLines = 0;
-  self.tagLabel.lineBreakMode = NSLineBreakByWordWrapping;
-  [self.tagLabel sizeToFit];
 }
 
 - (void)layoutActionButton1 {
@@ -240,6 +232,16 @@
   [self.action2Button addTarget:self.delegate
                          action:@selector(shareButtonDidPressed)
                forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)layoutTagListView {
+  CGFloat x = TEXT_LEFT_RIGHT_PADDING;
+  CGFloat y = PRIMARY_TEXT_TOP_PADDING + _primaryTextLabel.frame.size.height +
+              SUBTITLE_TOP_PADDING + _subtitleTextLabel.frame.size.height +
+              SUBTEXT_BOTTOM_PADDING + ACTIONS_PADDING;
+  CGFloat width = 150;
+
+  self.tagListView.frame = CGRectMake(x, y, width, 64);
 }
 
 @end

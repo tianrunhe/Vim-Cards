@@ -24,7 +24,7 @@
 @property(strong, nonatomic) NSString *subText;
 @property(strong, nonatomic) NSString *action1Text;
 @property(strong, nonatomic) NSString *action2Text;
-@property(strong, nonatomic) NSString *tagText;
+@property(strong, nonatomic) NSArray *tags;  // of NSString
 @property(assign) id<GoogleNowCardViewDelegate> delegate;
 
 @end

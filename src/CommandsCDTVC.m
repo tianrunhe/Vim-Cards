@@ -42,7 +42,7 @@
   for (Tag *tag in command.tags) {
     [tagNames addObject:tag.name];
   }
-  cardView.tagText = [tagNames componentsJoinedByString:@" "];
+  cardView.tags = tagNames;
   [cell.contentView addSubview:cardView];
 
   return cell;
