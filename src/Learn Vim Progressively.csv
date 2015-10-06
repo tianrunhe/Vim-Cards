@@ -1,7 +1,6 @@
 "x","N x","delete N characters under and after the cursor","Change"
 ":wq",":wq[!]","write the current file and exit","Editing"
 "dd","N dd","delete N lines","Change"
-"p","N  p","put a register after the cursor position (N times)","Change"
 "h","N h","left (also: CTRL-H, <BS>, or <Left> key)","Motion"
 "j","N j","down N lines (also: CTRL-J, CTRL-N, <NL>, and <Down>)","Motion"
 "k","N k","up N lines (also: CTRL-P and <Up>)","Motion"
