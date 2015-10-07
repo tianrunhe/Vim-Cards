@@ -122,8 +122,13 @@
     self.fetchedResultsController.fetchRequest.predicate =
         [NSPredicate predicateWithValue:YES];
   } else {
-    self.fetchedResultsController.fetchRequest.predicate =
+    NSPredicate *commandContentPredicate =
         [NSPredicate predicateWithFormat:@"content CONTAINS[cd] %@", keyword];
+    NSPredicate *tagNamePredicate =
+        [NSPredicate predicateWithFormat:@"tags.name CONTAINS[cd] %@", keyword];
+    self.fetchedResultsController.fetchRequest.predicate = [NSCompoundPredicate
+        orPredicateWithSubpredicates:
+            @[ commandContentPredicate, tagNamePredicate ]];
   }
   [self performFetch];
   [self.tableView reloadData];
