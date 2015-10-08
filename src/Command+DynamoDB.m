@@ -7,6 +7,7 @@
 //
 
 #import "Command+DynamoDB.h"
+#import "Tag.h"
 
 @implementation Command (DynamoDB)
 
@@ -14,10 +15,10 @@
              inManagedObjectContext:(NSManagedObjectContext *)context {
   Command *command = nil;
 
-  NSNumber *id = [dynamoDBRow objectForKey:@"id"];
+  NSString *title = [dynamoDBRow objectForKey:@"title"];
   NSFetchRequest *request =
       [NSFetchRequest fetchRequestWithEntityName:@"Command"];
-  request.predicate = [NSPredicate predicateWithFormat:@"id = %@", id];
+  request.predicate = [NSPredicate predicateWithFormat:@"title = %@", title];
 
   NSError *error;
   NSArray *matches = [context executeFetchRequest:request error:&error];
@@ -29,7 +30,16 @@
   } else {
     command = [NSEntityDescription insertNewObjectForEntityForName:@"Command"
                                             inManagedObjectContext:context];
-    // Initialize commands here
+    command.title = [[dynamoDBRow objectForKey:@"title"] valueForKey:@"S"];
+    command.content = [[dynamoDBRow objectForKey:@"content"] valueForKey:@"S"];
+    command.usage = [[dynamoDBRow objectForKey:@"usage"] valueForKey:@"S"];
+    for (NSString *tagName in
+         [[dynamoDBRow objectForKey:@"tag"] valueForKey:@"L"]) {
+      Tag *tag = [NSEntityDescription insertNewObjectForEntityForName:@"Tag"
+                                               inManagedObjectContext:context];
+      tag.name = [tagName valueForKey:@"S"];
+      [command addTagsObject:tag];
+    }
   }
 
   return command;

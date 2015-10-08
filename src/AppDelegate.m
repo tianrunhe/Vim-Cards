@@ -8,9 +8,11 @@
 
 #import "AppDelegate.h"
 #import "CommandsCDTVC.h"
-#import "Command.h"
+#import "Command+DynamoDB.h"
 #import "Tag.h"
 #import "CHCSVParser.h"
+#import <AWSCore/AWSCore.h>
+#import <AWSDynamoDB/AWSDynamoDB.h>
 
 @interface AppDelegate () {
   NSMutableArray *_lines;
@@ -29,6 +31,25 @@
   CommandsCDTVC *rootViewController = [[CommandsCDTVC alloc] init];
   rootViewController.debug = YES;
 
+  [AWSLogger defaultLogger].logLevel = AWSLogLevelVerbose;
+  AWSCognitoCredentialsProvider *credentialsProvider =
+      [[AWSCognitoCredentialsProvider alloc]
+          initWithRegionType:AWSRegionUSEast1
+              identityPoolId:@"us-east-1:2a03f595-893e-4705-8f21-fa40a2882576"];
+  AWSServiceConfiguration *configuration =
+      [[AWSServiceConfiguration alloc] initWithRegion:AWSRegionUSEast1
+                                  credentialsProvider:credentialsProvider];
+  AWSServiceManager.defaultServiceManager.defaultServiceConfiguration =
+      configuration;
+  AWSDynamoDB *dynamoDB = [AWSDynamoDB defaultDynamoDB];
+  AWSDynamoDBScanInput *scanInput = [AWSDynamoDBScanInput new];
+  scanInput.tableName = @"Vim-commands";
+  [[dynamoDB scan:scanInput] continueWithBlock:^id(AWSTask *task) {
+    [Command loadCommandsFromDynamoDBScanOutput:task.result
+                       intoManagedObjectContext:self.managedObjectContext];
+    return nil;
+  }];
+
   NSFetchRequest *request =
       [NSFetchRequest fetchRequestWithEntityName:@"Command"];
   request.predicate = nil;
@@ -38,18 +59,19 @@
                     ascending:YES
                      selector:@selector(localizedStandardCompare:)]
   ];
-  NSArray *results =
-      [self.managedObjectContext executeFetchRequest:request error:Nil];
-  if (![results count]) {  // empty results
-    CHCSVParser *csvParser = [[CHCSVParser alloc]
-        initWithContentsOfCSVURL:[[NSBundle mainBundle]
-                                     URLForResource:@"Learn Vim Progressively"
-                                      withExtension:@"csv"]];
-    csvParser.recognizesBackslashesAsEscapes = YES;
-    csvParser.sanitizesFields = YES;
-    csvParser.delegate = self;
-    [csvParser parse];
-  }
+  //  NSArray *results =
+  //      [self.managedObjectContext executeFetchRequest:request error:Nil];
+  //  if (![results count]) {  // empty results
+  //    CHCSVParser *csvParser = [[CHCSVParser alloc]
+  //        initWithContentsOfCSVURL:[[NSBundle mainBundle]
+  //                                     URLForResource:@"Learn Vim
+  //                                     Progressively"
+  //                                      withExtension:@"csv"]];
+  //    csvParser.recognizesBackslashesAsEscapes = YES;
+  //    csvParser.sanitizesFields = YES;
+  //    csvParser.delegate = self;
+  //    [csvParser parse];
+  //  }
 
   NSFetchedResultsController *fetchedResultsController =
       [[NSFetchedResultsController alloc]

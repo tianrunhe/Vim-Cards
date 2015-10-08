@@ -31,6 +31,7 @@
 		32BCE9F41B980CA30032AE44 /* Learn Vim Progressively.csv in Resources */ = {isa = PBXBuildFile; fileRef = 32BCE9F31B980CA30032AE44 /* Learn Vim Progressively.csv */; };
 		32C928CE1BA2936000B4DA3B /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 32C928CD1BA2936000B4DA3B /* Roboto-Light.ttf */; };
 		32C928D01BA2937000B4DA3B /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 32C928CF1BA2937000B4DA3B /* Roboto-Bold.ttf */; };
+		32D680341BC61539002B854B /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 32D680331BC61539002B854B /* libz.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,7 @@
 		32BCE9F31B980CA30032AE44 /* Learn Vim Progressively.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Learn Vim Progressively.csv"; sourceTree = "<group>"; };
 		32C928CD1BA2936000B4DA3B /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
 		32C928CF1BA2937000B4DA3B /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		32D680331BC61539002B854B /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32D680341BC61539002B854B /* libz.tbd in Frameworks */,
 				326AA6611B93AF5D00D64041 /* AWSDynamoDB.framework in Frameworks */,
 				326AA65F1B93AF4000D64041 /* AWSCore.framework in Frameworks */,
 				326AA65B1B93AEFB00D64041 /* SystemConfiguration.framework in Frameworks */,
@@ -191,6 +194,7 @@
 		326AA6621B93AF9600D64041 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				32D680331BC61539002B854B /* libz.tbd */,
 				326AA6601B93AF5D00D64041 /* AWSDynamoDB.framework */,
 				326AA65E1B93AF4000D64041 /* AWSCore.framework */,
 				326AA65A1B93AEFB00D64041 /* SystemConfiguration.framework */,
