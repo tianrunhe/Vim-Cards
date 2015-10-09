@@ -11,7 +11,7 @@ def main(overwrite=False, update=False):
     inserted = 0
     should_updated = 0
 
-    with open('Learn Vim Progressively.csv', 'rb') as csvfile:
+    with open('Commands.csv', 'rb') as csvfile:
         command_reader = csv.reader(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_ALL, skipinitialspace=True)
         for row in command_reader:
             title = row[0]
