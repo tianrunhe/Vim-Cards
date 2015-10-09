@@ -24,9 +24,7 @@ def main(overwrite=False, update=False):
                 inserted = inserted + 1
                 should_updated = should_updated + 1
             elif item != response['Item']: # existing item and needs update
-                if overwrite:
-                    item['tags'] = response['Item']['tag']
-                else:
+                if not overwrite:
                     item['tags'] = list(set(response['Item']['tag'] + tags))
                 updated = updated + 1
                 should_updated = should_updated + 1

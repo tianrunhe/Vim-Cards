@@ -34,7 +34,7 @@
     command.content = [[dynamoDBRow objectForKey:@"content"] valueForKey:@"S"];
     command.usage = [[dynamoDBRow objectForKey:@"usage"] valueForKey:@"S"];
     for (NSString *tagName in
-         [[dynamoDBRow objectForKey:@"tag"] valueForKey:@"L"]) {
+         [[dynamoDBRow objectForKey:@"tags"] valueForKey:@"L"]) {
       Tag *tag = [NSEntityDescription insertNewObjectForEntityForName:@"Tag"
                                                inManagedObjectContext:context];
       tag.name = [tagName valueForKey:@"S"];
