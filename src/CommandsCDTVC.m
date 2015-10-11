@@ -73,6 +73,7 @@
                  self.searchController.searchBar.frame.size.width, 44.0);
   _searchController.searchBar.delegate = self;
   self.tableView.tableHeaderView = self.searchController.searchBar;
+  self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 - (void)didReceiveMemoryWarning {
