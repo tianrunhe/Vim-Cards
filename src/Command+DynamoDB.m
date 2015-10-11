@@ -15,7 +15,7 @@
              inManagedObjectContext:(NSManagedObjectContext *)context {
   Command *command = nil;
 
-  NSString *title = [dynamoDBRow objectForKey:@"title"];
+  NSString *title = [[dynamoDBRow objectForKey:@"title"] valueForKey:@"S"];
   NSFetchRequest *request =
       [NSFetchRequest fetchRequestWithEntityName:@"Command"];
   request.predicate = [NSPredicate predicateWithFormat:@"title = %@", title];

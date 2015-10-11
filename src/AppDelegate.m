@@ -44,11 +44,11 @@
   AWSDynamoDB *dynamoDB = [AWSDynamoDB defaultDynamoDB];
   AWSDynamoDBScanInput *scanInput = [AWSDynamoDBScanInput new];
   scanInput.tableName = @"Vim-commands";
-  [[dynamoDB scan:scanInput] continueWithBlock:^id(AWSTask *task) {
+  [[[dynamoDB scan:scanInput] continueWithBlock:^id(AWSTask *task) {
     [Command loadCommandsFromDynamoDBScanOutput:task.result
                        intoManagedObjectContext:self.managedObjectContext];
     return nil;
-  }];
+  }] waitUntilFinished];
 
   NSFetchRequest *request =
       [NSFetchRequest fetchRequestWithEntityName:@"Command"];
