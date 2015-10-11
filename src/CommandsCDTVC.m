@@ -110,14 +110,6 @@
   [self updateTableViewWithSearchString:@""];
 }
 
-#pragma mark - UIScrollViewDelegate
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-  UISearchBar *searchBar = self.searchController.searchBar;
-  CGRect rect = searchBar.frame;
-  rect.origin.y = MIN(0, scrollView.contentOffset.y);
-  searchBar.frame = rect;
-}
-
 - (void)updateTableViewWithSearchString:(NSString *)keyword {
   if (![keyword length]) {
     self.fetchedResultsController.fetchRequest.predicate =
