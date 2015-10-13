@@ -32,11 +32,13 @@
                                   reuseIdentifier:CellIdentifier];
     cardView = [[GoogleNowCardView alloc] initWithFrame:frame];
   }
+  cardView.delegate = self;
 
   Command *command =
       [self.fetchedResultsController objectAtIndexPath:indexPath];
   cardView.primaryText = command.title;
   cardView.subtitleText = command.content;
+  cardView.isFavorite = [command.favorite boolValue];
 
   NSMutableArray *tagNames = [[NSMutableArray alloc] init];
   for (Tag *tag in command.tags) {
@@ -82,6 +84,29 @@
       [[UIActivityViewController alloc] initWithActivityItems:sharingItems
                                         applicationActivities:nil];
   [self presentViewController:activityController animated:YES completion:nil];
+}
+
+- (void)favoriteButtonDidPressed:(id)sender {
+  GoogleNowCardView *cardView = (GoogleNowCardView *)sender;
+  Command *command = nil;
+  NSFetchRequest *request =
+      [NSFetchRequest fetchRequestWithEntityName:@"Command"];
+  request.predicate =
+      [NSPredicate predicateWithFormat:@"title = %@", cardView.primaryText];
+
+  NSError *error;
+  NSArray *matches = [self.fetchedResultsController.managedObjectContext
+      executeFetchRequest:request
+                    error:&error];
+
+  if (!matches || error || ([matches count] > 1)) {
+    // handle error
+  } else if ([matches count]) {
+    command = [matches firstObject];
+    [command setFavorite:[NSNumber numberWithBool:cardView.isFavorite]];
+  } else {
+    // Not exist?!
+  }
 }
 
 @end

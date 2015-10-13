@@ -94,11 +94,18 @@
   return _subtitleTextLabel;
 }
 
-- (void)setAction1Text:(NSString *)action1Text {
-  _action1Text = action1Text;
-  [self.action1Button.titleLabel
-      setFont:[UIFont fontWithName:@"Roboto-Light"
-                              size:PRIMARY_TEXT_TEXT_SIZE]];
+- (void)setIsFavorite:(BOOL)isFavorite {
+  _isFavorite = isFavorite;
+  if (_isFavorite) {
+    [self.action1Button setBackgroundImage:[UIImage imageNamed:@"favorite"]
+                                  forState:UIControlStateNormal];
+    [_action1Button setSelected:YES];
+  } else {
+    [self.action1Button
+        setBackgroundImage:[UIImage imageNamed:@"favorite_border"]
+                  forState:UIControlStateNormal];
+    [_action1Button setSelected:NO];
+  }
 }
 
 - (UIButton *)action1Button {
@@ -196,11 +203,6 @@
               SUBTEXT_BOTTOM_PADDING + ACTIONS_PADDING;
 
   self.action1Button.frame = CGRectMake(x, y, ACTIONS_SIZE, ACTIONS_SIZE);
-  [self.action1Button setBackgroundImage:[UIImage imageNamed:@"favorite_border"]
-                                forState:UIControlStateNormal];
-  [self.action1Button
-      setBackgroundImage:[UIImage imageNamed:@"favorite"]
-                forState:UIControlStateSelected | UIControlStateHighlighted];
   [self.action1Button addTarget:self
                          action:@selector(favoriteButtonPressed:)
                forControlEvents:UIControlEventTouchUpInside];
@@ -217,7 +219,8 @@
                                   forState:UIControlStateNormal];
     [sender setSelected:YES];
   }
-  NSLog(@"favorite button clicked!");
+  _isFavorite = !_isFavorite;
+  [self.delegate favoriteButtonDidPressed:self];
 }
 
 - (void)layoutActionButton2 {
