@@ -32,6 +32,7 @@
 		32C928D01BA2937000B4DA3B /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 32C928CF1BA2937000B4DA3B /* Roboto-Bold.ttf */; };
 		32D680341BC61539002B854B /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 32D680331BC61539002B854B /* libz.tbd */; };
 		32D680361BC76BF9002B854B /* Commands.csv in Resources */ = {isa = PBXBuildFile; fileRef = 32D680351BC76BF9002B854B /* Commands.csv */; settings = {ASSET_TAGS = (); }; };
+		32D6803C1BCB6933002B854B /* CommandSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D6803B1BCB6933002B854B /* CommandSearchViewController.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +87,8 @@
 		32C928CF1BA2937000B4DA3B /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		32D680331BC61539002B854B /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		32D680351BC76BF9002B854B /* Commands.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Commands.csv; sourceTree = "<group>"; };
+		32D6803A1BCB6933002B854B /* CommandSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandSearchViewController.h; sourceTree = "<group>"; };
+		32D6803B1BCB6933002B854B /* CommandSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandSearchViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,6 +235,8 @@
 				326AA6691B93BA4D00D64041 /* CoreDataTableViewController.m */,
 				3242C1551B8C284B006988F0 /* CommandsCDTVC.h */,
 				3242C1561B8C284B006988F0 /* CommandsCDTVC.m */,
+				32D6803A1BCB6933002B854B /* CommandSearchViewController.h */,
+				32D6803B1BCB6933002B854B /* CommandSearchViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -371,6 +376,7 @@
 				3242C1761B8D637B006988F0 /* GoogleNowCardView.m in Sources */,
 				326AA66A1B93BA4D00D64041 /* CoreDataTableViewController.m in Sources */,
 				3242C1571B8C284B006988F0 /* CommandsCDTVC.m in Sources */,
+				32D6803C1BCB6933002B854B /* CommandSearchViewController.m in Sources */,
 				3242C1541B8C284B006988F0 /* AppDelegate.m in Sources */,
 				32BCE9F21B980BED0032AE44 /* CHCSVParser.m in Sources */,
 				32BCE9EB1B96BAD70032AE44 /* Command.m in Sources */,

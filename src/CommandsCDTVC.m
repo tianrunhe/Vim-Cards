@@ -62,17 +62,6 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  _searchController =
-      [[UISearchController alloc] initWithSearchResultsController:nil];
-  _searchController.searchResultsUpdater = self;
-  _searchController.dimsBackgroundDuringPresentation = NO;
-  _searchController.hidesNavigationBarDuringPresentation = NO;
-  _searchController.searchBar.frame =
-      CGRectMake(self.searchController.searchBar.frame.origin.x,
-                 self.searchController.searchBar.frame.origin.y,
-                 self.searchController.searchBar.frame.size.width, 44.0);
-  _searchController.searchBar.delegate = self;
-  self.tableView.tableHeaderView = self.searchController.searchBar;
   self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
@@ -93,38 +82,6 @@
       [[UIActivityViewController alloc] initWithActivityItems:sharingItems
                                         applicationActivities:nil];
   [self presentViewController:activityController animated:YES completion:nil];
-}
-
-#pragma mark - UISearchBarDelegate
-
-#pragma mark - UISearchResultsUpdating
-
-- (void)updateSearchResultsForSearchController:
-    (UISearchController *)searchController {
-  NSString *searchString = [self.searchController.searchBar text];
-  [self updateTableViewWithSearchString:searchString];
-}
-
-#pragma mark - UISearchBarDelegate
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-  [self updateTableViewWithSearchString:@""];
-}
-
-- (void)updateTableViewWithSearchString:(NSString *)keyword {
-  if (![keyword length]) {
-    self.fetchedResultsController.fetchRequest.predicate =
-        [NSPredicate predicateWithValue:YES];
-  } else {
-    NSPredicate *commandContentPredicate =
-        [NSPredicate predicateWithFormat:@"content CONTAINS[cd] %@", keyword];
-    NSPredicate *tagNamePredicate =
-        [NSPredicate predicateWithFormat:@"tags.name CONTAINS[cd] %@", keyword];
-    self.fetchedResultsController.fetchRequest.predicate = [NSCompoundPredicate
-        orPredicateWithSubpredicates:
-            @[ commandContentPredicate, tagNamePredicate ]];
-  }
-  [self performFetch];
-  [self.tableView reloadData];
 }
 
 @end

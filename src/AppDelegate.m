@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "CommandsCDTVC.h"
+#import "CommandSearchViewController.h"
 #import "Command+DynamoDB.h"
 #import "Tag.h"
 #import "CHCSVParser.h"
@@ -28,8 +28,6 @@
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
   // Override point for customization after application launch.
   self.window.backgroundColor = [UIColor whiteColor];
-  CommandsCDTVC *rootViewController = [[CommandsCDTVC alloc] init];
-  rootViewController.debug = YES;
 
   [AWSLogger defaultLogger].logLevel = AWSLogLevelVerbose;
   AWSCognitoCredentialsProvider *credentialsProvider =
@@ -79,11 +77,14 @@
           managedObjectContext:self.managedObjectContext
             sectionNameKeyPath:nil
                      cacheName:nil];
-  rootViewController.fetchedResultsController = fetchedResultsController;
+  CommandSearchViewController *rootViewController =
+      [[CommandSearchViewController alloc]
+          initWithFetchedResultsController:fetchedResultsController];
+  rootViewController.commandsCDTVC.debug = YES;
+  rootViewController.commandsCDTVC.fetchedResultsController =
+      fetchedResultsController;
 
-  UINavigationController *nav = [[UINavigationController alloc]
-      initWithRootViewController:rootViewController];
-  self.window.rootViewController = nav;
+  self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
 
   NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(
