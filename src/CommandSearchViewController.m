@@ -17,6 +17,7 @@
 - (id)initWithFetchedResultsController:
     (NSFetchedResultsController *)fetchedResultsController {
   self = [super init];
+
   if (self) {
     _searchController =
         [[UISearchController alloc] initWithSearchResultsController:nil];
@@ -30,23 +31,29 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+  UIApplication *application = [UIApplication sharedApplication];
+  self.view.frame = CGRectMake(
+      self.view.frame.origin.x,
+      self.view.frame.origin.y + application.statusBarFrame.size.height,
+      self.view.frame.size.width,
+      self.view.frame.size.height - application.statusBarFrame.size.height);
 
   _searchController.searchResultsUpdater = self;
   _searchController.dimsBackgroundDuringPresentation = NO;
-  _searchController.hidesNavigationBarDuringPresentation = NO;
-  UIApplication *application = [UIApplication sharedApplication];
-  _searchController.searchBar.frame = CGRectMake(
-      self.view.frame.origin.x,
-      self.view.frame.origin.y + application.statusBarFrame.size.height,
-      self.view.frame.size.width, 44.0);
-  _searchController.searchBar.delegate = self;
 
-  _commandsCDTVC.tableView.frame = CGRectMake(
-      self.view.frame.origin.x,
-      self.view.frame.origin.y + application.statusBarFrame.size.height + 44,
-      self.view.frame.size.width, self.view.frame.size.height - 44);
+  CGRect frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y,
+                            self.view.frame.size.width, 44.0);
+  UIView *searchBarViewContainer = [[UIView alloc] initWithFrame:frame];
+  _searchController.searchBar.translucent = NO;
+  searchBarViewContainer.clipsToBounds = YES;
+  [searchBarViewContainer addSubview:_searchController.searchBar];
+  _searchController.delegate = self;
 
-  [self.view addSubview:_searchController.searchBar];
+  _commandsCDTVC.tableView.frame =
+      CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y + 44,
+                 self.view.frame.size.width, self.view.frame.size.height - 44);
+
+  [self.view addSubview:searchBarViewContainer];
   [self.view addSubview:_commandsCDTVC.tableView];
 }
 
@@ -54,8 +61,6 @@
   [super didReceiveMemoryWarning];
   // Dispose of any resources that can be recreated.
 }
-
-#pragma mark - UISearchBarDelegate
 
 #pragma mark - UISearchResultsUpdating
 
@@ -85,7 +90,6 @@
                 @[ commandContentPredicate, tagNamePredicate ]];
   }
   [_commandsCDTVC performFetch];
-  [_commandsCDTVC.tableView reloadData];
 }
 
 @end

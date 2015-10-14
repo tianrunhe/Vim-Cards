@@ -10,7 +10,7 @@
 #import "CommandsCDTVC.h"
 
 @interface CommandSearchViewController
-    : UIViewController<UISearchBarDelegate, UISearchResultsUpdating>
+    : UIViewController<UISearchControllerDelegate, UISearchResultsUpdating>
 
 @property(nonatomic, strong) UISearchController *searchController;
 @property(nonatomic, strong) CommandsCDTVC *commandsCDTVC;
