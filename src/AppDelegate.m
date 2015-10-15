@@ -13,12 +13,8 @@
 #import <AWSCore/AWSCore.h>
 #import <AWSDynamoDB/AWSDynamoDB.h>
 
-@interface AppDelegate () {
-  NSMutableArray *_lines;
-  NSMutableArray *_currentLine;
-}
-
-@end
+#define COMMAND_TABLE_NAME @"Vim-commands"
+#define IDENTITY_POOL_ID @"us-east-1:2a03f595-893e-4705-8f21-fa40a2882576"
 
 @implementation AppDelegate
 
@@ -28,6 +24,9 @@
   // Override point for customization after application launch.
   self.window.backgroundColor = [UIColor whiteColor];
 
+  [[UIApplication sharedApplication]
+      setMinimumBackgroundFetchInterval:
+          UIApplicationBackgroundFetchIntervalMinimum];
   [self configureAWSResources];
   [self startDynamoDBSync];
   [self createRootViewController];
@@ -76,6 +75,31 @@
   // Called when the application is about to terminate. Save data if
   // appropriate. See also applicationDidEnterBackground:.
   [self saveContext];
+}
+
+- (void)application:(UIApplication *)application
+    performFetchWithCompletionHandler:
+        (nonnull void (^)(UIBackgroundFetchResult))completionHandler {
+  if (self.managedObjectContext) {
+    AWSDynamoDB *dynamoDB = [AWSDynamoDB defaultDynamoDB];
+    AWSDynamoDBScanInput *scanInput = [AWSDynamoDBScanInput new];
+    scanInput.tableName = COMMAND_TABLE_NAME;
+    AWSTask *task = [dynamoDB scan:scanInput];
+    [task continueWithBlock:^id(AWSTask *task) {
+      if (task.error) {
+        NSLog(@"Failed to sync data with DynamoDB");
+        completionHandler(UIBackgroundFetchResultFailed);
+      } else {
+        [Command loadCommandsFromDynamoDBScanOutput:task.result
+                           intoManagedObjectContext:self.managedObjectContext];
+        completionHandler(UIBackgroundFetchResultNewData);
+        NSLog(@"Succeeded to sync data with DynamoDB");
+      }
+      return nil;
+    }];
+  } else {
+    completionHandler(UIBackgroundFetchResultNoData);
+  }
 }
 
 #pragma mark - Core Data stack
@@ -193,7 +217,7 @@
   AWSCognitoCredentialsProvider *credentialsProvider =
       [[AWSCognitoCredentialsProvider alloc]
           initWithRegionType:AWSRegionUSEast1
-              identityPoolId:@"us-east-1:2a03f595-893e-4705-8f21-fa40a2882576"];
+              identityPoolId:IDENTITY_POOL_ID];
   AWSServiceConfiguration *configuration =
       [[AWSServiceConfiguration alloc] initWithRegion:AWSRegionUSEast1
                                   credentialsProvider:credentialsProvider];
@@ -233,12 +257,13 @@
 - (void)startDynamoDBSync {
   AWSDynamoDB *dynamoDB = [AWSDynamoDB defaultDynamoDB];
   AWSDynamoDBScanInput *scanInput = [AWSDynamoDBScanInput new];
-  scanInput.tableName = @"Vim-commands";
+  scanInput.tableName = COMMAND_TABLE_NAME;
   [[[dynamoDB scan:scanInput] continueWithBlock:^id(AWSTask *task) {
     [Command loadCommandsFromDynamoDBScanOutput:task.result
                        intoManagedObjectContext:self.managedObjectContext];
     return nil;
   }] waitUntilFinished];
+  [self.managedObjectContext save:NULL];
 }
 
 @end
