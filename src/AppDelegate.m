@@ -10,7 +10,6 @@
 #import "CommandSearchViewController.h"
 #import "Command+DynamoDB.h"
 #import "Tag.h"
-#import "CHCSVParser.h"
 #import <AWSCore/AWSCore.h>
 #import <AWSDynamoDB/AWSDynamoDB.h>
 
@@ -29,68 +28,17 @@
   // Override point for customization after application launch.
   self.window.backgroundColor = [UIColor whiteColor];
 
-  [AWSLogger defaultLogger].logLevel = AWSLogLevelVerbose;
-  AWSCognitoCredentialsProvider *credentialsProvider =
-      [[AWSCognitoCredentialsProvider alloc]
-          initWithRegionType:AWSRegionUSEast1
-              identityPoolId:@"us-east-1:2a03f595-893e-4705-8f21-fa40a2882576"];
-  AWSServiceConfiguration *configuration =
-      [[AWSServiceConfiguration alloc] initWithRegion:AWSRegionUSEast1
-                                  credentialsProvider:credentialsProvider];
-  AWSServiceManager.defaultServiceManager.defaultServiceConfiguration =
-      configuration;
-  AWSDynamoDB *dynamoDB = [AWSDynamoDB defaultDynamoDB];
-  AWSDynamoDBScanInput *scanInput = [AWSDynamoDBScanInput new];
-  scanInput.tableName = @"Vim-commands";
-  [[[dynamoDB scan:scanInput] continueWithBlock:^id(AWSTask *task) {
-    [Command loadCommandsFromDynamoDBScanOutput:task.result
-                       intoManagedObjectContext:self.managedObjectContext];
-    return nil;
-  }] waitUntilFinished];
+  [self configureAWSResources];
+  [self startDynamoDBSync];
+  [self createRootViewController];
 
-  NSFetchRequest *request =
-      [NSFetchRequest fetchRequestWithEntityName:@"Command"];
-  request.predicate = nil;
-  request.sortDescriptors = @[
-    [NSSortDescriptor
-        sortDescriptorWithKey:@"title"
-                    ascending:YES
-                     selector:@selector(localizedStandardCompare:)]
-  ];
-  //  NSArray *results =
-  //      [self.managedObjectContext executeFetchRequest:request error:Nil];
-  //  if (![results count]) {  // empty results
-  //    CHCSVParser *csvParser = [[CHCSVParser alloc]
-  //        initWithContentsOfCSVURL:[[NSBundle mainBundle]
-  //                                     URLForResource:@"Learn Vim
-  //                                     Progressively"
-  //                                      withExtension:@"csv"]];
-  //    csvParser.recognizesBackslashesAsEscapes = YES;
-  //    csvParser.sanitizesFields = YES;
-  //    csvParser.delegate = self;
-  //    [csvParser parse];
-  //  }
-
-  NSFetchedResultsController *fetchedResultsController =
-      [[NSFetchedResultsController alloc]
-          initWithFetchRequest:request
-          managedObjectContext:self.managedObjectContext
-            sectionNameKeyPath:nil
-                     cacheName:nil];
-  CommandSearchViewController *rootViewController =
-      [[CommandSearchViewController alloc]
-          initWithFetchedResultsController:fetchedResultsController];
-  rootViewController.commandsCDTVC.debug = YES;
-  rootViewController.commandsCDTVC.fetchedResultsController =
-      fetchedResultsController;
-
-  self.window.rootViewController = rootViewController;
-  [self.window makeKeyAndVisible];
-
+#ifdef DEBUG
   NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(
       NSDocumentDirectory, NSUserDomainMask, YES);
   NSString *documentPath = [searchPaths objectAtIndex:0];
   NSLog(@"document path is: %@", documentPath);
+#endif
+
   return YES;
 }
 
@@ -239,56 +187,58 @@
   }
 }
 
-#pragma mark - CHCSVParserDelegate
-
-- (void)parser:(CHCSVParser *)parser didBeginLine:(NSUInteger)recordNumber {
-  _currentLine = [[NSMutableArray alloc] init];
+#pragma mark - configurations
+- (void)configureAWSResources {
+  [AWSLogger defaultLogger].logLevel = AWSLogLevelVerbose;
+  AWSCognitoCredentialsProvider *credentialsProvider =
+      [[AWSCognitoCredentialsProvider alloc]
+          initWithRegionType:AWSRegionUSEast1
+              identityPoolId:@"us-east-1:2a03f595-893e-4705-8f21-fa40a2882576"];
+  AWSServiceConfiguration *configuration =
+      [[AWSServiceConfiguration alloc] initWithRegion:AWSRegionUSEast1
+                                  credentialsProvider:credentialsProvider];
+  AWSServiceManager.defaultServiceManager.defaultServiceConfiguration =
+      configuration;
 }
 
-- (void)parser:(CHCSVParser *)parser
-  didReadField:(NSString *)field
-       atIndex:(NSInteger)fieldIndex {
-  [_currentLine addObject:field];
-}
-
-- (void)parser:(CHCSVParser *)parser didEndLine:(NSUInteger)recordNumber {
-  [_lines addObject:_currentLine];
-
-  Command *command = nil;
-  Tag *tag = nil;
-  NSString *title = _currentLine[0];
+- (void)createRootViewController {
   NSFetchRequest *request =
       [NSFetchRequest fetchRequestWithEntityName:@"Command"];
-  request.predicate = [NSPredicate predicateWithFormat:@"title = %@", title];
+  request.predicate = nil;
+  request.sortDescriptors = @[
+    [NSSortDescriptor
+        sortDescriptorWithKey:@"title"
+                    ascending:YES
+                     selector:@selector(localizedStandardCompare:)]
+  ];
 
-  NSError *error;
-  NSArray *matches =
-      [self.managedObjectContext executeFetchRequest:request error:&error];
+  NSFetchedResultsController *fetchedResultsController =
+      [[NSFetchedResultsController alloc]
+          initWithFetchRequest:request
+          managedObjectContext:self.managedObjectContext
+            sectionNameKeyPath:nil
+                     cacheName:nil];
+  CommandSearchViewController *rootViewController =
+      [[CommandSearchViewController alloc]
+          initWithFetchedResultsController:fetchedResultsController];
+  rootViewController.commandsCDTVC.debug = YES;
+  rootViewController.commandsCDTVC.fetchedResultsController =
+      fetchedResultsController;
 
-  if (!matches || error || ([matches count] > 1)) {
-    // handle error
-  } else if ([matches count]) {
-    command = [matches firstObject];
-  } else {
-    command = [NSEntityDescription
-        insertNewObjectForEntityForName:@"Command"
-                 inManagedObjectContext:self.managedObjectContext];
-    command.title = title;
-    command.usage = _currentLine[1];
-    command.content = _currentLine[2];
-
-    tag = [NSEntityDescription
-        insertNewObjectForEntityForName:@"Tag"
-                 inManagedObjectContext:self.managedObjectContext];
-    tag.name = _currentLine[3];
-    [command addTagsObject:tag];
-    _currentLine = nil;
-  }
+  self.window.rootViewController = rootViewController;
+  [self.window makeKeyAndVisible];
 }
 
-- (void)parser:(CHCSVParser *)parser didFailWithError:(NSError *)error {
-  NSLog(@"ERROR: %@", error);
-  _lines = nil;
+#pragma mark - background fetch
+- (void)startDynamoDBSync {
+  AWSDynamoDB *dynamoDB = [AWSDynamoDB defaultDynamoDB];
+  AWSDynamoDBScanInput *scanInput = [AWSDynamoDBScanInput new];
+  scanInput.tableName = @"Vim-commands";
+  [[[dynamoDB scan:scanInput] continueWithBlock:^id(AWSTask *task) {
+    [Command loadCommandsFromDynamoDBScanOutput:task.result
+                       intoManagedObjectContext:self.managedObjectContext];
+    return nil;
+  }] waitUntilFinished];
 }
 
 @end

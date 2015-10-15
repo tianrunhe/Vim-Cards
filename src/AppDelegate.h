@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CHCSVParser.h"
 
-@interface AppDelegate : UIResponder<UIApplicationDelegate, CHCSVParserDelegate>
+@interface AppDelegate : UIResponder<UIApplicationDelegate>
 
 @property(strong, nonatomic) UIWindow *window;
 
