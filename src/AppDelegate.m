@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "CommandSearchViewController.h"
+#import "CategoryTableViewController.h"
 #import "Command+DynamoDB.h"
 #import "Tag.h"
 #import <AWSCore/AWSCore.h>
@@ -29,7 +30,18 @@
           UIApplicationBackgroundFetchIntervalMinimum];
   [self configureAWSResources];
   [self startDynamoDBSync];
-  [self createRootViewController];
+
+  CommandSearchViewController *commandSearchViewController =
+      [self createSearchViewController];
+  CategoryTableViewController *categoryTableViewController =
+      [[CategoryTableViewController alloc]
+          initWithStyle:UITableViewStyleGrouped];
+  self.tabBarController = [[UITabBarController alloc] init];
+  self.tabBarController.viewControllers =
+      [NSArray arrayWithObjects:commandSearchViewController,
+                                categoryTableViewController, nil];
+  self.window.rootViewController = self.tabBarController;
+  [self.window makeKeyAndVisible];
 
 #ifdef DEBUG
   NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(
@@ -225,7 +237,7 @@
       configuration;
 }
 
-- (void)createRootViewController {
+- (CommandSearchViewController *)createSearchViewController {
   NSFetchRequest *request =
       [NSFetchRequest fetchRequestWithEntityName:@"Command"];
   request.predicate = nil;
@@ -242,15 +254,14 @@
           managedObjectContext:self.managedObjectContext
             sectionNameKeyPath:nil
                      cacheName:nil];
-  CommandSearchViewController *rootViewController =
+  CommandSearchViewController *commandSearchViewController =
       [[CommandSearchViewController alloc]
           initWithFetchedResultsController:fetchedResultsController];
-  rootViewController.commandsCDTVC.debug = YES;
-  rootViewController.commandsCDTVC.fetchedResultsController =
+  commandSearchViewController.commandsCDTVC.debug = YES;
+  commandSearchViewController.commandsCDTVC.fetchedResultsController =
       fetchedResultsController;
 
-  self.window.rootViewController = rootViewController;
-  [self.window makeKeyAndVisible];
+  return commandSearchViewController;
 }
 
 #pragma mark - background fetch

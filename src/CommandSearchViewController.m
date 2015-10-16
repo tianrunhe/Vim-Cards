@@ -25,6 +25,11 @@
         [[CommandsCDTVC alloc] initWithStyle:UITableViewStylePlain];
     _commandsCDTVC.debug = YES;
     _commandsCDTVC.fetchedResultsController = fetchedResultsController;
+
+    self.title = @"Search";
+    self.tabBarItem =
+        [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemSearch
+                                                   tag:1];
   }
   return self;
 }

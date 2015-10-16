@@ -17,7 +17,7 @@
 @property(readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property(readonly, strong, nonatomic)
     NSPersistentStoreCoordinator *persistentStoreCoordinator;
-@property(readonly) NSArray *lines;
+@property(strong, nonatomic) UITabBarController *tabBarController;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
