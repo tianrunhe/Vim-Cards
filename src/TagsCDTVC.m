@@ -1,25 +1,24 @@
 //
-//  ViewController.m
-//  Test
+//  TagsCDTVCViewController.m
+//  Vim Cards
 //
-//  Created by Runhe Tian on 8/24/15.
-//  Copyright (c) 2015 Runhe Tian. All rights reserved.
+//  Created by Runhe Tian on 10/18/15.
+//  Copyright © 2015 Runhe Tian. All rights reserved.
 //
 
-#import "CommandsCDTVC.h"
+#import "TagsCDTVC.h"
 #import "GoogleNowCardView.h"
-#import "Command.h"
 #import "Tag.h"
 
-@implementation CommandsCDTVC
+@implementation TagsCDTVC
 
-#define ROW_HEIGHT 200  // dp
+#define ROW_HEIGHT 150  // dp
 
 #pragma mark - UITableViewDataSource
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  static NSString *CellIdentifier = @"VIM Command Cell";
+  static NSString *CellIdentifier = @"VIM Command Tag Cell";
   UITableViewCell *cell =
       [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
   CGRect frame =
@@ -33,20 +32,15 @@
     cardView = [[GoogleNowCardView alloc] initWithFrame:frame];
   }
   cardView.delegate = self;
-  cardView.shareable = YES;
-  cardView.likeable = YES;
+  cardView.shareable = NO;
+  cardView.likeable = NO;
+  cardView.tags = @[];
 
-  Command *command =
-      [self.fetchedResultsController objectAtIndexPath:indexPath];
-  cardView.primaryText = command.title;
-  cardView.subtitleText = command.content;
-  cardView.isFavorite = [command.favorite boolValue];
-
-  NSMutableArray *tagNames = [[NSMutableArray alloc] init];
-  for (Tag *tag in command.tags) {
-    [tagNames addObject:tag.name];
-  }
-  cardView.tags = tagNames;
+  Tag *tag = [self.fetchedResultsController objectAtIndexPath:indexPath];
+  cardView.primaryText = tag.name;
+  cardView.subtitleText = [NSString
+      stringWithFormat:@"%@ commands",
+                       [NSNumber numberWithInteger:tag.commands.count]];
   [cell.contentView addSubview:cardView];
 
   return cell;
@@ -89,26 +83,6 @@
 }
 
 - (void)favoriteButtonDidPressed:(id)sender {
-  GoogleNowCardView *cardView = (GoogleNowCardView *)sender;
-  Command *command = nil;
-  NSFetchRequest *request =
-      [NSFetchRequest fetchRequestWithEntityName:@"Command"];
-  request.predicate =
-      [NSPredicate predicateWithFormat:@"title = %@", cardView.primaryText];
-
-  NSError *error;
-  NSArray *matches = [self.fetchedResultsController.managedObjectContext
-      executeFetchRequest:request
-                    error:&error];
-
-  if (!matches || error || ([matches count] > 1)) {
-    // handle error
-  } else if ([matches count]) {
-    command = [matches firstObject];
-    [command setFavorite:[NSNumber numberWithBool:cardView.isFavorite]];
-  } else {
-    // Not exist?!
-  }
 }
 
 @end

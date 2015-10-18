@@ -27,8 +27,8 @@
 @property(strong, nonatomic) UILabel *primaryTextLabel;
 @property(strong, nonatomic) UILabel *subtitleTextLabel;
 @property(strong, nonatomic) UILabel *subTextLabel;
-@property(strong, nonatomic) UIButton *action1Button;
-@property(strong, nonatomic) UIButton *action2Button;
+@property(strong, nonatomic) UIButton *likeButton;
+@property(strong, nonatomic) UIButton *shareButton;
 @property(strong, nonatomic) AMTagListView *tagListView;
 
 @end
@@ -45,14 +45,11 @@
 
 - (id)initWithFrame:(CGRect)theFrame {
   self = [super initWithFrame:theFrame];
-  static int times = 0;
-  times++;
   if (self) {
     self.layer.cornerRadius = ROUNDED_CORNER_RADIUS;
     UIBezierPath *shadowPath =
         [UIBezierPath bezierPathWithRoundedRect:self.bounds
                                    cornerRadius:ROUNDED_CORNER_RADIUS];
-    NSLog(@"has been here %d times.", times);
     self.layer.masksToBounds = false;
     self.layer.shadowColor = [[UIColor blackColor] CGColor];
     self.layer.shadowOffset = CGSizeMake(0, 3);
@@ -97,43 +94,51 @@
 - (void)setIsFavorite:(BOOL)isFavorite {
   _isFavorite = isFavorite;
   if (_isFavorite) {
-    [self.action1Button setBackgroundImage:[UIImage imageNamed:@"favorite"]
-                                  forState:UIControlStateNormal];
-    [_action1Button setSelected:YES];
+    [self.likeButton setBackgroundImage:[UIImage imageNamed:@"favorite"]
+                               forState:UIControlStateNormal];
+    [_likeButton setSelected:YES];
   } else {
-    [self.action1Button
-        setBackgroundImage:[UIImage imageNamed:@"favorite_border"]
-                  forState:UIControlStateNormal];
-    [_action1Button setSelected:NO];
+    [self.likeButton setBackgroundImage:[UIImage imageNamed:@"favorite_border"]
+                               forState:UIControlStateNormal];
+    [_likeButton setSelected:NO];
   }
 }
 
-- (UIButton *)action1Button {
-  if (!_action1Button) {
-    _action1Button = [UIButton buttonWithType:UIButtonTypeCustom];
+- (void)setLikeable:(BOOL)likeable {
+  if (!likeable) {
+    [_likeButton removeFromSuperview];
   }
-  return _action1Button;
 }
 
-- (void)setAction2Text:(NSString *)action1Text {
-  _action2Text = action1Text;
-  [self.action2Button.titleLabel
-      setFont:[UIFont fontWithName:@"Roboto-Light"
-                              size:PRIMARY_TEXT_TEXT_SIZE]];
+- (void)setShareable:(BOOL)shareable {
+  if (!shareable) {
+    [_shareButton removeFromSuperview];
+  }
 }
 
-- (UIButton *)action2Button {
-  if (!_action2Button) {
-    _action2Button = [UIButton buttonWithType:UIButtonTypeCustom];
+- (UIButton *)likeButton {
+  if (!_likeButton) {
+    _likeButton = [UIButton buttonWithType:UIButtonTypeCustom];
   }
-  return _action2Button;
+  return _likeButton;
+}
+
+- (UIButton *)shareButton {
+  if (!_shareButton) {
+    _shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
+  }
+  return _shareButton;
 }
 
 - (void)setTags:(NSArray *)tags {
   _tags = tags;
   [self.tagListView removeAllTags];
-  for (NSString *tagText in tags) {
-    [self.tagListView addTag:tagText];
+  if (tags.count) {
+    for (NSString *tagText in tags) {
+      [self.tagListView addTag:tagText];
+    }
+  } else {
+    [_tagListView removeFromSuperview];
   }
 }
 
@@ -157,16 +162,17 @@
 
   [self addSubview:self.primaryTextLabel];
   [self addSubview:self.subtitleTextLabel];
-  [self addSubview:self.action1Button];
-  [self addSubview:self.action2Button];
+  [self addSubview:self.likeButton];
+  [self addSubview:self.shareButton];
   [self addSubview:self.tagListView];
 }
 
 - (void)layoutSubviews {
   [self layoutPrimaryTextLabel];
   [self layoutSubtitleTextLabel];
-  [self layoutActionButton1];
-  [self layoutActionButton2];
+  [self layoutLikeButton];
+  [self layoutShareButton];
+
   [self layoutTagListView];
 }
 
@@ -196,45 +202,44 @@
   [self.subtitleTextLabel sizeToFit];
 }
 
-- (void)layoutActionButton1 {
+- (void)layoutLikeButton {
   CGFloat x = self.frame.size.width - ACTIONS_PADDING * 2 - ACTIONS_SIZE * 2;
   CGFloat y = PRIMARY_TEXT_TOP_PADDING + _primaryTextLabel.frame.size.height +
               SUBTITLE_TOP_PADDING + _subtitleTextLabel.frame.size.height +
               SUBTEXT_BOTTOM_PADDING + ACTIONS_PADDING;
 
-  self.action1Button.frame = CGRectMake(x, y, ACTIONS_SIZE, ACTIONS_SIZE);
-  [self.action1Button addTarget:self
-                         action:@selector(favoriteButtonPressed:)
-               forControlEvents:UIControlEventTouchUpInside];
+  self.likeButton.frame = CGRectMake(x, y, ACTIONS_SIZE, ACTIONS_SIZE);
+  [self.likeButton addTarget:self
+                      action:@selector(favoriteButtonPressed:)
+            forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)favoriteButtonPressed:(UIButton *)sender {
   if ([sender isSelected]) {
-    [self.action1Button
-        setBackgroundImage:[UIImage imageNamed:@"favorite_border"]
-                  forState:UIControlStateNormal];
+    [self.likeButton setBackgroundImage:[UIImage imageNamed:@"favorite_border"]
+                               forState:UIControlStateNormal];
     [sender setSelected:NO];
   } else {
-    [self.action1Button setBackgroundImage:[UIImage imageNamed:@"favorite"]
-                                  forState:UIControlStateNormal];
+    [self.likeButton setBackgroundImage:[UIImage imageNamed:@"favorite"]
+                               forState:UIControlStateNormal];
     [sender setSelected:YES];
   }
   _isFavorite = !_isFavorite;
   [self.delegate favoriteButtonDidPressed:self];
 }
 
-- (void)layoutActionButton2 {
+- (void)layoutShareButton {
   CGFloat x = self.frame.size.width - ACTIONS_PADDING - ACTIONS_SIZE;
   CGFloat y = PRIMARY_TEXT_TOP_PADDING + _primaryTextLabel.frame.size.height +
               SUBTITLE_TOP_PADDING + _subtitleTextLabel.frame.size.height +
               SUBTEXT_BOTTOM_PADDING + ACTIONS_PADDING;
 
-  self.action2Button.frame = CGRectMake(x, y, ACTIONS_SIZE, ACTIONS_SIZE);
-  [self.action2Button setBackgroundImage:[UIImage imageNamed:@"launch"]
-                                forState:UIControlStateNormal];
-  [self.action2Button addTarget:self.delegate
-                         action:@selector(shareButtonDidPressed)
-               forControlEvents:UIControlEventTouchUpInside];
+  self.shareButton.frame = CGRectMake(x, y, ACTIONS_SIZE, ACTIONS_SIZE);
+  [self.shareButton setBackgroundImage:[UIImage imageNamed:@"launch"]
+                              forState:UIControlStateNormal];
+  [self.shareButton addTarget:self.delegate
+                       action:@selector(shareButtonDidPressed)
+             forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)layoutTagListView {

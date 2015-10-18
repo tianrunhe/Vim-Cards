@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "CommandSearchViewController.h"
-#import "CategoryTableViewController.h"
+#import "TagSearchViewController.h"
 #import "Command+DynamoDB.h"
 #import "Tag.h"
 #import <AWSCore/AWSCore.h>
@@ -33,13 +33,12 @@
 
   CommandSearchViewController *commandSearchViewController =
       [self createSearchViewController];
-  CategoryTableViewController *categoryTableViewController =
-      [[CategoryTableViewController alloc]
-          initWithStyle:UITableViewStyleGrouped];
+  TagSearchViewController *categoryTableViewController =
+      [self createTagSearchViewController];
   self.tabBarController = [[UITabBarController alloc] init];
   self.tabBarController.viewControllers =
-      [NSArray arrayWithObjects:commandSearchViewController,
-                                categoryTableViewController, nil];
+      [NSArray arrayWithObjects:categoryTableViewController,
+                                commandSearchViewController, nil];
   self.window.rootViewController = self.tabBarController;
   [self.window makeKeyAndVisible];
 
@@ -257,11 +256,37 @@
   CommandSearchViewController *commandSearchViewController =
       [[CommandSearchViewController alloc]
           initWithFetchedResultsController:fetchedResultsController];
-  commandSearchViewController.commandsCDTVC.debug = YES;
+  commandSearchViewController.commandsCDTVC.debug = NO;
   commandSearchViewController.commandsCDTVC.fetchedResultsController =
       fetchedResultsController;
 
   return commandSearchViewController;
+}
+
+- (TagSearchViewController *)createTagSearchViewController {
+  NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Tag"];
+  request.predicate = nil;
+  request.sortDescriptors = @[
+    [NSSortDescriptor
+        sortDescriptorWithKey:@"name"
+                    ascending:YES
+                     selector:@selector(localizedStandardCompare:)]
+  ];
+
+  NSFetchedResultsController *fetchedResultsController =
+      [[NSFetchedResultsController alloc]
+          initWithFetchRequest:request
+          managedObjectContext:self.managedObjectContext
+            sectionNameKeyPath:nil
+                     cacheName:nil];
+  TagSearchViewController *tagSearchViewController =
+      [[TagSearchViewController alloc]
+          initWithFetchedResultsController:fetchedResultsController];
+  tagSearchViewController.tagsCDTVC.debug = YES;
+  tagSearchViewController.tagsCDTVC.fetchedResultsController =
+      fetchedResultsController;
+
+  return tagSearchViewController;
 }
 
 #pragma mark - background fetch

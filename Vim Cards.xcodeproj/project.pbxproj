@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3238D2B81BD14F5D001B3079 /* TagSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3238D2B71BD14F5D001B3079 /* TagSearchViewController.m */; settings = {ASSET_TAGS = (); }; };
+		3238D2BB1BD41A18001B3079 /* TagsCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3238D2BA1BD41A18001B3079 /* TagsCDTVC.m */; settings = {ASSET_TAGS = (); }; };
 		3242C1511B8C284B006988F0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3242C1501B8C284B006988F0 /* main.m */; };
 		3242C1541B8C284B006988F0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3242C1531B8C284B006988F0 /* AppDelegate.m */; };
 		3242C1571B8C284B006988F0 /* CommandsCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3242C1561B8C284B006988F0 /* CommandsCDTVC.m */; };
@@ -45,6 +47,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3238D2B61BD14F5D001B3079 /* TagSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagSearchViewController.h; sourceTree = "<group>"; };
+		3238D2B71BD14F5D001B3079 /* TagSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagSearchViewController.m; sourceTree = "<group>"; };
+		3238D2B91BD41A18001B3079 /* TagsCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagsCDTVC.h; sourceTree = "<group>"; };
+		3238D2BA1BD41A18001B3079 /* TagsCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagsCDTVC.m; sourceTree = "<group>"; };
 		3242C14B1B8C284B006988F0 /* Vim Cards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Vim Cards.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3242C14F1B8C284B006988F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3242C1501B8C284B006988F0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -227,12 +233,16 @@
 		326AA6671B93B7C100D64041 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				3238D2B61BD14F5D001B3079 /* TagSearchViewController.h */,
+				3238D2B71BD14F5D001B3079 /* TagSearchViewController.m */,
 				326AA6681B93BA4D00D64041 /* CoreDataTableViewController.h */,
 				326AA6691B93BA4D00D64041 /* CoreDataTableViewController.m */,
 				3242C1551B8C284B006988F0 /* CommandsCDTVC.h */,
 				3242C1561B8C284B006988F0 /* CommandsCDTVC.m */,
 				32D6803A1BCB6933002B854B /* CommandSearchViewController.h */,
 				32D6803B1BCB6933002B854B /* CommandSearchViewController.m */,
+				3238D2B91BD41A18001B3079 /* TagsCDTVC.h */,
+				3238D2BA1BD41A18001B3079 /* TagsCDTVC.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -361,6 +371,7 @@
 				328360DB1BBE26B8009499CD /* AMTagListView.m in Sources */,
 				326AA64F1B925E0F00D64041 /* coreData.xcdatamodel in Sources */,
 				3242C1761B8D637B006988F0 /* GoogleNowCardView.m in Sources */,
+				3238D2BB1BD41A18001B3079 /* TagsCDTVC.m in Sources */,
 				326AA66A1B93BA4D00D64041 /* CoreDataTableViewController.m in Sources */,
 				3242C1571B8C284B006988F0 /* CommandsCDTVC.m in Sources */,
 				32D6803C1BCB6933002B854B /* CommandSearchViewController.m in Sources */,
@@ -368,6 +379,7 @@
 				32BCE9EB1B96BAD70032AE44 /* Command.m in Sources */,
 				328360DC1BBE26B8009499CD /* AMTagView.m in Sources */,
 				326AA6501B925E0F00D64041 /* Command+DynamoDB.m in Sources */,
+				3238D2B81BD14F5D001B3079 /* TagSearchViewController.m in Sources */,
 				3242C1511B8C284B006988F0 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
