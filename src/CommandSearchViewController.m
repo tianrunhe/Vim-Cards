@@ -85,14 +85,18 @@
     _commandsCDTVC.fetchedResultsController.fetchRequest.predicate =
         [NSPredicate predicateWithValue:YES];
   } else {
+    NSPredicate *commandTitlePredicate =
+        [NSPredicate predicateWithFormat:@"title CONTAINS[cd] %@", keyword];
     NSPredicate *commandContentPredicate =
         [NSPredicate predicateWithFormat:@"content CONTAINS[cd] %@", keyword];
     NSPredicate *tagNamePredicate =
         [NSPredicate predicateWithFormat:@"tags.name CONTAINS[cd] %@", keyword];
     _commandsCDTVC.fetchedResultsController.fetchRequest.predicate =
-        [NSCompoundPredicate
-            orPredicateWithSubpredicates:
-                @[ commandContentPredicate, tagNamePredicate ]];
+        [NSCompoundPredicate orPredicateWithSubpredicates:@[
+          commandTitlePredicate,
+          commandContentPredicate,
+          tagNamePredicate
+        ]];
   }
   [_commandsCDTVC performFetch];
 }
