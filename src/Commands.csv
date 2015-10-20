@@ -48,7 +48,7 @@
 "v_iW","N iW","Select ""inner |WORD|""","Motion"
 "v_i>","N i>","Select ""inner <> block""","Motion"
 "v_a>","N a>","Select ""a <> block""","Motion"
-"Ctrl-v","Ctrl-v","start highlighting blockwise   }  highlighted text","Visual"
+"CTRL-v","CTRL-v","start highlighting blockwise   }  highlighted text","Visual"
 "I","N I","insert text before the first non-blank in the line (N times)","Insert"
 "i","N i","insert text before the cursor (N times)","Insert"
 "i_CTRL_n","CTRL-n","insert next match of identifier before the cursor","Insert"
