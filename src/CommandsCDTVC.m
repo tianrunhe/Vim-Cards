@@ -109,6 +109,8 @@
   } else {
     // Not exist?!
   }
+  [self.fetchedResultsController.managedObjectContext save:NULL];
+  [self performFetch];
 }
 
 @end

@@ -36,9 +36,9 @@
   TagSearchViewController *categoryTableViewController =
       [self createTagSearchViewController];
   self.tabBarController = [[UITabBarController alloc] init];
-  self.tabBarController.viewControllers =
-      [NSArray arrayWithObjects:categoryTableViewController,
-                                commandSearchViewController, nil];
+  self.tabBarController.viewControllers = [NSArray
+      arrayWithObjects:categoryTableViewController, commandSearchViewController,
+                       [self createFavoriteViewController], nil];
   self.window.rootViewController = self.tabBarController;
   [self.window makeKeyAndVisible];
 
@@ -259,6 +259,37 @@
   commandSearchViewController.commandsCDTVC.debug = NO;
   commandSearchViewController.commandsCDTVC.fetchedResultsController =
       fetchedResultsController;
+
+  return commandSearchViewController;
+}
+
+- (CommandSearchViewController *)createFavoriteViewController {
+  NSFetchRequest *request =
+      [NSFetchRequest fetchRequestWithEntityName:@"Command"];
+  request.predicate = [NSPredicate predicateWithFormat:@"favorite=1"];
+  request.sortDescriptors = @[
+    [NSSortDescriptor
+        sortDescriptorWithKey:@"title"
+                    ascending:YES
+                     selector:@selector(localizedStandardCompare:)]
+  ];
+
+  NSFetchedResultsController *fetchedResultsController =
+      [[NSFetchedResultsController alloc]
+          initWithFetchRequest:request
+          managedObjectContext:self.managedObjectContext
+            sectionNameKeyPath:nil
+                     cacheName:nil];
+  CommandSearchViewController *commandSearchViewController =
+      [[CommandSearchViewController alloc]
+          initWithFetchedResultsController:fetchedResultsController];
+  commandSearchViewController.commandsCDTVC.debug = NO;
+  commandSearchViewController.commandsCDTVC.fetchedResultsController =
+      fetchedResultsController;
+  commandSearchViewController.title = @"Favorite";
+  commandSearchViewController.tabBarItem =
+      [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFavorites
+                                                 tag:1];
 
   return commandSearchViewController;
 }
