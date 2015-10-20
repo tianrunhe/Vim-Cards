@@ -239,7 +239,7 @@
 - (CommandSearchViewController *)createSearchViewController {
   NSFetchRequest *request =
       [NSFetchRequest fetchRequestWithEntityName:@"Command"];
-  request.predicate = nil;
+  request.predicate = [NSPredicate predicateWithFormat:@"purchase = 0"];
   request.sortDescriptors = @[
     [NSSortDescriptor
         sortDescriptorWithKey:@"title"
@@ -259,14 +259,17 @@
   commandSearchViewController.commandsCDTVC.debug = NO;
   commandSearchViewController.commandsCDTVC.fetchedResultsController =
       fetchedResultsController;
+  commandSearchViewController.globalPredicate = request.predicate;
 
   return commandSearchViewController;
 }
 
 - (CommandSearchViewController *)createFavoriteViewController {
+  NSPredicate *globalPredicate =
+      [NSPredicate predicateWithFormat:@"favorite=1"];
   NSFetchRequest *request =
       [NSFetchRequest fetchRequestWithEntityName:@"Command"];
-  request.predicate = [NSPredicate predicateWithFormat:@"favorite=1"];
+  request.predicate = globalPredicate;
   request.sortDescriptors = @[
     [NSSortDescriptor
         sortDescriptorWithKey:@"title"
@@ -290,6 +293,8 @@
   commandSearchViewController.tabBarItem =
       [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFavorites
                                                  tag:1];
+
+  commandSearchViewController.globalPredicate = globalPredicate;
 
   return commandSearchViewController;
 }

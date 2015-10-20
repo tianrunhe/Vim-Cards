@@ -83,7 +83,9 @@
 - (void)updateTableViewWithSearchString:(NSString *)keyword {
   if (![keyword length]) {
     _commandsCDTVC.fetchedResultsController.fetchRequest.predicate =
-        [NSPredicate predicateWithValue:YES];
+        [NSCompoundPredicate
+            andPredicateWithSubpredicates:
+                @[ _globalPredicate, [NSPredicate predicateWithValue:YES] ]];
   } else {
     NSPredicate *commandTitlePredicate =
         [NSPredicate predicateWithFormat:@"title CONTAINS[cd] %@", keyword];
@@ -92,10 +94,13 @@
     NSPredicate *tagNamePredicate =
         [NSPredicate predicateWithFormat:@"tags.name CONTAINS[cd] %@", keyword];
     _commandsCDTVC.fetchedResultsController.fetchRequest.predicate =
-        [NSCompoundPredicate orPredicateWithSubpredicates:@[
-          commandTitlePredicate,
-          commandContentPredicate,
-          tagNamePredicate
+        [NSCompoundPredicate andPredicateWithSubpredicates:@[
+          _globalPredicate,
+          [NSCompoundPredicate orPredicateWithSubpredicates:@[
+            commandTitlePredicate,
+            commandContentPredicate,
+            tagNamePredicate
+          ]]
         ]];
   }
   [_commandsCDTVC performFetch];
