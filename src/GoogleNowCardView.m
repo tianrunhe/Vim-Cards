@@ -24,6 +24,10 @@
 #define PRIMARY_TEXT_TEXT_SIZE 36.0  // sp
 #define SUBTEXT_TEXT_SIZE 14.0       // sp
 
+#define PRIMARY_TEXT_WIDTH 100.0
+#define TAG_LIST_WIDTH 100.0
+#define TAG_LENGTH 6.0
+
 @property(strong, nonatomic) UILabel *primaryTextLabel;
 @property(strong, nonatomic) UILabel *subtitleTextLabel;
 @property(strong, nonatomic) UILabel *subTextLabel;
@@ -66,7 +70,7 @@
   self.primaryTextLabel.text = _primaryText;
   [self.primaryTextLabel
       setFont:[UIFont fontWithName:@"Roboto-Bold" size:PRIMARY_TEXT_TEXT_SIZE]];
-  [self.primaryTextLabel sizeToFit];
+  self.primaryTextLabel.adjustsFontSizeToFitWidth = YES;
 }
 
 - (UILabel *)primaryTextLabel {
@@ -149,6 +153,7 @@
         setTextFont:[UIFont fontWithName:@"Roboto-Light"
                                     size:SUBTEXT_TEXT_SIZE]];
     [[AMTagView appearance] setTagColor:self.tintColor];
+    [[AMTagView appearance] setTagLength:TAG_LENGTH];
   }
   return _tagListView;
 }
@@ -172,14 +177,13 @@
   [self layoutSubtitleTextLabel];
   [self layoutLikeButton];
   [self layoutShareButton];
-
   [self layoutTagListView];
 }
 
 - (void)layoutPrimaryTextLabel {
   CGFloat x = TEXT_LEFT_RIGHT_PADDING;
   CGFloat y = PRIMARY_TEXT_TOP_PADDING;
-  CGFloat width = self.frame.size.width - 2 * TEXT_LEFT_RIGHT_PADDING;
+  CGFloat width = PRIMARY_TEXT_WIDTH;
   CGSize expectedLabelSize = [self.primaryText sizeWithAttributes:@{
     NSFontAttributeName :
         [UIFont fontWithName:@"Roboto-Bold" size:PRIMARY_TEXT_TEXT_SIZE]
@@ -187,7 +191,6 @@
 
   self.primaryTextLabel.frame =
       CGRectMake(x, y, width, expectedLabelSize.height);
-  [self.primaryTextLabel sizeToFit];
 }
 
 - (void)layoutSubtitleTextLabel {
@@ -199,14 +202,13 @@
   self.subtitleTextLabel.frame = CGRectMake(x, y, width, 64);
   self.subtitleTextLabel.numberOfLines = 0;
   self.subtitleTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
-  [self.subtitleTextLabel sizeToFit];
+  self.subtitleTextLabel.adjustsFontSizeToFitWidth = YES;
 }
 
 - (void)layoutLikeButton {
-  CGFloat x = self.frame.size.width - ACTIONS_PADDING * 2 - ACTIONS_SIZE * 2;
-  CGFloat y = PRIMARY_TEXT_TOP_PADDING + _primaryTextLabel.frame.size.height +
-              SUBTITLE_TOP_PADDING + _subtitleTextLabel.frame.size.height +
-              SUBTEXT_BOTTOM_PADDING + ACTIONS_PADDING;
+  CGFloat x = self.frame.size.width - ACTIONS_PADDING - ACTIONS_SIZE;
+  CGFloat y = self.frame.size.height - ACTIONS_PADDING * 2 - ACTIONS_SIZE * 2 -
+              PRIMARY_TEXT_TOP_PADDING;
 
   self.likeButton.frame = CGRectMake(x, y, ACTIONS_SIZE, ACTIONS_SIZE);
   [self.likeButton addTarget:self
@@ -230,10 +232,7 @@
 
 - (void)layoutShareButton {
   CGFloat x = self.frame.size.width - ACTIONS_PADDING - ACTIONS_SIZE;
-  CGFloat y = PRIMARY_TEXT_TOP_PADDING + _primaryTextLabel.frame.size.height +
-              SUBTITLE_TOP_PADDING + _subtitleTextLabel.frame.size.height +
-              SUBTEXT_BOTTOM_PADDING + ACTIONS_PADDING;
-
+  CGFloat y = self.frame.size.height - PRIMARY_TEXT_TOP_PADDING - ACTIONS_SIZE;
   self.shareButton.frame = CGRectMake(x, y, ACTIONS_SIZE, ACTIONS_SIZE);
   [self.shareButton setBackgroundImage:[UIImage imageNamed:@"launch"]
                               forState:UIControlStateNormal];
@@ -243,13 +242,12 @@
 }
 
 - (void)layoutTagListView {
-  CGFloat x = TEXT_LEFT_RIGHT_PADDING;
-  CGFloat y = PRIMARY_TEXT_TOP_PADDING + _primaryTextLabel.frame.size.height +
-              SUBTITLE_TOP_PADDING + _subtitleTextLabel.frame.size.height +
-              SUBTEXT_BOTTOM_PADDING + ACTIONS_PADDING;
-  CGFloat width = 150;
+  CGFloat x =
+      self.frame.size.width - TAG_LIST_WIDTH - ACTIONS_SIZE - ACTIONS_PADDING;
+  CGFloat y =
+      PRIMARY_TEXT_TOP_PADDING + _primaryTextLabel.frame.size.height - 30;
 
-  self.tagListView.frame = CGRectMake(x, y, width, 64);
+  self.tagListView.frame = CGRectMake(x, y, TAG_LIST_WIDTH, 30);
 }
 
 @end
