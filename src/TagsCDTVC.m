@@ -9,6 +9,7 @@
 #import "TagsCDTVC.h"
 #import "GoogleNowCardView.h"
 #import "Tag.h"
+#import "CommandSearchViewController.h"
 
 @implementation TagsCDTVC
 
@@ -32,6 +33,9 @@
     cardView = [[GoogleNowCardView alloc] initWithFrame:frame];
   }
   cardView.delegate = self;
+  [cardView addGestureRecognizer:[[UITapGestureRecognizer alloc]
+                                     initWithTarget:self
+                                             action:@selector(cellTapped:)]];
   cardView.shareable = NO;
   cardView.likeable = NO;
   cardView.tags = @[];
@@ -44,6 +48,37 @@
   [cell.contentView addSubview:cardView];
 
   return cell;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)cellTapped:(UITapGestureRecognizer *)gr {
+  GoogleNowCardView *card = (GoogleNowCardView *)gr.view;
+  NSFetchRequest *request =
+      [NSFetchRequest fetchRequestWithEntityName:@"Command"];
+  request.predicate = [NSPredicate
+      predicateWithFormat:@"tags.name CONTAINS[cd] %@", card.primaryText];
+  request.sortDescriptors = @[
+    [NSSortDescriptor
+        sortDescriptorWithKey:@"title"
+                    ascending:YES
+                     selector:@selector(localizedStandardCompare:)]
+  ];
+
+  NSFetchedResultsController *fetchedResultsController = [
+      [NSFetchedResultsController alloc]
+      initWithFetchRequest:request
+      managedObjectContext:self.fetchedResultsController.managedObjectContext
+        sectionNameKeyPath:nil
+                 cacheName:nil];
+  CommandsCDTVC *commandsCDTVC =
+      [[CommandsCDTVC alloc] initWithStyle:UITableViewStylePlain];
+  commandsCDTVC.debug = YES;
+  commandsCDTVC.fetchedResultsController = fetchedResultsController;
+  commandsCDTVC.title = [NSString
+      stringWithFormat:@"%@ (%@)", card.primaryText, card.subtitleText];
+
+  [self.navigationController pushViewController:commandsCDTVC animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView

@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "CommandSearchViewController.h"
-#import "TagSearchViewController.h"
+#import "TagsCDTVC.h"
 #import "Command+DynamoDB.h"
 #import "Tag.h"
 #import <AWSCore/AWSCore.h>
@@ -33,12 +33,14 @@
 
   CommandSearchViewController *commandSearchViewController =
       [self createSearchViewController];
-  TagSearchViewController *categoryTableViewController =
-      [self createTagSearchViewController];
+  UINavigationController *categoryTableViewNavigationController =
+      [[UINavigationController alloc]
+          initWithRootViewController:[self createTagsCDTVC]];
   self.tabBarController = [[UITabBarController alloc] init];
-  self.tabBarController.viewControllers = [NSArray
-      arrayWithObjects:categoryTableViewController, commandSearchViewController,
-                       [self createFavoriteViewController], nil];
+  self.tabBarController.viewControllers =
+      [NSArray arrayWithObjects:categoryTableViewNavigationController,
+                                commandSearchViewController,
+                                [self createFavoriteViewController], nil];
   self.window.rootViewController = self.tabBarController;
   [self.window makeKeyAndVisible];
 
@@ -299,7 +301,7 @@
   return commandSearchViewController;
 }
 
-- (TagSearchViewController *)createTagSearchViewController {
+- (TagsCDTVC *)createTagsCDTVC {
   NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Tag"];
   request.predicate = nil;
   request.sortDescriptors = @[
@@ -315,14 +317,16 @@
           managedObjectContext:self.managedObjectContext
             sectionNameKeyPath:nil
                      cacheName:nil];
-  TagSearchViewController *tagSearchViewController =
-      [[TagSearchViewController alloc]
-          initWithFetchedResultsController:fetchedResultsController];
-  tagSearchViewController.tagsCDTVC.debug = YES;
-  tagSearchViewController.tagsCDTVC.fetchedResultsController =
-      fetchedResultsController;
-
-  return tagSearchViewController;
+  TagsCDTVC *tagsCDTVC =
+      [[TagsCDTVC alloc] initWithStyle:UITableViewStylePlain];
+  tagsCDTVC.debug = YES;
+  tagsCDTVC.fetchedResultsController = fetchedResultsController;
+  tagsCDTVC.title = @"Explore";
+  tagsCDTVC.tabBarItem =
+      [[UITabBarItem alloc] initWithTitle:@"Explore"
+                                    image:[UIImage imageNamed:@"explore"]
+                                      tag:1];
+  return tagsCDTVC;
 }
 
 #pragma mark - background fetch

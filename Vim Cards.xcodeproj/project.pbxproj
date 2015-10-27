@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3238D2B81BD14F5D001B3079 /* TagSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3238D2B71BD14F5D001B3079 /* TagSearchViewController.m */; settings = {ASSET_TAGS = (); }; };
-		3238D2BB1BD41A18001B3079 /* TagsCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3238D2BA1BD41A18001B3079 /* TagsCDTVC.m */; settings = {ASSET_TAGS = (); }; };
+		3238D2BB1BD41A18001B3079 /* TagsCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3238D2BA1BD41A18001B3079 /* TagsCDTVC.m */; };
 		3242C1511B8C284B006988F0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3242C1501B8C284B006988F0 /* main.m */; };
 		3242C1541B8C284B006988F0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3242C1531B8C284B006988F0 /* AppDelegate.m */; };
 		3242C1571B8C284B006988F0 /* CommandsCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3242C1561B8C284B006988F0 /* CommandsCDTVC.m */; };
@@ -23,8 +22,8 @@
 		326AA65F1B93AF4000D64041 /* AWSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326AA65E1B93AF4000D64041 /* AWSCore.framework */; };
 		326AA6611B93AF5D00D64041 /* AWSDynamoDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326AA6601B93AF5D00D64041 /* AWSDynamoDB.framework */; };
 		326AA66A1B93BA4D00D64041 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 326AA6691B93BA4D00D64041 /* CoreDataTableViewController.m */; };
-		328360DB1BBE26B8009499CD /* AMTagListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 328360D81BBE26B8009499CD /* AMTagListView.m */; settings = {ASSET_TAGS = (); }; };
-		328360DC1BBE26B8009499CD /* AMTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 328360DA1BBE26B8009499CD /* AMTagView.m */; settings = {ASSET_TAGS = (); }; };
+		328360DB1BBE26B8009499CD /* AMTagListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 328360D81BBE26B8009499CD /* AMTagListView.m */; };
+		328360DC1BBE26B8009499CD /* AMTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 328360DA1BBE26B8009499CD /* AMTagView.m */; };
 		32BCE9E51B96BAD70032AE44 /* Notation.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BCE9E41B96BAD70032AE44 /* Notation.m */; };
 		32BCE9E81B96BAD70032AE44 /* Topic.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BCE9E71B96BAD70032AE44 /* Topic.m */; };
 		32BCE9EB1B96BAD70032AE44 /* Command.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BCE9EA1B96BAD70032AE44 /* Command.m */; };
@@ -32,8 +31,8 @@
 		32C928CE1BA2936000B4DA3B /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 32C928CD1BA2936000B4DA3B /* Roboto-Light.ttf */; };
 		32C928D01BA2937000B4DA3B /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 32C928CF1BA2937000B4DA3B /* Roboto-Bold.ttf */; };
 		32D680341BC61539002B854B /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 32D680331BC61539002B854B /* libz.tbd */; };
-		32D680361BC76BF9002B854B /* Commands.csv in Resources */ = {isa = PBXBuildFile; fileRef = 32D680351BC76BF9002B854B /* Commands.csv */; settings = {ASSET_TAGS = (); }; };
-		32D6803C1BCB6933002B854B /* CommandSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D6803B1BCB6933002B854B /* CommandSearchViewController.m */; settings = {ASSET_TAGS = (); }; };
+		32D680361BC76BF9002B854B /* Commands.csv in Resources */ = {isa = PBXBuildFile; fileRef = 32D680351BC76BF9002B854B /* Commands.csv */; };
+		32D6803C1BCB6933002B854B /* CommandSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D6803B1BCB6933002B854B /* CommandSearchViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,8 +46,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3238D2B61BD14F5D001B3079 /* TagSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagSearchViewController.h; sourceTree = "<group>"; };
-		3238D2B71BD14F5D001B3079 /* TagSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagSearchViewController.m; sourceTree = "<group>"; };
 		3238D2B91BD41A18001B3079 /* TagsCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagsCDTVC.h; sourceTree = "<group>"; };
 		3238D2BA1BD41A18001B3079 /* TagsCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagsCDTVC.m; sourceTree = "<group>"; };
 		3242C14B1B8C284B006988F0 /* Vim Cards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Vim Cards.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -233,8 +230,6 @@
 		326AA6671B93B7C100D64041 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				3238D2B61BD14F5D001B3079 /* TagSearchViewController.h */,
-				3238D2B71BD14F5D001B3079 /* TagSearchViewController.m */,
 				326AA6681B93BA4D00D64041 /* CoreDataTableViewController.h */,
 				326AA6691B93BA4D00D64041 /* CoreDataTableViewController.m */,
 				3242C1551B8C284B006988F0 /* CommandsCDTVC.h */,
@@ -379,7 +374,6 @@
 				32BCE9EB1B96BAD70032AE44 /* Command.m in Sources */,
 				328360DC1BBE26B8009499CD /* AMTagView.m in Sources */,
 				326AA6501B925E0F00D64041 /* Command+DynamoDB.m in Sources */,
-				3238D2B81BD14F5D001B3079 /* TagSearchViewController.m in Sources */,
 				3242C1511B8C284B006988F0 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
