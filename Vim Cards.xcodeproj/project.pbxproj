@@ -33,6 +33,7 @@
 		32D680341BC61539002B854B /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 32D680331BC61539002B854B /* libz.tbd */; };
 		32D680361BC76BF9002B854B /* Commands.csv in Resources */ = {isa = PBXBuildFile; fileRef = 32D680351BC76BF9002B854B /* Commands.csv */; };
 		32D6803C1BCB6933002B854B /* CommandSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D6803B1BCB6933002B854B /* CommandSearchViewController.m */; };
+		32F513DE1BE074AD004BFAD1 /* Notations.csv in Resources */ = {isa = PBXBuildFile; fileRef = 32F513DD1BE074AD004BFAD1 /* Notations.csv */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,7 @@
 		32D680351BC76BF9002B854B /* Commands.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Commands.csv; sourceTree = "<group>"; };
 		32D6803A1BCB6933002B854B /* CommandSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandSearchViewController.h; sourceTree = "<group>"; };
 		32D6803B1BCB6933002B854B /* CommandSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandSearchViewController.m; sourceTree = "<group>"; };
+		32F513DD1BE074AD004BFAD1 /* Notations.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Notations.csv; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +210,7 @@
 		326AA6651B93B65500D64041 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				32F513DD1BE074AD004BFAD1 /* Notations.csv */,
 				32D680351BC76BF9002B854B /* Commands.csv */,
 				3242C15B1B8C284B006988F0 /* Images.xcassets */,
 				3242C15D1B8C284B006988F0 /* LaunchScreen.xib */,
@@ -338,6 +341,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32F513DE1BE074AD004BFAD1 /* Notations.csv in Resources */,
 				3242C15F1B8C284B006988F0 /* LaunchScreen.xib in Resources */,
 				32C928D01BA2937000B4DA3B /* Roboto-Bold.ttf in Resources */,
 				32D680361BC76BF9002B854B /* Commands.csv in Resources */,
