@@ -10,11 +10,13 @@
 #import "CommandSearchViewController.h"
 #import "TagsCDTVC.h"
 #import "Command+DynamoDB.h"
+#import "Notation+DynamoDB.h"
 #import "Tag.h"
 #import <AWSCore/AWSCore.h>
 #import <AWSDynamoDB/AWSDynamoDB.h>
 
 #define COMMAND_TABLE_NAME @"Vim-commands"
+#define NOTATION_TABLE_NAME @"Vim-notations"
 #define IDENTITY_POOL_ID @"us-east-1:2a03f595-893e-4705-8f21-fa40a2882576"
 
 @implementation AppDelegate
@@ -332,11 +334,20 @@
 #pragma mark - background fetch
 - (void)startDynamoDBSync {
   AWSDynamoDB *dynamoDB = [AWSDynamoDB defaultDynamoDB];
+
   AWSDynamoDBScanInput *scanInput = [AWSDynamoDBScanInput new];
   scanInput.tableName = COMMAND_TABLE_NAME;
   [[[dynamoDB scan:scanInput] continueWithBlock:^id(AWSTask *task) {
     [Command loadCommandsFromDynamoDBScanOutput:task.result
                        intoManagedObjectContext:self.managedObjectContext];
+    return nil;
+  }] waitUntilFinished];
+
+  scanInput = [AWSDynamoDBScanInput new];
+  scanInput.tableName = NOTATION_TABLE_NAME;
+  [[[dynamoDB scan:scanInput] continueWithBlock:^id(AWSTask *task) {
+    [Notation loadNotationsFromDynamoDBScanOutput:task.result
+                         intoManagedObjectContext:self.managedObjectContext];
     return nil;
   }] waitUntilFinished];
   [self.managedObjectContext save:NULL];

@@ -34,6 +34,7 @@
 		32D680361BC76BF9002B854B /* Commands.csv in Resources */ = {isa = PBXBuildFile; fileRef = 32D680351BC76BF9002B854B /* Commands.csv */; };
 		32D6803C1BCB6933002B854B /* CommandSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D6803B1BCB6933002B854B /* CommandSearchViewController.m */; };
 		32F513DE1BE074AD004BFAD1 /* Notations.csv in Resources */ = {isa = PBXBuildFile; fileRef = 32F513DD1BE074AD004BFAD1 /* Notations.csv */; };
+		32F513E11BE1BDAB004BFAD1 /* Notation+DynamoDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F513E01BE1BDAB004BFAD1 /* Notation+DynamoDB.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,8 @@
 		32D6803A1BCB6933002B854B /* CommandSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandSearchViewController.h; sourceTree = "<group>"; };
 		32D6803B1BCB6933002B854B /* CommandSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandSearchViewController.m; sourceTree = "<group>"; };
 		32F513DD1BE074AD004BFAD1 /* Notations.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Notations.csv; sourceTree = "<group>"; };
+		32F513DF1BE1BDAB004BFAD1 /* Notation+DynamoDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Notation+DynamoDB.h"; sourceTree = "<group>"; };
+		32F513E01BE1BDAB004BFAD1 /* Notation+DynamoDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Notation+DynamoDB.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +194,8 @@
 				326AA6491B925E0F00D64041 /* coreData.xcdatamodel */,
 				326AA64A1B925E0F00D64041 /* Command+DynamoDB.h */,
 				326AA64B1B925E0F00D64041 /* Command+DynamoDB.m */,
+				32F513DF1BE1BDAB004BFAD1 /* Notation+DynamoDB.h */,
+				32F513E01BE1BDAB004BFAD1 /* Notation+DynamoDB.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -367,6 +372,7 @@
 				32BCE9EE1B96BAD70032AE44 /* Tag.m in Sources */,
 				32BCE9E81B96BAD70032AE44 /* Topic.m in Sources */,
 				32BCE9E51B96BAD70032AE44 /* Notation.m in Sources */,
+				32F513E11BE1BDAB004BFAD1 /* Notation+DynamoDB.m in Sources */,
 				328360DB1BBE26B8009499CD /* AMTagListView.m in Sources */,
 				326AA64F1B925E0F00D64041 /* coreData.xcdatamodel in Sources */,
 				3242C1761B8D637B006988F0 /* GoogleNowCardView.m in Sources */,
