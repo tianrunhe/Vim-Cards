@@ -15,18 +15,19 @@
 
 @end
 
-@interface GoogleNowCardView : UIView
+@interface GoogleNowCardView : UIView<UITextViewDelegate>
 
 #define PADDING_FROM_EDGE_OF_SCREEN_TO_CARD 8.0
 #define SPACE_BETWEEN_CARDS 8.0
 
 @property(strong, nonatomic) NSString *primaryText;
 @property(strong, nonatomic) NSString *subtitleText;
-@property(strong, nonatomic) NSString *subText;
 @property(assign, nonatomic) BOOL isFavorite;
 @property(assign, nonatomic) BOOL likeable;
 @property(assign, nonatomic) BOOL shareable;
 @property(strong, nonatomic) NSArray *tags;  // of NSString
+
+@property(strong, nonatomic) UITextView *subtitleTextView;
 @property(assign) id<GoogleNowCardViewDelegate> delegate;
 
 @end

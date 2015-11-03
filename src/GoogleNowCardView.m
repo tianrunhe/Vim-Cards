@@ -29,8 +29,6 @@
 #define TAG_LENGTH 6.0
 
 @property(strong, nonatomic) UILabel *primaryTextLabel;
-@property(strong, nonatomic) UILabel *subtitleTextLabel;
-@property(strong, nonatomic) UILabel *subTextLabel;
 @property(strong, nonatomic) UIButton *likeButton;
 @property(strong, nonatomic) UIButton *shareButton;
 @property(strong, nonatomic) AMTagListView *tagListView;
@@ -82,17 +80,18 @@
 
 - (void)setSubtitleText:(NSString *)subtitleText {
   _subtitleText = subtitleText;
-  self.subtitleTextLabel.text = _subtitleText;
-  [self.subtitleTextLabel
+  self.subtitleTextView.text = _subtitleText;
+  [self.subtitleTextView
       setFont:[UIFont fontWithName:@"Roboto-Light" size:SUBTEXT_TEXT_SIZE]];
-  [self.subtitleTextLabel sizeToFit];
+  [self.subtitleTextView sizeToFit];
 }
 
-- (UILabel *)subtitleTextLabel {
-  if (!_subtitleTextLabel) {
-    _subtitleTextLabel = [[UILabel alloc] init];
+- (UITextView *)subtitleTextView {
+  if (!_subtitleTextView) {
+    _subtitleTextView = [[UITextView alloc] init];
   }
-  return _subtitleTextLabel;
+  _subtitleTextView.delegate = self;
+  return _subtitleTextView;
 }
 
 - (void)setIsFavorite:(BOOL)isFavorite {
@@ -166,7 +165,7 @@
   [super setFrame:frame];
 
   [self addSubview:self.primaryTextLabel];
-  [self addSubview:self.subtitleTextLabel];
+  [self addSubview:self.subtitleTextView];
   [self addSubview:self.likeButton];
   [self addSubview:self.shareButton];
   [self addSubview:self.tagListView];
@@ -199,10 +198,11 @@
               SUBTITLE_TOP_PADDING;
   CGFloat width = self.frame.size.width - 2 * TEXT_LEFT_RIGHT_PADDING - 50;
 
-  self.subtitleTextLabel.frame = CGRectMake(x, y, width, 64);
-  self.subtitleTextLabel.numberOfLines = 0;
-  self.subtitleTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
-  self.subtitleTextLabel.adjustsFontSizeToFitWidth = YES;
+  self.subtitleTextView.frame = CGRectMake(x, y, width, 64);
+  self.subtitleTextView.scrollEnabled = NO;
+  self.subtitleTextView.editable = NO;
+  self.subtitleTextView.textContainer.lineFragmentPadding = 0;
+  self.subtitleTextView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0);
 }
 
 - (void)layoutLikeButton {

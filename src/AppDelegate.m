@@ -117,6 +117,31 @@
   }
 }
 
+- (BOOL)application:(UIApplication *)application
+            openURL:(nonnull NSURL *)url
+            options:(nonnull NSDictionary<NSString *, id> *)options {
+  NSString *queryParameters = [url.query stringByRemovingPercentEncoding];
+  NSString *title = [queryParameters componentsSeparatedByString:@"="][1];
+
+  UIAlertController *alert =
+      [UIAlertController alertControllerWithTitle:@"My Alert"
+                                          message:@"This is an alert."
+                                   preferredStyle:UIAlertControllerStyleAlert];
+
+  UIAlertAction *defaultAction =
+      [UIAlertAction actionWithTitle:@"OK"
+                               style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction *action){
+                             }];
+
+  [alert addAction:defaultAction];
+  [self.window.rootViewController presentViewController:alert
+                                               animated:YES
+                                             completion:nil];
+
+  return [title isEqualToString:@"{motion}"];
+}
+
 #pragma mark - Core Data stack
 
 @synthesize managedObjectContext = _managedObjectContext;

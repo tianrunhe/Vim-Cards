@@ -35,6 +35,7 @@
 		32D6803C1BCB6933002B854B /* CommandSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D6803B1BCB6933002B854B /* CommandSearchViewController.m */; };
 		32F513DE1BE074AD004BFAD1 /* Notations.csv in Resources */ = {isa = PBXBuildFile; fileRef = 32F513DD1BE074AD004BFAD1 /* Notations.csv */; };
 		32F513E11BE1BDAB004BFAD1 /* Notation+DynamoDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F513E01BE1BDAB004BFAD1 /* Notation+DynamoDB.m */; };
+		32F513E41BE1C0B1004BFAD1 /* CommandCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F513E31BE1C0B1004BFAD1 /* CommandCardView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +95,8 @@
 		32F513DD1BE074AD004BFAD1 /* Notations.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Notations.csv; sourceTree = "<group>"; };
 		32F513DF1BE1BDAB004BFAD1 /* Notation+DynamoDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Notation+DynamoDB.h"; sourceTree = "<group>"; };
 		32F513E01BE1BDAB004BFAD1 /* Notation+DynamoDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Notation+DynamoDB.m"; sourceTree = "<group>"; };
+		32F513E21BE1C0B1004BFAD1 /* CommandCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandCardView.h; sourceTree = "<group>"; };
+		32F513E31BE1C0B1004BFAD1 /* CommandCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandCardView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +234,8 @@
 				328360D61BBE268C009499CD /* AMTTagListView */,
 				3242C1741B8D637B006988F0 /* GoogleNowCardView.h */,
 				3242C1751B8D637B006988F0 /* GoogleNowCardView.m */,
+				32F513E21BE1C0B1004BFAD1 /* CommandCardView.h */,
+				32F513E31BE1C0B1004BFAD1 /* CommandCardView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -376,6 +381,7 @@
 				328360DB1BBE26B8009499CD /* AMTagListView.m in Sources */,
 				326AA64F1B925E0F00D64041 /* coreData.xcdatamodel in Sources */,
 				3242C1761B8D637B006988F0 /* GoogleNowCardView.m in Sources */,
+				32F513E41BE1C0B1004BFAD1 /* CommandCardView.m in Sources */,
 				3238D2BB1BD41A18001B3079 /* TagsCDTVC.m in Sources */,
 				326AA66A1B93BA4D00D64041 /* CoreDataTableViewController.m in Sources */,
 				3242C1571B8C284B006988F0 /* CommandsCDTVC.m in Sources */,

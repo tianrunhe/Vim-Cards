@@ -7,7 +7,7 @@
 //
 
 #import "CommandsCDTVC.h"
-#import "GoogleNowCardView.h"
+#import "CommandCardView.h"
 #import "Command.h"
 #import "Tag.h"
 
@@ -26,12 +26,23 @@
       CGRectMake(self.view.frame.origin.x,
                  self.view.frame.origin.y + ROW_HEIGHT - SPACE_BETWEEN_CARDS,
                  self.view.frame.size.width, ROW_HEIGHT - SPACE_BETWEEN_CARDS);
-  GoogleNowCardView *cardView = cell.contentView.subviews[0];
+  CommandCardView *cardView = cell.contentView.subviews[0];
   if (!cell) {
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                   reuseIdentifier:CellIdentifier];
-    cardView = [[GoogleNowCardView alloc] initWithFrame:frame];
+    cardView = [[CommandCardView alloc] initWithFrame:frame];
   }
+
+  NSDictionary *dict = [[NSDictionary alloc]
+      initWithObjectsAndKeys:@"A command that moves the "
+                             @"cursor.\nExamples:\n  w		to "
+                             @"start of next word\n  b		to "
+                             @"begin of current word\n  4j		"
+                             @"four lines down\n  /The<CR>	to next "
+                             @"occurrence of \"The\"",
+                             @"{motion}", nil];
+  cardView.notations = dict;
+
   cardView.delegate = self;
   cardView.shareable = YES;
   cardView.likeable = YES;
