@@ -24,7 +24,7 @@
 #define PRIMARY_TEXT_TEXT_SIZE 36.0  // sp
 #define SUBTEXT_TEXT_SIZE 14.0       // sp
 
-#define PRIMARY_TEXT_WIDTH 100.0
+#define PRIMARY_TEXT_WIDTH 250.0
 #define TAG_LIST_WIDTH 100.0
 #define TAG_LENGTH 6.0
 
@@ -70,7 +70,6 @@
   self.primaryTextLabel.text = _primaryText;
   [self.primaryTextLabel
       setFont:[UIFont fontWithName:@"Roboto-Bold" size:PRIMARY_TEXT_TEXT_SIZE]];
-  self.primaryTextLabel.adjustsFontSizeToFitWidth = YES;
 }
 
 - (UILabel *)primaryTextLabel {
@@ -202,7 +201,6 @@
   self.subtitleTextLabel.frame = CGRectMake(x, y, width, 64);
   self.subtitleTextLabel.numberOfLines = 0;
   self.subtitleTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
-  self.subtitleTextLabel.adjustsFontSizeToFitWidth = YES;
 }
 
 - (void)layoutLikeButton {

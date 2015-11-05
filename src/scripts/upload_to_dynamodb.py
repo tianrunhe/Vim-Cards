@@ -5,19 +5,19 @@ import argparse
 
 def main(overwrite=False, update=False):
     dynamodb = boto3.resource('dynamodb')
-    table = dynamodb.Table('Vim-commands')
+    table = dynamodb.Table('Vim_Cheat_Sheet')
     
     should_inserted = 0
     should_updated = 0
     inserted = 0
     updated = 0
 
-    with open('Commands.csv', 'rb') as csvfile:
+    with open('Vim_Cheat_Sheet.csv', 'rb') as csvfile:
         command_reader = csv.reader(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_ALL, skipinitialspace=True)
         for row in command_reader:
             print "row = %s" % row
             title = row[0]
-            usage = row[1]
+            usage = row[1] or " "
             content = row[2]
             tags = re.split(',\s+', row[3])
             response = table.get_item(Key = {'title': title})

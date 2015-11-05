@@ -15,7 +15,7 @@
 #import <AWSCore/AWSCore.h>
 #import <AWSDynamoDB/AWSDynamoDB.h>
 
-#define COMMAND_TABLE_NAME @"Vim-commands"
+#define COMMAND_TABLE_NAME @"Vim_Cheat_Sheet"
 #define NOTATION_TABLE_NAME @"Vim-notations"
 #define IDENTITY_POOL_ID @"us-east-1:2a03f595-893e-4705-8f21-fa40a2882576"
 
@@ -335,6 +335,8 @@
 - (void)startDynamoDBSync {
   AWSDynamoDB *dynamoDB = [AWSDynamoDB defaultDynamoDB];
 
+  [self deleteAllFrom:@"Command"];
+  [self deleteAllFrom:@"Tag"];
   AWSDynamoDBScanInput *scanInput = [AWSDynamoDBScanInput new];
   scanInput.tableName = COMMAND_TABLE_NAME;
   [[[dynamoDB scan:scanInput] continueWithBlock:^id(AWSTask *task) {
@@ -343,6 +345,7 @@
     return nil;
   }] waitUntilFinished];
 
+  [self deleteAllFrom:@"Notation"];
   scanInput = [AWSDynamoDBScanInput new];
   scanInput.tableName = NOTATION_TABLE_NAME;
   [[[dynamoDB scan:scanInput] continueWithBlock:^id(AWSTask *task) {
@@ -351,6 +354,18 @@
     return nil;
   }] waitUntilFinished];
   [self.managedObjectContext save:NULL];
+}
+
+- (void)deleteAllFrom:(NSString *)entityName {
+  NSFetchRequest *request =
+      [[NSFetchRequest alloc] initWithEntityName:entityName];
+  NSBatchDeleteRequest *delete =
+      [[NSBatchDeleteRequest alloc] initWithFetchRequest:request];
+
+  NSError *deleteError = nil;
+  [self.persistentStoreCoordinator executeRequest:delete
+                                      withContext:self.managedObjectContext
+                                            error:&deleteError];
 }
 
 @end
