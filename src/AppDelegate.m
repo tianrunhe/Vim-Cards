@@ -27,11 +27,16 @@
   // Override point for customization after application launch.
   self.window.backgroundColor = [UIColor whiteColor];
 
-  [[UIApplication sharedApplication]
-      setMinimumBackgroundFetchInterval:
-          UIApplicationBackgroundFetchIntervalMinimum];
-  [self configureAWSResources];
-  [self startDynamoDBSync];
+  if (![[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]) {
+    [[UIApplication sharedApplication]
+        setMinimumBackgroundFetchInterval:
+            UIApplicationBackgroundFetchIntervalMinimum];
+    [self configureAWSResources];
+    [self startDynamoDBSync];
+    [[NSUserDefaults standardUserDefaults] setBool:YES
+                                            forKey:@"HasLaunchedOnce"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+  }
 
   CommandSearchViewController *commandSearchViewController =
       [self createSearchViewController];
@@ -96,22 +101,48 @@
     performFetchWithCompletionHandler:
         (nonnull void (^)(UIBackgroundFetchResult))completionHandler {
   if (self.managedObjectContext) {
+    [self configureAWSResources];
     AWSDynamoDB *dynamoDB = [AWSDynamoDB defaultDynamoDB];
+
+    [self deleteAllFrom:@"Command"];
+    [self deleteAllFrom:@"Tag"];
     AWSDynamoDBScanInput *scanInput = [AWSDynamoDBScanInput new];
     scanInput.tableName = COMMAND_TABLE_NAME;
-    AWSTask *task = [dynamoDB scan:scanInput];
-    [task continueWithBlock:^id(AWSTask *task) {
+    __block BOOL anyTaskFailed = NO;
+    [[dynamoDB scan:scanInput] continueWithBlock:^id(AWSTask *task) {
       if (task.error) {
-        NSLog(@"Failed to sync data with DynamoDB");
-        completionHandler(UIBackgroundFetchResultFailed);
+        NSLog(@"Failed to sync Command data with DynamoDB");
+        anyTaskFailed = YES;
       } else {
         [Command loadCommandsFromDynamoDBScanOutput:task.result
                            intoManagedObjectContext:self.managedObjectContext];
-        completionHandler(UIBackgroundFetchResultNewData);
-        NSLog(@"Succeeded to sync data with DynamoDB");
+        NSLog(@"Succeeded to sync Command data with DynamoDB");
       }
       return nil;
     }];
+
+    [self deleteAllFrom:@"Notation"];
+    scanInput = [AWSDynamoDBScanInput new];
+    scanInput.tableName = NOTATION_TABLE_NAME;
+    [[dynamoDB scan:scanInput] continueWithBlock:^id(AWSTask *task) {
+      if (task.error) {
+        NSLog(@"Failed to sync Notation data with DynamoDB");
+        anyTaskFailed = YES;
+      } else {
+        [Notation
+            loadNotationsFromDynamoDBScanOutput:task.result
+                       intoManagedObjectContext:self.managedObjectContext];
+        NSLog(@"Succeeded to sync Notation data with DynamoDB");
+      }
+      return nil;
+    }];
+
+    if (anyTaskFailed) {
+      completionHandler(UIBackgroundFetchResultFailed);
+    } else {
+      completionHandler(UIBackgroundFetchResultNewData);
+    }
+    [self.managedObjectContext save:NULL];
   } else {
     completionHandler(UIBackgroundFetchResultNoData);
   }
@@ -321,7 +352,7 @@
                      cacheName:nil];
   TagsCDTVC *tagsCDTVC =
       [[TagsCDTVC alloc] initWithStyle:UITableViewStylePlain];
-  tagsCDTVC.debug = YES;
+  tagsCDTVC.debug = NO;
   tagsCDTVC.fetchedResultsController = fetchedResultsController;
   tagsCDTVC.title = @"Explore";
   tagsCDTVC.tabBarItem =
