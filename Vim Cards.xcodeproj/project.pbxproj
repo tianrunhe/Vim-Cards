@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3211D5901BEC5A870061C0E8 /* NSString+Levenshtein.m in Sources */ = {isa = PBXBuildFile; fileRef = 3211D58F1BEC5A870061C0E8 /* NSString+Levenshtein.m */; };
 		3238D2BB1BD41A18001B3079 /* TagsCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3238D2BA1BD41A18001B3079 /* TagsCDTVC.m */; };
 		3242C1511B8C284B006988F0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3242C1501B8C284B006988F0 /* main.m */; };
 		3242C1541B8C284B006988F0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3242C1531B8C284B006988F0 /* AppDelegate.m */; };
@@ -48,6 +49,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3211D58E1BEC5A870061C0E8 /* NSString+Levenshtein.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Levenshtein.h"; sourceTree = "<group>"; };
+		3211D58F1BEC5A870061C0E8 /* NSString+Levenshtein.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Levenshtein.m"; sourceTree = "<group>"; };
 		3238D2B91BD41A18001B3079 /* TagsCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagsCDTVC.h; sourceTree = "<group>"; };
 		3238D2BA1BD41A18001B3079 /* TagsCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagsCDTVC.m; sourceTree = "<group>"; };
 		3242C14B1B8C284B006988F0 /* Vim Cards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Vim Cards.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -196,6 +199,8 @@
 				326AA64B1B925E0F00D64041 /* Command+DynamoDB.m */,
 				32F513DF1BE1BDAB004BFAD1 /* Notation+DynamoDB.h */,
 				32F513E01BE1BDAB004BFAD1 /* Notation+DynamoDB.m */,
+				3211D58E1BEC5A870061C0E8 /* NSString+Levenshtein.h */,
+				3211D58F1BEC5A870061C0E8 /* NSString+Levenshtein.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -376,6 +381,7 @@
 				328360DB1BBE26B8009499CD /* AMTagListView.m in Sources */,
 				326AA64F1B925E0F00D64041 /* coreData.xcdatamodel in Sources */,
 				3242C1761B8D637B006988F0 /* GoogleNowCardView.m in Sources */,
+				3211D5901BEC5A870061C0E8 /* NSString+Levenshtein.m in Sources */,
 				3238D2BB1BD41A18001B3079 /* TagsCDTVC.m in Sources */,
 				326AA66A1B93BA4D00D64041 /* CoreDataTableViewController.m in Sources */,
 				3242C1571B8C284B006988F0 /* CommandsCDTVC.m in Sources */,
