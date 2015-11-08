@@ -14,9 +14,7 @@
 
 @property(nonatomic, strong) UISearchController *searchController;
 @property(nonatomic, strong) CommandsCDTVC *commandsCDTVC;
-@property(nonatomic, strong) NSPredicate *globalPredicate;
 
-- (id)initWithFetchedResultsController:
-    (NSFetchedResultsController *)fetchedResultsController;
+- (id)initWithCommands:(NSArray *)commands;
 
 @end

@@ -7,6 +7,9 @@
 //
 
 #import "CommandSearchViewController.h"
+#import "Command.h"
+#import "Tag.h"
+#import "NSString+Levenshtein.h"
 
 @interface CommandSearchViewController ()
 
@@ -14,18 +17,15 @@
 
 @implementation CommandSearchViewController
 
-- (id)initWithFetchedResultsController:
-    (NSFetchedResultsController *)fetchedResultsController {
+- (id)initWithCommands:(NSArray *)commands {
   self = [super init];
 
   if (self) {
     _searchController =
         [[UISearchController alloc] initWithSearchResultsController:nil];
-    _commandsCDTVC =
-        [[CommandsCDTVC alloc] initWithStyle:UITableViewStylePlain];
-    _commandsCDTVC.debug = YES;
-    _commandsCDTVC.fetchedResultsController = fetchedResultsController;
 
+    _commandsCDTVC = [[CommandsCDTVC alloc] init];
+    _commandsCDTVC.commands = commands;
     self.title = @"Search";
     self.tabBarItem =
         [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemSearch
@@ -81,29 +81,41 @@
 }
 
 - (void)updateTableViewWithSearchString:(NSString *)keyword {
-  if (![keyword length]) {
-    _commandsCDTVC.fetchedResultsController.fetchRequest.predicate =
-        [NSCompoundPredicate
-            andPredicateWithSubpredicates:
-                @[ _globalPredicate, [NSPredicate predicateWithValue:YES] ]];
-  } else {
-    NSPredicate *commandTitlePredicate =
-        [NSPredicate predicateWithFormat:@"title CONTAINS[cd] %@", keyword];
-    NSPredicate *commandContentPredicate =
-        [NSPredicate predicateWithFormat:@"content CONTAINS[cd] %@", keyword];
-    NSPredicate *tagNamePredicate =
-        [NSPredicate predicateWithFormat:@"tags.name CONTAINS[cd] %@", keyword];
-    _commandsCDTVC.fetchedResultsController.fetchRequest.predicate =
-        [NSCompoundPredicate andPredicateWithSubpredicates:@[
-          _globalPredicate,
-          [NSCompoundPredicate orPredicateWithSubpredicates:@[
-            commandTitlePredicate,
-            commandContentPredicate,
-            tagNamePredicate
-          ]]
-        ]];
-  }
-  [_commandsCDTVC performFetch];
+  // sort list
+  _commandsCDTVC.commands = [_commandsCDTVC.commands
+      sortedArrayUsingComparator:(NSComparator) ^ (id obj1, id obj2) {
+        Command *command1 = (Command *)obj1;
+        Command *command2 = (Command *)obj2;
+        NSInteger score1 = [keyword compareWithString:command1.title
+                                            matchGain:10
+                                          missingCost:1];
+        score1 += [keyword compareWithString:command1.description
+                                   matchGain:10
+                                 missingCost:1];
+        for (Tag *tag in command1.tags) {
+          score1 +=
+              [keyword compareWithString:tag.name matchGain:10 missingCost:1];
+        }
+
+        NSInteger score2 = [keyword compareWithString:command2.title
+                                            matchGain:10
+                                          missingCost:1];
+        score2 += [keyword compareWithString:command2.description
+                                   matchGain:10
+                                 missingCost:1];
+        for (Tag *tag in command2.tags) {
+          score2 +=
+              [keyword compareWithString:tag.name matchGain:10 missingCost:1];
+        }
+        if (score1 > score2) {
+          return NSOrderedDescending;
+        } else if (score1 < score2) {
+          return NSOrderedAscending;
+        } else {
+          return NSOrderedSame;
+        }
+      }];
+  [_commandsCDTVC.tableView reloadData];
 }
 
 @end

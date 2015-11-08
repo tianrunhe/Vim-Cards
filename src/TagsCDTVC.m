@@ -9,6 +9,7 @@
 #import "TagsCDTVC.h"
 #import "GoogleNowCardView.h"
 #import "Tag.h"
+#import "CommandsData.h"
 #import "CommandSearchViewController.h"
 
 @implementation TagsCDTVC
@@ -40,7 +41,7 @@
   cardView.likeable = NO;
   cardView.tags = @[];
 
-  Tag *tag = [self.fetchedResultsController objectAtIndexPath:indexPath];
+  Tag *tag = [_tags objectAtIndex:indexPath.row];
   cardView.primaryText = tag.name;
   cardView.subtitleText = [NSString
       stringWithFormat:@"%@ commands",
@@ -50,31 +51,22 @@
   return cell;
 }
 
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section {
+  return [_tags count];
+}
+
 #pragma mark - UITableViewDelegate
 
 - (void)cellTapped:(UITapGestureRecognizer *)gr {
   GoogleNowCardView *card = (GoogleNowCardView *)gr.view;
-  NSFetchRequest *request =
-      [NSFetchRequest fetchRequestWithEntityName:@"Command"];
-  request.predicate = [NSPredicate
+  NSPredicate *predicate = [NSPredicate
       predicateWithFormat:@"tags.name CONTAINS[cd] %@", card.primaryText];
-  request.sortDescriptors = @[
-    [NSSortDescriptor
-        sortDescriptorWithKey:@"title"
-                    ascending:YES
-                     selector:@selector(localizedStandardCompare:)]
-  ];
 
-  NSFetchedResultsController *fetchedResultsController = [
-      [NSFetchedResultsController alloc]
-      initWithFetchRequest:request
-      managedObjectContext:self.fetchedResultsController.managedObjectContext
-        sectionNameKeyPath:nil
-                 cacheName:nil];
   CommandsCDTVC *commandsCDTVC =
       [[CommandsCDTVC alloc] initWithStyle:UITableViewStylePlain];
-  commandsCDTVC.debug = YES;
-  commandsCDTVC.fetchedResultsController = fetchedResultsController;
+  commandsCDTVC.commands =
+      [[CommandsData instance].commands filteredArrayUsingPredicate:predicate];
   commandsCDTVC.title = [NSString
       stringWithFormat:@"%@ (%@)", card.primaryText, card.subtitleText];
 

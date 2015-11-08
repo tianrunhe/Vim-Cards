@@ -8,9 +8,11 @@
 
 #import "AppDelegate.h"
 #import "CommandSearchViewController.h"
+#import "FavoriteCommandSearchViewController.h"
 #import "TagsCDTVC.h"
 #import "Command+DynamoDB.h"
 #import "Notation+DynamoDB.h"
+#import "CommandsData.h"
 #import "Tag.h"
 #import <AWSCore/AWSCore.h>
 #import <AWSDynamoDB/AWSDynamoDB.h>
@@ -38,16 +40,29 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
   }
 
-  CommandSearchViewController *commandSearchViewController =
-      [self createSearchViewController];
+  NSFetchRequest *request =
+      [NSFetchRequest fetchRequestWithEntityName:@"Command"];
+  request.predicate = [NSPredicate predicateWithFormat:@"purchase = 0"];
+  request.sortDescriptors = @[
+    [NSSortDescriptor
+        sortDescriptorWithKey:@"title"
+                    ascending:YES
+                     selector:@selector(localizedStandardCompare:)]
+  ];
+  CommandsData *instance = [CommandsData instance];
+  instance.commands =
+      [self.managedObjectContext executeFetchRequest:request error:NULL];
+
+  CommandSearchViewController *commandSearchViewController = [self
+      createSearchViewControllerWithCommands:[CommandsData instance].commands];
   UINavigationController *categoryTableViewNavigationController =
       [[UINavigationController alloc]
           initWithRootViewController:[self createTagsCDTVC]];
   self.tabBarController = [[UITabBarController alloc] init];
-  self.tabBarController.viewControllers =
-      [NSArray arrayWithObjects:categoryTableViewNavigationController,
-                                commandSearchViewController,
-                                [self createFavoriteViewController], nil];
+  self.tabBarController.viewControllers = [NSArray
+      arrayWithObjects:categoryTableViewNavigationController,
+                       commandSearchViewController,
+                       [[FavoriteCommandSearchViewController alloc] init], nil];
   self.window.rootViewController = self.tabBarController;
   [self.window makeKeyAndVisible];
 
@@ -271,66 +286,10 @@
       configuration;
 }
 
-- (CommandSearchViewController *)createSearchViewController {
-  NSFetchRequest *request =
-      [NSFetchRequest fetchRequestWithEntityName:@"Command"];
-  request.predicate = [NSPredicate predicateWithFormat:@"purchase = 0"];
-  request.sortDescriptors = @[
-    [NSSortDescriptor
-        sortDescriptorWithKey:@"title"
-                    ascending:YES
-                     selector:@selector(localizedStandardCompare:)]
-  ];
-
-  NSFetchedResultsController *fetchedResultsController =
-      [[NSFetchedResultsController alloc]
-          initWithFetchRequest:request
-          managedObjectContext:self.managedObjectContext
-            sectionNameKeyPath:nil
-                     cacheName:nil];
+- (CommandSearchViewController *)createSearchViewControllerWithCommands:
+    (NSArray *)commands {
   CommandSearchViewController *commandSearchViewController =
-      [[CommandSearchViewController alloc]
-          initWithFetchedResultsController:fetchedResultsController];
-  commandSearchViewController.commandsCDTVC.debug = NO;
-  commandSearchViewController.commandsCDTVC.fetchedResultsController =
-      fetchedResultsController;
-  commandSearchViewController.globalPredicate = request.predicate;
-
-  return commandSearchViewController;
-}
-
-- (CommandSearchViewController *)createFavoriteViewController {
-  NSPredicate *globalPredicate =
-      [NSPredicate predicateWithFormat:@"favorite=1"];
-  NSFetchRequest *request =
-      [NSFetchRequest fetchRequestWithEntityName:@"Command"];
-  request.predicate = globalPredicate;
-  request.sortDescriptors = @[
-    [NSSortDescriptor
-        sortDescriptorWithKey:@"title"
-                    ascending:YES
-                     selector:@selector(localizedStandardCompare:)]
-  ];
-
-  NSFetchedResultsController *fetchedResultsController =
-      [[NSFetchedResultsController alloc]
-          initWithFetchRequest:request
-          managedObjectContext:self.managedObjectContext
-            sectionNameKeyPath:nil
-                     cacheName:nil];
-  CommandSearchViewController *commandSearchViewController =
-      [[CommandSearchViewController alloc]
-          initWithFetchedResultsController:fetchedResultsController];
-  commandSearchViewController.commandsCDTVC.debug = NO;
-  commandSearchViewController.commandsCDTVC.fetchedResultsController =
-      fetchedResultsController;
-  commandSearchViewController.title = @"Favorite";
-  commandSearchViewController.tabBarItem =
-      [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFavorites
-                                                 tag:1];
-
-  commandSearchViewController.globalPredicate = globalPredicate;
-
+      [[CommandSearchViewController alloc] initWithCommands:commands];
   return commandSearchViewController;
 }
 
@@ -344,16 +303,10 @@
                      selector:@selector(localizedStandardCompare:)]
   ];
 
-  NSFetchedResultsController *fetchedResultsController =
-      [[NSFetchedResultsController alloc]
-          initWithFetchRequest:request
-          managedObjectContext:self.managedObjectContext
-            sectionNameKeyPath:nil
-                     cacheName:nil];
   TagsCDTVC *tagsCDTVC =
       [[TagsCDTVC alloc] initWithStyle:UITableViewStylePlain];
-  tagsCDTVC.debug = NO;
-  tagsCDTVC.fetchedResultsController = fetchedResultsController;
+  tagsCDTVC.tags =
+      [self.managedObjectContext executeFetchRequest:request error:NULL];
   tagsCDTVC.title = @"Explore";
   tagsCDTVC.tabBarItem =
       [[UITabBarItem alloc] initWithTitle:@"Explore"

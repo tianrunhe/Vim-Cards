@@ -6,9 +6,10 @@
 //  Copyright © 2015 Runhe Tian. All rights reserved.
 //
 
-#import "CoreDataTableViewController.h"
 #import "GoogleNowCardView.h"
 
-@interface TagsCDTVC : CoreDataTableViewController<GoogleNowCardViewDelegate>
+@interface TagsCDTVC : UITableViewController<GoogleNowCardViewDelegate>
+
+@property NSArray *tags;  // of Tag
 
 @end

@@ -36,8 +36,7 @@
   cardView.shareable = YES;
   cardView.likeable = YES;
 
-  Command *command =
-      [self.fetchedResultsController objectAtIndexPath:indexPath];
+  Command *command = [_commands objectAtIndex:indexPath.row];
   cardView.primaryText = command.title;
   cardView.subtitleText = command.content;
   cardView.isFavorite = [command.favorite boolValue];
@@ -50,6 +49,11 @@
   [cell.contentView addSubview:cardView];
 
   return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section {
+  return [_commands count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView
@@ -90,27 +94,12 @@
 
 - (void)favoriteButtonDidPressed:(id)sender {
   GoogleNowCardView *cardView = (GoogleNowCardView *)sender;
-  Command *command = nil;
-  NSFetchRequest *request =
-      [NSFetchRequest fetchRequestWithEntityName:@"Command"];
-  request.predicate =
+  NSPredicate *predicate =
       [NSPredicate predicateWithFormat:@"title = %@", cardView.primaryText];
-
-  NSError *error;
-  NSArray *matches = [self.fetchedResultsController.managedObjectContext
-      executeFetchRequest:request
-                    error:&error];
-
-  if (!matches || error || ([matches count] > 1)) {
-    // handle error
-  } else if ([matches count]) {
-    command = [matches firstObject];
-    [command setFavorite:[NSNumber numberWithBool:cardView.isFavorite]];
-  } else {
-    // Not exist?!
-  }
-  [self.fetchedResultsController.managedObjectContext save:NULL];
-  [self performFetch];
+  Command *command =
+      [[_commands filteredArrayUsingPredicate:predicate] firstObject];
+  command.favorite =
+      [NSNumber numberWithLong:1L - command.favorite.longLongValue];
 }
 
 @end
