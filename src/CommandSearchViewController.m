@@ -8,6 +8,7 @@
 
 #import "CommandSearchViewController.h"
 #import "Command.h"
+#import "CommandsData.h"
 #import "Tag.h"
 #import "NSString+Levenshtein.h"
 
@@ -81,41 +82,109 @@
 }
 
 - (void)updateTableViewWithSearchString:(NSString *)keyword {
-  // sort list
-  _commandsCDTVC.commands = [_commandsCDTVC.commands
-      sortedArrayUsingComparator:(NSComparator) ^ (id obj1, id obj2) {
-        Command *command1 = (Command *)obj1;
-        Command *command2 = (Command *)obj2;
-        NSInteger score1 = [keyword compareWithString:command1.title
-                                            matchGain:10
-                                          missingCost:1];
-        score1 += [keyword compareWithString:command1.description
-                                   matchGain:10
-                                 missingCost:1];
-        for (Tag *tag in command1.tags) {
-          score1 +=
-              [keyword compareWithString:tag.name matchGain:10 missingCost:1];
-        }
+  NSPredicate *predicate;
+  NSArray *candidates;
+  if (![keyword length]) {
+    predicate = [NSPredicate predicateWithValue:YES];
+    candidates = [[CommandsData instance]
+                      .commands filteredArrayUsingPredicate:predicate];
+  } else {
+    NSPredicate *commandTitlePredicate =
+        [NSPredicate predicateWithFormat:@"title CONTAINS[cd] %@", keyword];
+    NSPredicate *commandContentPredicate =
+        [NSPredicate predicateWithFormat:@"content CONTAINS[cd] %@", keyword];
+    NSPredicate *tagNamePredicate =
+        [NSPredicate predicateWithFormat:@"tags.name CONTAINS[cd] %@", keyword];
+    predicate = [NSCompoundPredicate orPredicateWithSubpredicates:@[
+      commandTitlePredicate,
+      commandContentPredicate,
+      tagNamePredicate
+    ]];
+    candidates = [
+        [[CommandsData instance].commands filteredArrayUsingPredicate:predicate]
+        sortedArrayUsingComparator:^NSComparisonResult(id _Nonnull obj1,
+                                                       id _Nonnull obj2) {
+          Command *command1 = (Command *)obj1;
+          Command *command2 = (Command *)obj2;
+          //          NSInteger score1 = [keyword
+          //          compareWithString:command1.title
+          //                                              matchGain:10
+          //                                            missingCost:1];
+          //          score1 += [keyword compareWithString:command1.description
+          //                                     matchGain:10
+          //                                   missingCost:3];
+          //          for (Tag *tag in command1.tags) {
+          //            score1 +=
+          //                [keyword compareWithString:tag.name matchGain:10
+          //                missingCost:1];
+          //          }
+          //
+          //          NSInteger score2 = [keyword
+          //          compareWithString:command2.title
+          //                                              matchGain:7
+          //                                            missingCost:2];
+          //          score2 += [keyword compareWithString:command2.description
+          //                                     matchGain:5
+          //                                   missingCost:1];
+          //          for (Tag *tag in command2.tags) {
+          //            score2 +=
+          //                [keyword compareWithString:tag.name matchGain:10
+          //                missingCost:1];
+          //          }
+          //          if (score1 > score2) {
+          //            return NSOrderedDescending;
+          //          } else if (score1 < score2) {
+          //            return NSOrderedAscending;
+          //          } else {
+          //            return NSOrderedSame;
+          //          }
+          NSInteger score1 = 0;
+          NSInteger score2 = 0;
+          if ([command1.title caseInsensitiveCompare:keyword] ==
+              NSOrderedSame) {
+            score1 += 100;
+          } else if ([command1.title rangeOfString:keyword
+                                           options:NSCaseInsensitiveSearch]
+                         .location != NSNotFound) {
+            score1 += 5;
+          }
+          if ([command1.content caseInsensitiveCompare:keyword] ==
+              NSOrderedSame) {
+            score1 += 50;
+          } else if ([command1.content rangeOfString:keyword
+                                             options:NSCaseInsensitiveSearch]
+                         .location != NSNotFound) {
+            score1 += 3;
+          }
 
-        NSInteger score2 = [keyword compareWithString:command2.title
-                                            matchGain:10
-                                          missingCost:1];
-        score2 += [keyword compareWithString:command2.description
-                                   matchGain:10
-                                 missingCost:1];
-        for (Tag *tag in command2.tags) {
-          score2 +=
-              [keyword compareWithString:tag.name matchGain:10 missingCost:1];
-        }
-        if (score1 > score2) {
-          return NSOrderedDescending;
-        } else if (score1 < score2) {
-          return NSOrderedAscending;
-        } else {
-          return NSOrderedSame;
-        }
-      }];
+          if ([command2.title caseInsensitiveCompare:keyword] ==
+              NSOrderedSame) {
+            score2 += 100;
+          } else if ([command2.title rangeOfString:keyword
+                                           options:NSCaseInsensitiveSearch]
+                         .location != NSNotFound) {
+            score2 += 5;
+          }
+          if ([command2.content caseInsensitiveCompare:keyword] ==
+              NSOrderedSame) {
+            score2 += 50;
+          } else if ([command2.content rangeOfString:keyword
+                                             options:NSCaseInsensitiveSearch]
+                         .location != NSNotFound) {
+            score2 += 3;
+          }
+
+          if (score1 < score2) {
+            return NSOrderedDescending;
+          } else if (score1 > score2) {
+            return NSOrderedAscending;
+          } else {
+            return NSOrderedSame;
+          }
+
+        }];
+  }
+  _commandsCDTVC.commands = candidates;
   [_commandsCDTVC.tableView reloadData];
 }
-
 @end

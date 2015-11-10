@@ -41,11 +41,6 @@
   cardView.subtitleText = command.content;
   cardView.isFavorite = [command.favorite boolValue];
 
-  NSMutableArray *tagNames = [[NSMutableArray alloc] init];
-  for (Tag *tag in command.tags) {
-    [tagNames addObject:tag.name];
-  }
-  cardView.tags = tagNames;
   [cell.contentView addSubview:cardView];
 
   return cell;
