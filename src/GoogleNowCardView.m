@@ -235,8 +235,14 @@
   [self.shareButton setBackgroundImage:[UIImage imageNamed:@"launch"]
                               forState:UIControlStateNormal];
   [self.shareButton addTarget:self.delegate
-                       action:@selector(shareButtonDidPressed)
+                       action:@selector(shareButtonDidPressed:)
              forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)shareButtonDidPressed:(UIButton *)sender {
+  NSString *content =
+      [NSString stringWithFormat:@"%@\n%@", _primaryText, _subtitleText];
+  [self.delegate shareButtonDidPressed:content];
 }
 
 - (void)layoutTagListView {

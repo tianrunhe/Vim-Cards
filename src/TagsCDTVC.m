@@ -96,17 +96,7 @@
 
 #pragma mark - GoogleNowCardViewDelegate
 
-- (void)shareButtonDidPressed {
-  NSMutableArray *sharingItems = [NSMutableArray new];
-
-  [sharingItems addObject:@"Hi"];
-  [sharingItems addObject:[UIImage imageNamed:@"favorite"]];
-  [sharingItems addObject:[NSURL URLWithString:@"www.google.com"]];
-
-  UIActivityViewController *activityController =
-      [[UIActivityViewController alloc] initWithActivityItems:sharingItems
-                                        applicationActivities:nil];
-  [self presentViewController:activityController animated:YES completion:nil];
+- (void)shareButtonDidPressed:(id)sender {
 }
 
 - (void)favoriteButtonDidPressed:(id)sender {

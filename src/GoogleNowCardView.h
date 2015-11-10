@@ -11,7 +11,7 @@
 @protocol GoogleNowCardViewDelegate<NSObject>
 
 - (void)favoriteButtonDidPressed:(id)sender;
-- (void)shareButtonDidPressed;
+- (void)shareButtonDidPressed:(NSString *)content;
 
 @end
 
@@ -22,7 +22,6 @@
 
 @property(strong, nonatomic) NSString *primaryText;
 @property(strong, nonatomic) NSString *subtitleText;
-@property(strong, nonatomic) NSString *subText;
 @property(assign, nonatomic) BOOL isFavorite;
 @property(assign, nonatomic) BOOL likeable;
 @property(assign, nonatomic) BOOL shareable;
