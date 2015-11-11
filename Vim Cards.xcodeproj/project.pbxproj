@@ -34,7 +34,7 @@
 		32C928D01BA2937000B4DA3B /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 32C928CF1BA2937000B4DA3B /* Roboto-Bold.ttf */; };
 		32D680341BC61539002B854B /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 32D680331BC61539002B854B /* libz.tbd */; };
 		32D680361BC76BF9002B854B /* Commands.csv in Resources */ = {isa = PBXBuildFile; fileRef = 32D680351BC76BF9002B854B /* Commands.csv */; };
-		32D6803C1BCB6933002B854B /* CommandSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D6803B1BCB6933002B854B /* CommandSearchViewController.m */; };
+		32F084681BF300A800E08639 /* CommandSearchResultsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F084671BF300A800E08639 /* CommandSearchResultsTableViewController.m */; };
 		32F513DE1BE074AD004BFAD1 /* Notations.csv in Resources */ = {isa = PBXBuildFile; fileRef = 32F513DD1BE074AD004BFAD1 /* Notations.csv */; };
 		32F513E11BE1BDAB004BFAD1 /* Notation+DynamoDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F513E01BE1BDAB004BFAD1 /* Notation+DynamoDB.m */; };
 /* End PBXBuildFile section */
@@ -95,8 +95,8 @@
 		32C928CF1BA2937000B4DA3B /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		32D680331BC61539002B854B /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		32D680351BC76BF9002B854B /* Commands.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Commands.csv; sourceTree = "<group>"; };
-		32D6803A1BCB6933002B854B /* CommandSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandSearchViewController.h; sourceTree = "<group>"; };
-		32D6803B1BCB6933002B854B /* CommandSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandSearchViewController.m; sourceTree = "<group>"; };
+		32F084661BF300A800E08639 /* CommandSearchResultsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandSearchResultsTableViewController.h; sourceTree = "<group>"; };
+		32F084671BF300A800E08639 /* CommandSearchResultsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandSearchResultsTableViewController.m; sourceTree = "<group>"; };
 		32F513DD1BE074AD004BFAD1 /* Notations.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Notations.csv; sourceTree = "<group>"; };
 		32F513DF1BE1BDAB004BFAD1 /* Notation+DynamoDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Notation+DynamoDB.h"; sourceTree = "<group>"; };
 		32F513E01BE1BDAB004BFAD1 /* Notation+DynamoDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Notation+DynamoDB.m"; sourceTree = "<group>"; };
@@ -250,12 +250,12 @@
 			children = (
 				3242C1551B8C284B006988F0 /* CommandsCDTVC.h */,
 				3242C1561B8C284B006988F0 /* CommandsCDTVC.m */,
-				32D6803A1BCB6933002B854B /* CommandSearchViewController.h */,
-				32D6803B1BCB6933002B854B /* CommandSearchViewController.m */,
 				3238D2B91BD41A18001B3079 /* TagsCDTVC.h */,
 				3238D2BA1BD41A18001B3079 /* TagsCDTVC.m */,
 				3211D5971BEFDA380061C0E8 /* FavoriteCommandSearchViewController.h */,
 				3211D5981BEFDA380061C0E8 /* FavoriteCommandSearchViewController.m */,
+				32F084661BF300A800E08639 /* CommandSearchResultsTableViewController.h */,
+				32F084671BF300A800E08639 /* CommandSearchResultsTableViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -381,6 +381,7 @@
 			files = (
 				32BCE9EE1B96BAD70032AE44 /* Tag.m in Sources */,
 				32BCE9E81B96BAD70032AE44 /* Topic.m in Sources */,
+				32F084681BF300A800E08639 /* CommandSearchResultsTableViewController.m in Sources */,
 				32BCE9E51B96BAD70032AE44 /* Notation.m in Sources */,
 				32F513E11BE1BDAB004BFAD1 /* Notation+DynamoDB.m in Sources */,
 				328360DB1BBE26B8009499CD /* AMTagListView.m in Sources */,
@@ -390,7 +391,6 @@
 				3238D2BB1BD41A18001B3079 /* TagsCDTVC.m in Sources */,
 				3242C1571B8C284B006988F0 /* CommandsCDTVC.m in Sources */,
 				3211D5991BEFDA380061C0E8 /* FavoriteCommandSearchViewController.m in Sources */,
-				32D6803C1BCB6933002B854B /* CommandSearchViewController.m in Sources */,
 				3211D5961BEFD6F50061C0E8 /* CommandsData.m in Sources */,
 				3242C1541B8C284B006988F0 /* AppDelegate.m in Sources */,
 				32BCE9EB1B96BAD70032AE44 /* Command.m in Sources */,

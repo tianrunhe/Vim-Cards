@@ -19,10 +19,8 @@
 - (id)init {
   NSPredicate *globalPredicate =
       [NSPredicate predicateWithFormat:@"favorite=1"];
-  self =
-      [super initWithCommands:[[CommandsData instance]
-                                      .commands
-                                  filteredArrayUsingPredicate:globalPredicate]];
+  self.commands = [[CommandsData instance]
+                       .commands filteredArrayUsingPredicate:globalPredicate];
 
   if (self) {
     self.title = @"Favorite";
@@ -35,11 +33,11 @@
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
-  self.commandsCDTVC.commands = [[CommandsData instance]
-                                     .commands
+  self.commands = [[CommandsData instance]
+                       .commands
       filteredArrayUsingPredicate:[NSPredicate
                                       predicateWithFormat:@"favorite=1"]];
-  [self.commandsCDTVC.tableView reloadData];
+  [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {

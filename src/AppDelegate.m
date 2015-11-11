@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "CommandSearchViewController.h"
 #import "FavoriteCommandSearchViewController.h"
 #import "TagsCDTVC.h"
 #import "Command+DynamoDB.h"
@@ -53,16 +52,21 @@
   instance.commands =
       [self.managedObjectContext executeFetchRequest:request error:NULL];
 
-  CommandSearchViewController *commandSearchViewController = [self
+  CommandsCDTVC *commandSearchViewController = [self
       createSearchViewControllerWithCommands:[CommandsData instance].commands];
   UINavigationController *categoryTableViewNavigationController =
       [[UINavigationController alloc]
           initWithRootViewController:[self createTagsCDTVC]];
   self.tabBarController = [[UITabBarController alloc] init];
-  self.tabBarController.viewControllers = [NSArray
-      arrayWithObjects:categoryTableViewNavigationController,
-                       commandSearchViewController,
-                       [[FavoriteCommandSearchViewController alloc] init], nil];
+  self.tabBarController.viewControllers =
+      [NSArray arrayWithObjects:
+                   categoryTableViewNavigationController,
+                   [[UINavigationController alloc]
+                       initWithRootViewController:commandSearchViewController],
+                   [[UINavigationController alloc]
+                       initWithRootViewController:
+                           [[FavoriteCommandSearchViewController alloc] init]],
+                   nil];
   self.window.rootViewController = self.tabBarController;
   [self.window makeKeyAndVisible];
 
@@ -286,10 +290,9 @@
       configuration;
 }
 
-- (CommandSearchViewController *)createSearchViewControllerWithCommands:
-    (NSArray *)commands {
-  CommandSearchViewController *commandSearchViewController =
-      [[CommandSearchViewController alloc] initWithCommands:commands];
+- (CommandsCDTVC *)createSearchViewControllerWithCommands:(NSArray *)commands {
+  CommandsCDTVC *commandSearchViewController = [[CommandsCDTVC alloc] init];
+  commandSearchViewController.commands = commands;
   return commandSearchViewController;
 }
 

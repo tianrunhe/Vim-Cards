@@ -6,8 +6,8 @@
 //  Copyright © 2015 Runhe Tian. All rights reserved.
 //
 
-#import "CommandSearchViewController.h"
+#include "CommandsCDTVC.h"
 
-@interface FavoriteCommandSearchViewController : CommandSearchViewController
+@interface FavoriteCommandSearchViewController : CommandsCDTVC
 
 @end

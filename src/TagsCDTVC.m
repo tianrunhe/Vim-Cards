@@ -10,7 +10,7 @@
 #import "GoogleNowCardView.h"
 #import "Tag.h"
 #import "CommandsData.h"
-#import "CommandSearchViewController.h"
+#import "CommandsCDTVC.h"
 
 @implementation TagsCDTVC
 
@@ -88,6 +88,7 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+  self.tableView.scrollsToTop = YES;
 }
 
 - (void)didReceiveMemoryWarning {
