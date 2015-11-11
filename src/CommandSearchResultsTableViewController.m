@@ -83,7 +83,6 @@
       [NSPredicate predicateWithFormat:@"title = %@", cardView.primaryText];
   Command *command =
       [[_filteredCommands filteredArrayUsingPredicate:predicate] firstObject];
-  command.favorite =
-      [NSNumber numberWithLong:1L - command.favorite.longLongValue];
+  command.favorite = [NSNumber numberWithInt:1 - command.favorite.intValue];
 }
 @end

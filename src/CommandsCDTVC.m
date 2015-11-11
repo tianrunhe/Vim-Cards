@@ -135,8 +135,7 @@
       [NSPredicate predicateWithFormat:@"title = %@", cardView.primaryText];
   Command *command =
       [[_commands filteredArrayUsingPredicate:predicate] firstObject];
-  command.favorite =
-      [NSNumber numberWithLong:1L - command.favorite.longLongValue];
+  command.favorite = [NSNumber numberWithInt:1 - command.favorite.intValue];
 }
 
 #pragma mark - UISearchControllerDelegate & UISearchResultsDelegate
@@ -177,8 +176,7 @@
     NSArray *candidates;
     if (![keyword length]) {
       predicate = [NSPredicate predicateWithValue:YES];
-      candidates = [[CommandsData instance]
-                        .commands filteredArrayUsingPredicate:predicate];
+      candidates = [_commands filteredArrayUsingPredicate:predicate];
     } else {
       NSPredicate *commandTitlePredicate =
           [NSPredicate predicateWithFormat:@"title CONTAINS[cd] %@", keyword];
@@ -191,8 +189,7 @@
         commandContentPredicate,
         tagNamePredicate
       ]];
-      candidates = [[[CommandsData instance]
-                         .commands filteredArrayUsingPredicate:predicate]
+      candidates = [[_commands filteredArrayUsingPredicate:predicate]
           sortedArrayUsingComparator:^NSComparisonResult(id _Nonnull obj1,
                                                          id _Nonnull obj2) {
             Command *command1 = (Command *)obj1;
