@@ -16,6 +16,14 @@
 
 #define ROW_HEIGHT 200  // dp
 
+- (instancetype)init {
+  self = [super init];
+  if (self) {
+    self.title = @"Search";
+  }
+  return self;
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -64,6 +72,13 @@
 - (BOOL)tableView:(UITableView *)tableView
     shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
   return NO;
+}
+
+- (void)viewDidLoad {
+  [super viewDidLoad];
+
+  self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+  self.tableView.scrollsToTop = YES;
 }
 
 #pragma mark - GoogleNowCardViewDelegate

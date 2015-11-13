@@ -87,7 +87,6 @@
   [super viewDidLoad];
 
   self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-  self.tableView.scrollsToTop = YES;
 
   UINavigationController *searchResultsController =
       [[UINavigationController alloc]
@@ -101,6 +100,7 @@
   // The searchcontroller's searchResultsUpdater property will contain our
   // tableView.
   self.searchController.searchResultsUpdater = self;
+  self.searchController.hidesNavigationBarDuringPresentation = NO;
 
   // The searchBar contained in XCode's storyboard is a leftover from
   // UISearchDisplayController.
