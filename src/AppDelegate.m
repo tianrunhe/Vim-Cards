@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "FavoriteCommandSearchViewController.h"
+#import "RootTabBarControllerViewController.h"
 #import "TagsCDTVC.h"
 #import "Command+DynamoDB.h"
 #import "Notation+DynamoDB.h"
@@ -57,7 +58,9 @@
   UINavigationController *categoryTableViewNavigationController =
       [[UINavigationController alloc]
           initWithRootViewController:[self createTagsCDTVC]];
-  self.tabBarController = [[UITabBarController alloc] init];
+  RootTabBarControllerViewController *rootViewController =
+      [[RootTabBarControllerViewController alloc] init];
+  self.tabBarController = rootViewController;
   self.tabBarController.viewControllers =
       [NSArray arrayWithObjects:
                    categoryTableViewNavigationController,
@@ -306,8 +309,7 @@
                      selector:@selector(localizedStandardCompare:)]
   ];
 
-  TagsCDTVC *tagsCDTVC =
-      [[TagsCDTVC alloc] initWithStyle:UITableViewStylePlain];
+  TagsCDTVC *tagsCDTVC = [[TagsCDTVC alloc] init];
   tagsCDTVC.tags =
       [self.managedObjectContext executeFetchRequest:request error:NULL];
   tagsCDTVC.title = @"Explore";

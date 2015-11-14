@@ -24,6 +24,7 @@
 		326AA65B1B93AEFB00D64041 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326AA65A1B93AEFB00D64041 /* SystemConfiguration.framework */; };
 		326AA65F1B93AF4000D64041 /* AWSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326AA65E1B93AF4000D64041 /* AWSCore.framework */; };
 		326AA6611B93AF5D00D64041 /* AWSDynamoDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326AA6601B93AF5D00D64041 /* AWSDynamoDB.framework */; };
+		326BDA111BF7E56C0030AA66 /* RootTabBarControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 326BDA101BF7E56C0030AA66 /* RootTabBarControllerViewController.m */; };
 		328360DB1BBE26B8009499CD /* AMTagListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 328360D81BBE26B8009499CD /* AMTagListView.m */; };
 		328360DC1BBE26B8009499CD /* AMTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 328360DA1BBE26B8009499CD /* AMTagView.m */; };
 		32BCE9E51B96BAD70032AE44 /* Notation.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BCE9E41B96BAD70032AE44 /* Notation.m */; };
@@ -79,6 +80,8 @@
 		326AA65A1B93AEFB00D64041 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		326AA65E1B93AF4000D64041 /* AWSCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCore.framework; path = "../../Downloads/aws-ios-sdk-2.2.4/frameworks/AWSCore.framework"; sourceTree = "<group>"; };
 		326AA6601B93AF5D00D64041 /* AWSDynamoDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSDynamoDB.framework; path = "../../Downloads/aws-ios-sdk-2.2.4/frameworks/AWSDynamoDB.framework"; sourceTree = "<group>"; };
+		326BDA0F1BF7E56C0030AA66 /* RootTabBarControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootTabBarControllerViewController.h; sourceTree = "<group>"; };
+		326BDA101BF7E56C0030AA66 /* RootTabBarControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootTabBarControllerViewController.m; sourceTree = "<group>"; };
 		328360D71BBE26B8009499CD /* AMTagListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMTagListView.h; sourceTree = "<group>"; };
 		328360D81BBE26B8009499CD /* AMTagListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMTagListView.m; sourceTree = "<group>"; };
 		328360D91BBE26B8009499CD /* AMTagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMTagView.h; sourceTree = "<group>"; };
@@ -256,6 +259,8 @@
 				3211D5981BEFDA380061C0E8 /* FavoriteCommandSearchViewController.m */,
 				32F084661BF300A800E08639 /* CommandSearchResultsTableViewController.h */,
 				32F084671BF300A800E08639 /* CommandSearchResultsTableViewController.m */,
+				326BDA0F1BF7E56C0030AA66 /* RootTabBarControllerViewController.h */,
+				326BDA101BF7E56C0030AA66 /* RootTabBarControllerViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -320,6 +325,7 @@
 				TargetAttributes = {
 					3242C14A1B8C284B006988F0 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = VJ468Y95V5;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -396,6 +402,7 @@
 				32BCE9EB1B96BAD70032AE44 /* Command.m in Sources */,
 				328360DC1BBE26B8009499CD /* AMTagView.m in Sources */,
 				326AA6501B925E0F00D64041 /* Command+DynamoDB.m in Sources */,
+				326BDA111BF7E56C0030AA66 /* RootTabBarControllerViewController.m in Sources */,
 				3242C1511B8C284B006988F0 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -517,6 +524,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -527,6 +536,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.amazon.tianrunhe.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "Vim Cards";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -534,6 +544,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -544,6 +556,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.amazon.tianrunhe.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "Vim Cards";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
