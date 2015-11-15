@@ -25,7 +25,6 @@
 @property(assign, nonatomic) BOOL isFavorite;
 @property(assign, nonatomic) BOOL likeable;
 @property(assign, nonatomic) BOOL shareable;
-@property(strong, nonatomic) NSArray *tags;  // of NSString
 @property(assign) id<GoogleNowCardViewDelegate> delegate;
 
 @end

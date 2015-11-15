@@ -25,8 +25,6 @@
 		326AA65F1B93AF4000D64041 /* AWSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326AA65E1B93AF4000D64041 /* AWSCore.framework */; };
 		326AA6611B93AF5D00D64041 /* AWSDynamoDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326AA6601B93AF5D00D64041 /* AWSDynamoDB.framework */; };
 		326BDA111BF7E56C0030AA66 /* RootTabBarControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 326BDA101BF7E56C0030AA66 /* RootTabBarControllerViewController.m */; };
-		328360DB1BBE26B8009499CD /* AMTagListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 328360D81BBE26B8009499CD /* AMTagListView.m */; };
-		328360DC1BBE26B8009499CD /* AMTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 328360DA1BBE26B8009499CD /* AMTagView.m */; };
 		32BCE9E51B96BAD70032AE44 /* Notation.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BCE9E41B96BAD70032AE44 /* Notation.m */; };
 		32BCE9E81B96BAD70032AE44 /* Topic.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BCE9E71B96BAD70032AE44 /* Topic.m */; };
 		32BCE9EB1B96BAD70032AE44 /* Command.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BCE9EA1B96BAD70032AE44 /* Command.m */; };
@@ -82,10 +80,6 @@
 		326AA6601B93AF5D00D64041 /* AWSDynamoDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSDynamoDB.framework; path = "../../Downloads/aws-ios-sdk-2.2.4/frameworks/AWSDynamoDB.framework"; sourceTree = "<group>"; };
 		326BDA0F1BF7E56C0030AA66 /* RootTabBarControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootTabBarControllerViewController.h; sourceTree = "<group>"; };
 		326BDA101BF7E56C0030AA66 /* RootTabBarControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootTabBarControllerViewController.m; sourceTree = "<group>"; };
-		328360D71BBE26B8009499CD /* AMTagListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMTagListView.h; sourceTree = "<group>"; };
-		328360D81BBE26B8009499CD /* AMTagListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMTagListView.m; sourceTree = "<group>"; };
-		328360D91BBE26B8009499CD /* AMTagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMTagView.h; sourceTree = "<group>"; };
-		328360DA1BBE26B8009499CD /* AMTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMTagView.m; sourceTree = "<group>"; };
 		32BCE9E31B96BAD70032AE44 /* Notation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notation.h; sourceTree = "<group>"; };
 		32BCE9E41B96BAD70032AE44 /* Notation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notation.m; sourceTree = "<group>"; };
 		32BCE9E61B96BAD70032AE44 /* Topic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Topic.h; sourceTree = "<group>"; };
@@ -241,7 +235,6 @@
 		326AA6661B93B7AE00D64041 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				328360D61BBE268C009499CD /* AMTTagListView */,
 				3242C1741B8D637B006988F0 /* GoogleNowCardView.h */,
 				3242C1751B8D637B006988F0 /* GoogleNowCardView.m */,
 			);
@@ -263,17 +256,6 @@
 				326BDA101BF7E56C0030AA66 /* RootTabBarControllerViewController.m */,
 			);
 			name = Controller;
-			sourceTree = "<group>";
-		};
-		328360D61BBE268C009499CD /* AMTTagListView */ = {
-			isa = PBXGroup;
-			children = (
-				328360D71BBE26B8009499CD /* AMTagListView.h */,
-				328360D81BBE26B8009499CD /* AMTagListView.m */,
-				328360D91BBE26B8009499CD /* AMTagView.h */,
-				328360DA1BBE26B8009499CD /* AMTagView.m */,
-			);
-			name = AMTTagListView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -390,7 +372,6 @@
 				32F084681BF300A800E08639 /* CommandSearchResultsTableViewController.m in Sources */,
 				32BCE9E51B96BAD70032AE44 /* Notation.m in Sources */,
 				32F513E11BE1BDAB004BFAD1 /* Notation+DynamoDB.m in Sources */,
-				328360DB1BBE26B8009499CD /* AMTagListView.m in Sources */,
 				326AA64F1B925E0F00D64041 /* coreData.xcdatamodel in Sources */,
 				3242C1761B8D637B006988F0 /* GoogleNowCardView.m in Sources */,
 				3211D5901BEC5A870061C0E8 /* NSString+Levenshtein.m in Sources */,
@@ -400,7 +381,6 @@
 				3211D5961BEFD6F50061C0E8 /* CommandsData.m in Sources */,
 				3242C1541B8C284B006988F0 /* AppDelegate.m in Sources */,
 				32BCE9EB1B96BAD70032AE44 /* Command.m in Sources */,
-				328360DC1BBE26B8009499CD /* AMTagView.m in Sources */,
 				326AA6501B925E0F00D64041 /* Command+DynamoDB.m in Sources */,
 				326BDA111BF7E56C0030AA66 /* RootTabBarControllerViewController.m in Sources */,
 				3242C1511B8C284B006988F0 /* main.m in Sources */,

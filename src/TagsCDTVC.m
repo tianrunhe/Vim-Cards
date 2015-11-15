@@ -39,7 +39,6 @@
                                              action:@selector(cellTapped:)]];
   cardView.shareable = NO;
   cardView.likeable = NO;
-  cardView.tags = @[];
 
   Tag *tag = [_tags objectAtIndex:indexPath.row];
   cardView.primaryText = tag.name;

@@ -7,7 +7,6 @@
 //
 
 #import "GoogleNowCardView.h"
-#import "AMTagListView.h"
 
 @interface GoogleNowCardView ()
 
@@ -33,19 +32,10 @@
 @property(strong, nonatomic) UILabel *subTextLabel;
 @property(strong, nonatomic) UIButton *likeButton;
 @property(strong, nonatomic) UIButton *shareButton;
-@property(strong, nonatomic) AMTagListView *tagListView;
 
 @end
 
 @implementation GoogleNowCardView
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
 
 - (id)initWithFrame:(CGRect)theFrame {
   self = [super initWithFrame:theFrame];
@@ -133,30 +123,6 @@
   return _shareButton;
 }
 
-- (void)setTags:(NSArray *)tags {
-  _tags = tags;
-  [self.tagListView removeAllTags];
-  if (tags.count) {
-    for (NSString *tagText in tags) {
-      [self.tagListView addTag:tagText];
-    }
-  } else {
-    [_tagListView removeFromSuperview];
-  }
-}
-
-- (AMTagListView *)tagListView {
-  if (!_tagListView) {
-    _tagListView = [[AMTagListView alloc] init];
-    [[AMTagView appearance]
-        setTextFont:[UIFont fontWithName:@"Roboto-Light"
-                                    size:SUBTEXT_TEXT_SIZE]];
-    [[AMTagView appearance] setTagColor:self.tintColor];
-    [[AMTagView appearance] setTagLength:TAG_LENGTH];
-  }
-  return _tagListView;
-}
-
 - (void)setFrame:(CGRect)frame {
   frame.origin.x = PADDING_FROM_EDGE_OF_SCREEN_TO_CARD;
   frame.origin.y = PADDING_FROM_EDGE_OF_SCREEN_TO_CARD;
@@ -168,7 +134,6 @@
   [self addSubview:self.subtitleTextLabel];
   [self addSubview:self.likeButton];
   [self addSubview:self.shareButton];
-  [self addSubview:self.tagListView];
 }
 
 - (void)layoutSubviews {
@@ -176,7 +141,6 @@
   [self layoutSubtitleTextLabel];
   [self layoutLikeButton];
   [self layoutShareButton];
-  [self layoutTagListView];
 }
 
 - (void)layoutPrimaryTextLabel {
@@ -198,7 +162,7 @@
               SUBTITLE_TOP_PADDING;
   CGFloat width = self.frame.size.width - 2 * TEXT_LEFT_RIGHT_PADDING - 50;
 
-  self.subtitleTextLabel.frame = CGRectMake(x, y, width, 64);
+  self.subtitleTextLabel.frame = CGRectMake(x, y, width, 50);
   self.subtitleTextLabel.numberOfLines = 0;
   self.subtitleTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
 }
@@ -243,15 +207,6 @@
   NSString *content =
       [NSString stringWithFormat:@"%@\n%@", _primaryText, _subtitleText];
   [self.delegate shareButtonDidPressed:content];
-}
-
-- (void)layoutTagListView {
-  CGFloat x =
-      self.frame.size.width - TAG_LIST_WIDTH - ACTIONS_SIZE - ACTIONS_PADDING;
-  CGFloat y =
-      PRIMARY_TEXT_TOP_PADDING + _primaryTextLabel.frame.size.height - 30;
-
-  self.tagListView.frame = CGRectMake(x, y, TAG_LIST_WIDTH, 30);
 }
 
 @end
