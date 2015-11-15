@@ -16,6 +16,8 @@
 #import "Tag.h"
 #import <AWSCore/AWSCore.h>
 #import <AWSDynamoDB/AWSDynamoDB.h>
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 
 #define COMMAND_TABLE_NAME @"Vim_Cheat_Sheet"
 #define NOTATION_TABLE_NAME @"Vim-notations"
@@ -28,6 +30,7 @@
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
   // Override point for customization after application launch.
   self.window.backgroundColor = [UIColor whiteColor];
+  [Fabric with:@[ [Crashlytics class] ]];
 
   if (![[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]) {
     [[UIApplication sharedApplication]

@@ -25,6 +25,8 @@
 		326AA65F1B93AF4000D64041 /* AWSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326AA65E1B93AF4000D64041 /* AWSCore.framework */; };
 		326AA6611B93AF5D00D64041 /* AWSDynamoDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326AA6601B93AF5D00D64041 /* AWSDynamoDB.framework */; };
 		326BDA111BF7E56C0030AA66 /* RootTabBarControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 326BDA101BF7E56C0030AA66 /* RootTabBarControllerViewController.m */; };
+		326BDA151BF906710030AA66 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326BDA131BF906710030AA66 /* Fabric.framework */; };
+		326BDA161BF906710030AA66 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326BDA141BF906710030AA66 /* Crashlytics.framework */; };
 		32BCE9E51B96BAD70032AE44 /* Notation.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BCE9E41B96BAD70032AE44 /* Notation.m */; };
 		32BCE9E81B96BAD70032AE44 /* Topic.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BCE9E71B96BAD70032AE44 /* Topic.m */; };
 		32BCE9EB1B96BAD70032AE44 /* Command.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BCE9EA1B96BAD70032AE44 /* Command.m */; };
@@ -80,6 +82,8 @@
 		326AA6601B93AF5D00D64041 /* AWSDynamoDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSDynamoDB.framework; path = "../../Downloads/aws-ios-sdk-2.2.4/frameworks/AWSDynamoDB.framework"; sourceTree = "<group>"; };
 		326BDA0F1BF7E56C0030AA66 /* RootTabBarControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootTabBarControllerViewController.h; sourceTree = "<group>"; };
 		326BDA101BF7E56C0030AA66 /* RootTabBarControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootTabBarControllerViewController.m; sourceTree = "<group>"; };
+		326BDA131BF906710030AA66 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		326BDA141BF906710030AA66 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		32BCE9E31B96BAD70032AE44 /* Notation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notation.h; sourceTree = "<group>"; };
 		32BCE9E41B96BAD70032AE44 /* Notation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notation.m; sourceTree = "<group>"; };
 		32BCE9E61B96BAD70032AE44 /* Topic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Topic.h; sourceTree = "<group>"; };
@@ -109,6 +113,8 @@
 				326AA65F1B93AF4000D64041 /* AWSCore.framework in Frameworks */,
 				326AA65B1B93AEFB00D64041 /* SystemConfiguration.framework in Frameworks */,
 				326AA6591B93AEF100D64041 /* libsqlite3.dylib in Frameworks */,
+				326BDA151BF906710030AA66 /* Fabric.framework in Frameworks */,
+				326BDA161BF906710030AA66 /* Crashlytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,6 +216,8 @@
 		326AA6621B93AF9600D64041 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				326BDA131BF906710030AA66 /* Fabric.framework */,
+				326BDA141BF906710030AA66 /* Crashlytics.framework */,
 				32D680331BC61539002B854B /* libz.tbd */,
 				326AA6601B93AF5D00D64041 /* AWSDynamoDB.framework */,
 				326AA65E1B93AF4000D64041 /* AWSCore.framework */,
@@ -268,6 +276,7 @@
 				3242C1471B8C284B006988F0 /* Sources */,
 				3242C1481B8C284B006988F0 /* Frameworks */,
 				3242C1491B8C284B006988F0 /* Resources */,
+				326BDA121BF9063D0030AA66 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -361,6 +370,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		326BDA121BF9063D0030AA66 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run a3f12dcda275a376314574d76949aa0ef7171419 5d42aab029589cb8ffe25518a429312daf457d6b941c9eb4c5043fa8afc0b973";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3242C1471B8C284B006988F0 /* Sources */ = {
@@ -510,6 +535,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/bruce/Downloads/aws-ios-sdk-2.2.4/frameworks",
+					"$(PROJECT_DIR)",
 				);
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = src/Info.plist;
@@ -530,6 +556,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/bruce/Downloads/aws-ios-sdk-2.2.4/frameworks",
+					"$(PROJECT_DIR)",
 				);
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = src/Info.plist;
