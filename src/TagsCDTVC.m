@@ -86,6 +86,7 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+  self.tags = [CommandsData instance].tags;
   self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
   self.tableView.scrollsToTop = YES;
 }

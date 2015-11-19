@@ -85,7 +85,7 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-
+  self.commands = [CommandsData instance].commands;
   self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
   UINavigationController *searchResultsController =

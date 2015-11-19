@@ -32,10 +32,10 @@
   self.window.backgroundColor = [UIColor whiteColor];
   [Fabric with:@[ [Crashlytics class] ]];
 
+  [[UIApplication sharedApplication]
+      setMinimumBackgroundFetchInterval:
+          UIApplicationBackgroundFetchIntervalMinimum];
   if (![[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]) {
-    [[UIApplication sharedApplication]
-        setMinimumBackgroundFetchInterval:
-            UIApplicationBackgroundFetchIntervalMinimum];
     [self configureAWSResources];
     [self startDynamoDBSync];
     [[NSUserDefaults standardUserDefaults] setBool:YES
@@ -52,12 +52,21 @@
                     ascending:YES
                      selector:@selector(localizedStandardCompare:)]
   ];
-  CommandsData *instance = [CommandsData instance];
-  instance.commands =
+  [CommandsData instance].commands =
       [self.managedObjectContext executeFetchRequest:request error:NULL];
 
-  CommandsCDTVC *commandSearchViewController = [self
-      createSearchViewControllerWithCommands:[CommandsData instance].commands];
+  NSFetchRequest *request2 = [NSFetchRequest fetchRequestWithEntityName:@"Tag"];
+  request2.predicate = nil;
+  request2.sortDescriptors = @[
+    [NSSortDescriptor
+        sortDescriptorWithKey:@"name"
+                    ascending:YES
+                     selector:@selector(localizedStandardCompare:)]
+  ];
+  [CommandsData instance].tags =
+      [self.managedObjectContext executeFetchRequest:request2 error:NULL];
+
+  CommandsCDTVC *commandSearchViewController = [[CommandsCDTVC alloc] init];
   UINavigationController *categoryTableViewNavigationController =
       [[UINavigationController alloc]
           initWithRootViewController:[self createTagsCDTVC]];
@@ -129,45 +138,29 @@
     [self configureAWSResources];
     AWSDynamoDB *dynamoDB = [AWSDynamoDB defaultDynamoDB];
 
-    [self deleteAllFrom:@"Command"];
-    [self deleteAllFrom:@"Tag"];
     AWSDynamoDBScanInput *scanInput = [AWSDynamoDBScanInput new];
     scanInput.tableName = COMMAND_TABLE_NAME;
     __block BOOL anyTaskFailed = NO;
-    [[dynamoDB scan:scanInput] continueWithBlock:^id(AWSTask *task) {
+    [[[dynamoDB scan:scanInput] continueWithBlock:^id(AWSTask *task) {
       if (task.error) {
-        NSLog(@"Failed to sync Command data with DynamoDB");
         anyTaskFailed = YES;
       } else {
+        NSLog(@"%s:%d Started loadsCommandsFromDynamoDBScanOutput", __func__,
+              __LINE__);
         [Command loadCommandsFromDynamoDBScanOutput:task.result
                            intoManagedObjectContext:self.managedObjectContext];
-        NSLog(@"Succeeded to sync Command data with DynamoDB");
+        NSLog(@"%s:%d Finished loadsCommandsFromDynamoDBScanOutput", __func__,
+              __LINE__);
       }
       return nil;
-    }];
-
-    [self deleteAllFrom:@"Notation"];
-    scanInput = [AWSDynamoDBScanInput new];
-    scanInput.tableName = NOTATION_TABLE_NAME;
-    [[dynamoDB scan:scanInput] continueWithBlock:^id(AWSTask *task) {
-      if (task.error) {
-        NSLog(@"Failed to sync Notation data with DynamoDB");
-        anyTaskFailed = YES;
-      } else {
-        [Notation
-            loadNotationsFromDynamoDBScanOutput:task.result
-                       intoManagedObjectContext:self.managedObjectContext];
-        NSLog(@"Succeeded to sync Notation data with DynamoDB");
-      }
-      return nil;
-    }];
+    }] waitUntilFinished];
 
     if (anyTaskFailed) {
       completionHandler(UIBackgroundFetchResultFailed);
     } else {
       completionHandler(UIBackgroundFetchResultNewData);
     }
-    [self.managedObjectContext save:NULL];
+    [self saveContext];
   } else {
     completionHandler(UIBackgroundFetchResultNoData);
   }
@@ -215,7 +208,6 @@
       initWithManagedObjectModel:[self managedObjectModel]];
   NSURL *storeURL = [[self applicationDocumentsDirectory]
       URLByAppendingPathComponent:@"coreData.sqlite"];
-  NSLog(@"Core Data store path = \"%@\"", [storeURL path]);
   NSError *error = nil;
   NSString *failureReason =
       @"There was an error creating or loading the application's saved data.";
@@ -239,7 +231,6 @@
     // abort() causes the application to generate a crash log and terminate. You
     // should not use this function in a shipping application, although it may
     // be useful during development.
-    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
     abort();
   }
 
@@ -276,7 +267,6 @@
       // abort() causes the application to generate a crash log and terminate.
       // You should not use this function in a shipping application, although it
       // may be useful during development.
-      NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
       abort();
     }
   }
@@ -303,18 +293,7 @@
 }
 
 - (TagsCDTVC *)createTagsCDTVC {
-  NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Tag"];
-  request.predicate = nil;
-  request.sortDescriptors = @[
-    [NSSortDescriptor
-        sortDescriptorWithKey:@"name"
-                    ascending:YES
-                     selector:@selector(localizedStandardCompare:)]
-  ];
-
   TagsCDTVC *tagsCDTVC = [[TagsCDTVC alloc] init];
-  tagsCDTVC.tags =
-      [self.managedObjectContext executeFetchRequest:request error:NULL];
   tagsCDTVC.title = @"Explore";
   tagsCDTVC.tabBarItem =
       [[UITabBarItem alloc] initWithTitle:@"Explore"
@@ -337,14 +316,6 @@
     return nil;
   }] waitUntilFinished];
 
-  [self deleteAllFrom:@"Notation"];
-  scanInput = [AWSDynamoDBScanInput new];
-  scanInput.tableName = NOTATION_TABLE_NAME;
-  [[[dynamoDB scan:scanInput] continueWithBlock:^id(AWSTask *task) {
-    [Notation loadNotationsFromDynamoDBScanOutput:task.result
-                         intoManagedObjectContext:self.managedObjectContext];
-    return nil;
-  }] waitUntilFinished];
   [self.managedObjectContext save:NULL];
 }
 

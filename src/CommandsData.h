@@ -10,9 +10,11 @@
 
 @interface CommandsData : NSObject {
   NSArray *commands;  // of Command
+  NSArray *tags;      // of Tag
 }
 
 @property(nonatomic, retain) NSArray *commands;
+@property(nonatomic, retain) NSArray *tags;
 
 + (CommandsData *)instance;
 

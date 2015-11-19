@@ -10,6 +10,7 @@
 
 @implementation CommandsData
 @synthesize commands;
+@synthesize tags;
 
 static CommandsData *instance = nil;
 
