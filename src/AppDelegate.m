@@ -11,7 +11,6 @@
 #import "RootTabBarControllerViewController.h"
 #import "TagsCDTVC.h"
 #import "Command+DynamoDB.h"
-#import "Notation+DynamoDB.h"
 #import "CommandsData.h"
 #import "Tag.h"
 #import <AWSCore/AWSCore.h>

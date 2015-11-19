@@ -8,8 +8,6 @@
 
 #import "Command.h"
 #import "Tag.h"
-#import "Topic.h"
-
 
 @implementation Command
 
@@ -21,6 +19,5 @@
 @dynamic usage;
 @dynamic vi;
 @dynamic tags;
-@dynamic topic;
 
 @end

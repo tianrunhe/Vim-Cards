@@ -13,15 +13,14 @@
 
 @interface Command : NSManagedObject
 
-@property (nonatomic, retain) NSString * content;
-@property (nonatomic, retain) NSNumber * favorite;
-@property (nonatomic, retain) NSData * image;
-@property (nonatomic, retain) NSNumber * purchase;
-@property (nonatomic, retain) NSString * title;
-@property (nonatomic, retain) NSString * usage;
-@property (nonatomic, retain) NSNumber * vi;
-@property (nonatomic, retain) NSSet *tags;
-@property (nonatomic, retain) Topic *topic;
+@property(nonatomic, retain) NSString *content;
+@property(nonatomic, retain) NSNumber *favorite;
+@property(nonatomic, retain) NSData *image;
+@property(nonatomic, retain) NSNumber *purchase;
+@property(nonatomic, retain) NSString *title;
+@property(nonatomic, retain) NSString *usage;
+@property(nonatomic, retain) NSNumber *vi;
+@property(nonatomic, retain) NSSet *tags;
 @end
 
 @interface Command (CoreDataGeneratedAccessors)

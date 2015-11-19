@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3211D5901BEC5A870061C0E8 /* NSString+Levenshtein.m in Sources */ = {isa = PBXBuildFile; fileRef = 3211D58F1BEC5A870061C0E8 /* NSString+Levenshtein.m */; };
 		3211D5961BEFD6F50061C0E8 /* CommandsData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3211D5951BEFD6F50061C0E8 /* CommandsData.m */; };
 		3211D5991BEFDA380061C0E8 /* FavoriteCommandSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3211D5981BEFDA380061C0E8 /* FavoriteCommandSearchViewController.m */; };
 		3238D2BB1BD41A18001B3079 /* TagsCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3238D2BA1BD41A18001B3079 /* TagsCDTVC.m */; };
@@ -27,17 +26,12 @@
 		326BDA111BF7E56C0030AA66 /* RootTabBarControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 326BDA101BF7E56C0030AA66 /* RootTabBarControllerViewController.m */; };
 		326BDA151BF906710030AA66 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326BDA131BF906710030AA66 /* Fabric.framework */; };
 		326BDA161BF906710030AA66 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326BDA141BF906710030AA66 /* Crashlytics.framework */; };
-		32BCE9E51B96BAD70032AE44 /* Notation.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BCE9E41B96BAD70032AE44 /* Notation.m */; };
-		32BCE9E81B96BAD70032AE44 /* Topic.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BCE9E71B96BAD70032AE44 /* Topic.m */; };
 		32BCE9EB1B96BAD70032AE44 /* Command.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BCE9EA1B96BAD70032AE44 /* Command.m */; };
 		32BCE9EE1B96BAD70032AE44 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BCE9ED1B96BAD70032AE44 /* Tag.m */; };
 		32C928CE1BA2936000B4DA3B /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 32C928CD1BA2936000B4DA3B /* Roboto-Light.ttf */; };
 		32C928D01BA2937000B4DA3B /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 32C928CF1BA2937000B4DA3B /* Roboto-Bold.ttf */; };
 		32D680341BC61539002B854B /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 32D680331BC61539002B854B /* libz.tbd */; };
-		32D680361BC76BF9002B854B /* Commands.csv in Resources */ = {isa = PBXBuildFile; fileRef = 32D680351BC76BF9002B854B /* Commands.csv */; };
 		32F084681BF300A800E08639 /* CommandSearchResultsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F084671BF300A800E08639 /* CommandSearchResultsTableViewController.m */; };
-		32F513DE1BE074AD004BFAD1 /* Notations.csv in Resources */ = {isa = PBXBuildFile; fileRef = 32F513DD1BE074AD004BFAD1 /* Notations.csv */; };
-		32F513E11BE1BDAB004BFAD1 /* Notation+DynamoDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F513E01BE1BDAB004BFAD1 /* Notation+DynamoDB.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,8 +45,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3211D58E1BEC5A870061C0E8 /* NSString+Levenshtein.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Levenshtein.h"; sourceTree = "<group>"; };
-		3211D58F1BEC5A870061C0E8 /* NSString+Levenshtein.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Levenshtein.m"; sourceTree = "<group>"; };
 		3211D5941BEFD6F50061C0E8 /* CommandsData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandsData.h; sourceTree = "<group>"; };
 		3211D5951BEFD6F50061C0E8 /* CommandsData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandsData.m; sourceTree = "<group>"; };
 		3211D5971BEFDA380061C0E8 /* FavoriteCommandSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteCommandSearchViewController.h; sourceTree = "<group>"; };
@@ -84,10 +76,6 @@
 		326BDA101BF7E56C0030AA66 /* RootTabBarControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootTabBarControllerViewController.m; sourceTree = "<group>"; };
 		326BDA131BF906710030AA66 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		326BDA141BF906710030AA66 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
-		32BCE9E31B96BAD70032AE44 /* Notation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notation.h; sourceTree = "<group>"; };
-		32BCE9E41B96BAD70032AE44 /* Notation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notation.m; sourceTree = "<group>"; };
-		32BCE9E61B96BAD70032AE44 /* Topic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Topic.h; sourceTree = "<group>"; };
-		32BCE9E71B96BAD70032AE44 /* Topic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Topic.m; sourceTree = "<group>"; };
 		32BCE9E91B96BAD70032AE44 /* Command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Command.h; sourceTree = "<group>"; };
 		32BCE9EA1B96BAD70032AE44 /* Command.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Command.m; sourceTree = "<group>"; };
 		32BCE9EC1B96BAD70032AE44 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
@@ -95,12 +83,8 @@
 		32C928CD1BA2936000B4DA3B /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
 		32C928CF1BA2937000B4DA3B /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		32D680331BC61539002B854B /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
-		32D680351BC76BF9002B854B /* Commands.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Commands.csv; sourceTree = "<group>"; };
 		32F084661BF300A800E08639 /* CommandSearchResultsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandSearchResultsTableViewController.h; sourceTree = "<group>"; };
 		32F084671BF300A800E08639 /* CommandSearchResultsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandSearchResultsTableViewController.m; sourceTree = "<group>"; };
-		32F513DD1BE074AD004BFAD1 /* Notations.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Notations.csv; sourceTree = "<group>"; };
-		32F513DF1BE1BDAB004BFAD1 /* Notation+DynamoDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Notation+DynamoDB.h"; sourceTree = "<group>"; };
-		32F513E01BE1BDAB004BFAD1 /* Notation+DynamoDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Notation+DynamoDB.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,17 +180,9 @@
 				32BCE9ED1B96BAD70032AE44 /* Tag.m */,
 				32BCE9E91B96BAD70032AE44 /* Command.h */,
 				32BCE9EA1B96BAD70032AE44 /* Command.m */,
-				32BCE9E61B96BAD70032AE44 /* Topic.h */,
-				32BCE9E71B96BAD70032AE44 /* Topic.m */,
-				32BCE9E31B96BAD70032AE44 /* Notation.h */,
-				32BCE9E41B96BAD70032AE44 /* Notation.m */,
 				326AA6491B925E0F00D64041 /* coreData.xcdatamodel */,
 				326AA64A1B925E0F00D64041 /* Command+DynamoDB.h */,
 				326AA64B1B925E0F00D64041 /* Command+DynamoDB.m */,
-				32F513DF1BE1BDAB004BFAD1 /* Notation+DynamoDB.h */,
-				32F513E01BE1BDAB004BFAD1 /* Notation+DynamoDB.m */,
-				3211D58E1BEC5A870061C0E8 /* NSString+Levenshtein.h */,
-				3211D58F1BEC5A870061C0E8 /* NSString+Levenshtein.m */,
 				3211D5941BEFD6F50061C0E8 /* CommandsData.h */,
 				3211D5951BEFD6F50061C0E8 /* CommandsData.m */,
 			);
@@ -230,8 +206,6 @@
 		326AA6651B93B65500D64041 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				32F513DD1BE074AD004BFAD1 /* Notations.csv */,
-				32D680351BC76BF9002B854B /* Commands.csv */,
 				3242C15B1B8C284B006988F0 /* Images.xcassets */,
 				3242C15D1B8C284B006988F0 /* LaunchScreen.xib */,
 				32C928CD1BA2936000B4DA3B /* Roboto-Light.ttf */,
@@ -353,10 +327,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32F513DE1BE074AD004BFAD1 /* Notations.csv in Resources */,
 				3242C15F1B8C284B006988F0 /* LaunchScreen.xib in Resources */,
 				32C928D01BA2937000B4DA3B /* Roboto-Bold.ttf in Resources */,
-				32D680361BC76BF9002B854B /* Commands.csv in Resources */,
 				32C928CE1BA2936000B4DA3B /* Roboto-Light.ttf in Resources */,
 				3242C15C1B8C284B006988F0 /* Images.xcassets in Resources */,
 			);
@@ -393,13 +365,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				32BCE9EE1B96BAD70032AE44 /* Tag.m in Sources */,
-				32BCE9E81B96BAD70032AE44 /* Topic.m in Sources */,
 				32F084681BF300A800E08639 /* CommandSearchResultsTableViewController.m in Sources */,
-				32BCE9E51B96BAD70032AE44 /* Notation.m in Sources */,
-				32F513E11BE1BDAB004BFAD1 /* Notation+DynamoDB.m in Sources */,
 				326AA64F1B925E0F00D64041 /* coreData.xcdatamodel in Sources */,
 				3242C1761B8D637B006988F0 /* GoogleNowCardView.m in Sources */,
-				3211D5901BEC5A870061C0E8 /* NSString+Levenshtein.m in Sources */,
 				3238D2BB1BD41A18001B3079 /* TagsCDTVC.m in Sources */,
 				3242C1571B8C284B006988F0 /* CommandsCDTVC.m in Sources */,
 				3211D5991BEFDA380061C0E8 /* FavoriteCommandSearchViewController.m in Sources */,
@@ -480,7 +448,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -518,7 +486,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
